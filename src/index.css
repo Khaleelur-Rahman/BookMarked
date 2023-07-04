@@ -1,0 +1,234 @@
+.App{
+  overflow: auto;
+}
+
+img {
+  image-rendering: auto;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    color: #020608;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e2f1f8;
+}
+
+.site-title {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+li {
+ margin: 20px;
+}
+
+.nav > ul > li > a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a:focus {
+  text-decoration: underline;
+  text-decoration-color: goldenrod;
+}
+
+.form {
+  text-align: center;
+}
+
+#input {
+  margin: 5px;
+  border-radius: 15px;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+}
+
+#submit, #reset {
+  border-radius: 20px;
+  /* background-color: #acb8ec; */
+  margin: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+button[id="reset"] {
+  background-image: url(icons8-reset-48.png);
+}
+button[type="submit"].bookform-submit{
+  background-image: url(searchIcon.png);
+  border-radius: 16px;
+}
+
+button[type="submit"].review-submit{
+  border-radius: 8px;
+}
+
+button[type="submit"].bookform-submit, button[id="reset"] {
+  background-size: contain; 
+  background-repeat: no-repeat;
+  width: 30px; 
+  height: 30px;
+}
+
+.form-inputs-and-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.image-container, .wishlist-books, .read-books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.book-details {
+  margin: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-details .book-image ,.read-books-image ,.wishlist-books-image  {
+  opacity: 1;
+  transition: filter 0.3s;
+  height: 200px;
+  width: 150px;
+  border: 2px lightblue solid;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+
+.book-details:hover .book-image {
+  cursor: pointer;
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+}
+
+.image-links {
+  font-size: small;
+  font-weight: bolder;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-details:hover .image-links {
+  opacity: 1;
+}
+
+.image-links > div ,.image-links > a, .add-read {
+  border: 2px solid rgb(83, 81, 81);
+  background-color: #fdbaad;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.add-read {
+  text-decoration: none;
+  color: black;
+}
+
+.ToReadLink {
+  position:absolute;
+  top:0;
+  right:50px;
+}
+
+.ReadLink {
+  position:absolute;
+   top:0;
+   right:0;
+}
+
+.read-header, .wishlist-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bolder;
+  display: flex;
+  text-align: center;
+}
+
+.cant-find-statement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bold;
+}
+
+.book-details-review {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 30%;
+}
+
+.review-column-1, .review-column-2{
+  float: left;
+  width: 50%;
+}
+
+.book-details-review:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+/*Home Page*/
+.home {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.register-home-button, .login-home-button {
+  border: 4px solid black;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 4px;
+  cursor: pointer;
+}
