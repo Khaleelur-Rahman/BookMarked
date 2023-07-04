@@ -220,9 +220,17 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 
 /*Home Page*/
 .home {
-  display: flex;
+  display: inline-block;
   align-items: center;
   text-align: center;
+}
+
+.home-page-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
 }
 
 .register-home-button, .login-home-button {
@@ -230,5 +238,6 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   border-radius: 8px;
   padding: 4px;
   margin: 4px;
+  width : 80px;
   cursor: pointer;
 }
