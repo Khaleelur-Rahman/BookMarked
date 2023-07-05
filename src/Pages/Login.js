@@ -2,6 +2,7 @@ import React, { useState , useEffect} from "react";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup} from 'firebase/auth';
 import { auth, googleProvider} from '../backend/firebase-config';
 import useGoBackHistory from '../components/custom-hooks/useGoBackHistory';
+import { useNavigate } from "react-router-dom";
 
 function Login () {
 
@@ -9,7 +10,7 @@ function Login () {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [user, setUser] = useState(null);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -22,18 +23,21 @@ function Login () {
     const login = async () => {
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-          console.log(user);
+          // console.log(user);
+          // console.log(navigate(-1));
+          navigate(-1);
         } catch (error) {
           console.log(error.message);
         }
-        // window.location.href = useGoBackHistory();
+        // window.location.href = () => useGoBackHistory;
       }
 
     const LoginWithGoogle = async () => {
         try {
             const provider = googleProvider;
             const user = await signInWithPopup(auth, provider);
-            console.log(user);
+            // console.log(user);
+            navigate(-1);
         }   catch (error) {
             console.log(error.message);
         }
