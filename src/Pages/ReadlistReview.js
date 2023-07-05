@@ -51,7 +51,7 @@ function ReadlistReview() {
     <div className='book-details-review'>
       {state ? (
         <div>
-          <div className='review-column-1'>
+          <div className='readlist-review-column-1'>
             <img
               className="book-image-review"
               src={state.state.volumeInfo.imageLinks?.thumbnail}
@@ -62,9 +62,9 @@ function ReadlistReview() {
             </div>
           </div>
 
-          <div className='review-column-1'>
+          <div className='readlist-review-column-2'>
             <form onSubmit={handleSubmit}>
-              <h2>Write your review below :</h2>
+              <h3>Write your review below to add to Readlist:</h3>
               <label htmlFor="reviewStars">Rating : </label>
               <input 
               type='number' 
@@ -93,6 +93,7 @@ function ReadlistReview() {
               value={description}
               onChange={handleChangeDescription}
               ></textarea>
+              <br />
               <button type="submit" value="Submit" className="review-submit">
               Add to Readlist
               </button>

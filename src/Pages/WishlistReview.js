@@ -44,7 +44,7 @@ function WishlistReview() {
     <div className='book-details-review'>
       {state ? (
         <div>
-          <div className='review-column-1'>
+          <div className='wishlist-review-column-1'>
             <img
               className="book-image-review"
               src={state.state.volumeInfo.imageLinks?.thumbnail}
@@ -55,9 +55,9 @@ function WishlistReview() {
             </div>
           </div>
 
-          <div className='review-column-1'>
+          <div className='wishlist-review-column-2'>
             <form onSubmit={handleSubmit}>
-              <h2>Enter the details below :</h2>
+              <h3>Enter the details below to add to Wishlist:</h3>
               <label htmlFor = "reviewDateCompleted">Intended date of read : </label>
               <input 
               type='date' 
