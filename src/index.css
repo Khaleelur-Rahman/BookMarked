@@ -58,7 +58,7 @@ a:hover {
   cursor: pointer;
 }
 
-a:focus {
+Link:focus {
   text-decoration: underline;
   text-decoration-color: goldenrod;
 }
@@ -84,10 +84,10 @@ a:focus {
 }
 
 button[id="reset"] {
-  background-image: url(icons8-reset-48.png);
+  background-image: url(./images/icons8-reset-48.png)
 }
 button[type="submit"].bookform-submit{
-  background-image: url(searchIcon.png);
+  background-image: url(./images/searchIcon.png);
   border-radius: 16px;
 }
 
@@ -350,7 +350,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 }
 
 button[class="login-with-google"] {
-  background-image: url(google-icon.png);
+  background-image: url(./images/google-icon.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 30px;
