@@ -127,22 +127,24 @@ function BookForm() {
                   src={book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
                   alt={book.volumeInfo.title}
                 />
-                <div className="display-book-title">{trimAndAddDots(book.volumeInfo.title)}</div>
+                <div className="display-book-title">
+                  {trimAndAddDots(book.volumeInfo.title)}
+                </div>
                 <div className="image-links">
-                <Link
-                to={"/BookForm/WishlistReview"} state={{ state: book }}
-                className="add-read"
-                >
-                Add to Wishlist
-                </Link>
-                <br></br>
-                <Link
-                  to={"/BookForm/ReadlistReview"} state={{ state: book }}
+                  <Link
+                  to={"/BookForm/WishlistReview"} state={{ state: book }}
                   className="add-read"
-                >
-                  Add to Readlist
-                </Link>
-                <br></br>
+                  >
+                  Add to Wishlist
+                  </Link>
+                  <br></br>
+                  <Link
+                    to={"/BookForm/ReadlistReview"} state={{ state: book }}
+                    className="add-read"
+                  >
+                    Add to Readlist
+                  </Link> 
+                  <br></br>
                   <div className="book-details-link" onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Details
                   </div>

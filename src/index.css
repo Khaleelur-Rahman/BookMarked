@@ -256,6 +256,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   left: 50%;
   transform: translate(-50%, -50%);
   padding-top: 20px;
+  display: flex;
 }
 
 .register-home-button, .login-home-button {

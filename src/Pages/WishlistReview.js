@@ -32,6 +32,7 @@ function WishlistReview() {
       const db = connection();
       const docRef = await addDoc(collection(db, "ToRead"), {
       book : state.state,
+      title :state.state.volumeInfo.title,
       notes: notes,
       dateToRead: dateToRead,
       userId : user.uid

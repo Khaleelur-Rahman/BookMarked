@@ -7,6 +7,7 @@ function Register () {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [user, setUser] = useState(null);
+    
 
     const register = async () => {
         try {

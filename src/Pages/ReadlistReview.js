@@ -1,9 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import { trimAndAddDots } from '../components/utils';
 import connection from '../backend/connection';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { useState } from 'react';
 import { auth } from '../backend/firebase-config';
+// import { Firestore } from 'firebase/firestore';
 
 function ReadlistReview() {
   // const location = useLocation();
@@ -15,6 +16,7 @@ function ReadlistReview() {
   const [rating, setRating] = useState(0);
   const [description, setDescription] = useState('');
   const [dateCompleted, setDateCompleted] = useState('');
+  const [inputType, setInputType] = useState("text");
 
   function handleChangeRating(event) {
     setRating(event.target.value)
@@ -30,22 +32,51 @@ function ReadlistReview() {
 
   // console.log(state);
 
-  async function handleSubmit(e){
+  async function handleSubmitNewBook(e) {
       e.preventDefault();
 
       const db = connection();
       const docRef = await addDoc(collection(db, "Read"), {
       book : state.state,
+      title :state.state.volumeInfo.title,
       description: description,
       rating: rating,
       dateCompleted: dateCompleted,
       userId : user.uid
     });
+
+    const res = await updateDoc(doc(db, 'Read', docRef.id), {
+      book: state.state,
+      title: state.state.volumeInfo.title,
+      docId: docRef.id,
+      description: description,
+      rating: rating,
+      dateCompleted: dateCompleted,
+      userId: user.uid
+    });
     console.log("Document written with ID: ", docRef.id);
     window.location.href = "/Read"
+  };
 
+  async function handleSubmitEditBook(e) {
+    e.preventDefault();
 
-    };
+    const db = connection();
+    console.log(state.docId);
+    const res = await updateDoc(doc(db, 'Read', state.docId), {
+      book: state.state,
+      title: state.state.volumeInfo.title,
+      docId: state.docId,
+      description: description,
+      rating: rating,
+      dateCompleted: dateCompleted,
+      userId: user.uid
+    });
+    window.location.href = "/Read"
+    // await db.collection('Read').doc(state.docId).
+
+    console.log("Updated " + res);
+  }
 
   return (
     <div className='book-details-review'>
@@ -63,8 +94,9 @@ function ReadlistReview() {
           </div>
 
           <div className='readlist-review-column-2'>
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={state.bookDescription === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
               <h3>Write your review below to add to Readlist:</h3>
+              {console.log(state.bookRating)}
               <label htmlFor="reviewStars">Rating : </label>
               <input 
               type='number' 
@@ -72,7 +104,7 @@ function ReadlistReview() {
               min="0" 
               max = "5" 
               step ="0.1" 
-              placeholder='0'
+              defaultValue= {state.bookRating !== '0' ? state.bookRating : '0'}
               value={rating}
               onChange={handleChangeRating}
               required
@@ -80,9 +112,13 @@ function ReadlistReview() {
               <br />
               <label htmlFor = "reviewDateCompleted">Date completed : </label>
               <input 
-              type='date' 
+              type={inputType} 
               className='reviewDateCompleted'
-              value={dateCompleted}
+              // placeholder= {state.bookDate !== '' ? state.bookDate : "Date Completed"}
+              onFocus={() => setInputType('date')}
+              onBlur={() => setInputType('text')}
+              // value={state.bookDate !== '' ? state.bookDate : ""}
+              defaultValue={state.bookDate !== '' ? state.bookDate : ""}
               onChange={handleChangeDateCompleted}
               required
               ></input>
@@ -90,13 +126,21 @@ function ReadlistReview() {
               <label htmlFor = "reviewDescription">Description : </label>
               <textarea 
               className='reviewDescription'
-              value={description}
+              // value={state.bookDescription !== '' ? state.bookDescription : ""}
+              defaultValue={state.bookDescription !== '' ? state.bookDescription : ""}
+              // placeholder={state.bookDescription !== '' ? state.bookDescription : ""}
               onChange={handleChangeDescription}
               ></textarea>
               <br />
-              <button type="submit" value="Submit" className="review-submit">
-              Add to Readlist
-              </button>
+              <div>
+                {state.bookDescription === undefined ? (
+                <button type="submit" value="Submit" className="review-submit"> Add to Readlist </button> 
+                )
+                : (
+                <button type="submit" value="Submit" className="review-submit"> Edit Book </button>
+                )
+                }
+              </div>
             </form>
             
           </div>

@@ -3,10 +3,16 @@ import connection from "../backend/connection";
 import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
 import { auth } from "../backend/firebase-config";
+import { Link } from "react-router-dom";
 
 function Read() {
+
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  function setLink(url) {
+    window.location.href = url;
+  }
 
   useEffect(() => {
     const fetchData = async (user) => {
@@ -16,6 +22,7 @@ function Read() {
         .filter((doc) => doc.data().userId === user.uid)
         .map((doc) => {
           const book = doc.data().book;
+          // console.log(doc.data());
           return (
             <div className="book-details">
               <img
@@ -26,6 +33,18 @@ function Read() {
               />
               <div>{trimAndAddDots(book.volumeInfo.title)}</div>
               <div>{doc.data().rating} / 5</div>
+              <div className="image-links"> 
+                <Link
+                    to={"/BookForm/ReadlistReview"} state={{ state: book, bookRating: doc.data().rating, bookDescription: doc.data().description, bookDate: doc.data().dateCompleted, docId: doc.data().docId}}
+                    className="add-read"
+                    >
+                    View and Edit Description
+                </Link>
+                <br />
+                <div className="book-details-link" onClick={() => setLink(book.volumeInfo.infoLink)}>
+                    Book Details
+                </div>
+              </div>
             </div>
           );
         });
