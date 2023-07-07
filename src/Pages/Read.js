@@ -1,9 +1,10 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, deleteDoc, doc} from "firebase/firestore";
 import connection from "../backend/connection";
 import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
 import { auth } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
+import useDelete from "../components/custom-hooks/useDelete";
 
 function Read() {
 
@@ -12,6 +13,14 @@ function Read() {
 
   function setLink(url) {
     window.location.href = url;
+  }
+
+  async function bookDelete(id) {
+    const db = connection();
+    // const res = await db.collection('Read').doc(id).delete();
+    const res = await deleteDoc(doc(db, "Read",id));
+    console.log(res);
+    setLink("/Read");
   }
 
   useEffect(() => {
@@ -41,9 +50,13 @@ function Read() {
                     View and Edit Description
                 </Link>
                 <br />
-                <div className="book-details-link" onClick={() => setLink(book.volumeInfo.infoLink)}>
+                <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
+                <div onClick={() => bookDelete(doc.data().docId)}>
+                  Delete
+                </div>
+
               </div>
             </div>
           );
