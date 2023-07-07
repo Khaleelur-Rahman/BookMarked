@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { trimAndAddDots } from '../components/utils';
 import connection from '../backend/connection';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { auth } from '../backend/firebase-config';
 // import { Firestore } from 'firebase/firestore';
 
@@ -13,10 +13,11 @@ function ReadlistReview() {
   const user = auth.currentUser;
 
   // const [review, setReview] = useState(0);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
   const [dateCompleted, setDateCompleted] = useState('');
-  const [inputType, setInputType] = useState("text");
+  const [inputDateType, setDateType] = useState("text");
+  const [ratingType, setRatingType] = useState("text");
 
   function handleChangeRating(event) {
     setRating(event.target.value)
@@ -78,6 +79,18 @@ function ReadlistReview() {
     console.log("Updated " + res);
   }
 
+  useEffect(() => {
+    if (state.bookDescription !== "" && description === "") {
+      setDescription(state.bookDescription);
+    }
+    if (state.bookDate !== "" &&  dateCompleted === "") {
+      setDateCompleted(state.bookDate);
+    }
+    if (state.bookRating !== "" && rating === "") { 
+      setRating(state.bookRating);
+    }
+  }, [state.bookDescription, , state.bookDate, state.bookRating, rating, dateCompleted, description]);
+
   return (
     <div className='book-details-review'>
       {state ? (
@@ -96,40 +109,48 @@ function ReadlistReview() {
           <div className='readlist-review-column-2'>
           <form onSubmit={state.bookDescription === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
               <h3>Write your review below to add to Readlist:</h3>
-              {console.log(state.bookRating)}
-              <label htmlFor="reviewStars">Rating : </label>
-              <input 
-              type='number' 
-              className='reviewStars' 
-              min="0" 
-              max = "5" 
-              step ="0.1" 
-              defaultValue= {state.bookRating !== '0' ? state.bookRating : '0'}
+              {/* {console.log(rating === "")} */}
+            <label htmlFor="reviewStars">Rating: </label>
+            <input
+              type={ratingType}
+              className="reviewStars"
+              min="0"
+              max="5"
+              step="0.1"
+              defaultValue={rating === "" ? rating : state.bookRating}
               value={rating}
               onChange={handleChangeRating}
+              onFocus={() => setRatingType('number')}
+              onBlur={() => setDateType('text')}
               required
-              ></input>/5
+            />/5
               <br />
               <label htmlFor = "reviewDateCompleted">Date completed : </label>
               <input 
-              type={inputType} 
+              type={inputDateType} 
               className='reviewDateCompleted'
               // placeholder= {state.bookDate !== '' ? state.bookDate : "Date Completed"}
-              onFocus={() => setInputType('date')}
-              onBlur={() => setInputType('text')}
-              // value={state.bookDate !== '' ? state.bookDate : ""}
-              defaultValue={state.bookDate !== '' ? state.bookDate : ""}
+              onFocus={() => setDateType('date')}
+              onBlur={() => setDateType('text')}
+              value={dateCompleted}
+              defaultValue={dateCompleted !== '' ? dateCompleted : state.bookDate}
               onChange={handleChangeDateCompleted}
               required
               ></input>
               <br />
               <label htmlFor = "reviewDescription">Description : </label>
-              <textarea 
+              {/* <textarea 
               className='reviewDescription'
+              value = {description}
               // value={state.bookDescription !== '' ? state.bookDescription : ""}
-              defaultValue={state.bookDescription !== '' ? state.bookDescription : ""}
+              defaultValue={state.bookDescription !== "" ? state.bookDescription : ""}
               // placeholder={state.bookDescription !== '' ? state.bookDescription : ""}
               onChange={handleChangeDescription}
+              ></textarea> */}
+              <textarea
+                className="reviewDescription"
+                defaultValue={description !== "" ? description : state.bookDescription}
+                onChange={handleChangeDescription}
               ></textarea>
               <br />
               <div>
