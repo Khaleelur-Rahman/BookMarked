@@ -107,7 +107,7 @@ function ReadlistReview() {
           </div>
 
           <div className='readlist-review-column-2'>
-          <form onSubmit={state.bookDescription === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
+          <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
               <h3>Write your review below to add to Readlist:</h3>
               {/* {console.log(rating === "")} */}
             <label htmlFor="reviewStars">Rating: </label>
@@ -154,7 +154,7 @@ function ReadlistReview() {
               ></textarea>
               <br />
               <div>
-                {state.bookDescription === undefined ? (
+                {state.bookDate === undefined ? (
                 <button type="submit" value="Submit" className="review-submit"> Add to Readlist </button> 
                 )
                 : (

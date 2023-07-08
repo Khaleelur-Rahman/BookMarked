@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
 import { auth } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
-import useDelete from "../components/custom-hooks/useDelete";
+// import useDelete from "../components/custom-hooks/useDelete";
 
 function Read() {
 
