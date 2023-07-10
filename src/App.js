@@ -7,6 +7,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import BookForm from './components/BookForm';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './index'
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -50,6 +51,7 @@ function App() {
         <Route path ="/BookForm/ReadlistReview" element={<ReadlistReview />} />
         <Route path ="/Read" element = {<Read />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

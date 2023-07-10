@@ -85,9 +85,17 @@ function BookForm() {
     container.appendChild(statement);
   }
 
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if(!user) {
+      window.location.href = "/Login";
+    }
+  });
+
+  console.log(user);
   
   return (
-    user !== undefined ? (
+    // console.log(user);
+    !user ? (
       <div id="book-search">
         <div className="form">
           <form onSubmit={handleSubmit}>

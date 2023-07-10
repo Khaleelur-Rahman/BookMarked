@@ -34,7 +34,8 @@ function Register () {
             <div className="register-buttons">
                 <input type='text' placeholder='Enter your email address' onChange={(event) => setRegisterEmail(event.target.value)}></input>
                 <input type='password' placeholder='Enter your password' onChange={(event) => setRegisterPassword(event.target.value)}></input>
-                <button onClick={register}>Register</button>
+                <br /><br />
+                <button onClick={register} className='register-submit-button'>Register</button>
             </div>
             
         </div>
