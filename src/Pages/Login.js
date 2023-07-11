@@ -99,32 +99,52 @@ function Login () {
           </div>
 
           <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
-            <input
-              type="text"
-              class="peer block +-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInput2"
-              placeholder="Email address" 
-              onChange={(event) => setLoginEmail(event.target.value)}/>
-            <label
-              for="exampleFormControlInput2"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              >Email address
-            </label>
+            <input 
+            type="text" 
+            id="email" 
+            value={loginEmail}
+            onChange={(event) => setLoginEmail(event.target.value)}
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            placeholder=" " 
+            />
+            <label 
+            for="email" 
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >Email Address</label>
           </div>
 
-          <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
+          {/* <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
             <input
               type="password"
-              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInput22"
-              placeholder="Password" 
-              onChange={(event) => setLoginPassword(event.target.value)}/>
+              className="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 border-0 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              id = "password"
+              placeholder="" 
+              value={loginPassword}
+              onChange={(event) => setLoginPassword(event.target.value)}
+            />
             <label
-              for="exampleFormControlInput22"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              >Password
+              htmlFor="password"
+              className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >
+              Password
             </label>
-          </div>
+          </div> */}
+
+          <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
+            <input 
+            type="password" 
+            id="password" 
+            value={loginPassword}
+            onChange={(event) => setLoginPassword(event.target.value)}
+            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            placeholder=" " 
+            />
+            <label 
+            for="password" 
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            >Password</label>
+          </div> 
+          
           <div class="text-center lg:text-left">
             <div className="flex justify-end content-center">
               <button
