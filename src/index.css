@@ -352,13 +352,13 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 
 
 /*login*/
-.login-header, .register-header{
+/* .login-header, .register-header{
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-}
+} */
 
 .login-buttons, .register-buttons{
   display: inline;
