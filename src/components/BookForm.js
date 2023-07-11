@@ -102,24 +102,43 @@ function BookForm() {
             <span className="header">Book Search</span>
             <br /><br />
             <div className="form-inputs-and-buttons">
+            <div class="relative m-2 border-2 border-cyan-400 rounded-lg" data-te-input-wrapper-init>
+
               <input
                 type="text"
                 placeholder="Enter book"
                 value={searchQuery}
                 onChange={handleChangeBook}
                 autoComplete="off"
-                id="input"
+                id="inputBook"
+                class="peer block +-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 required
               ></input>
+              <label
+              for="inputBook"
+              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.85rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Enter Title
+            </label>
+            </div>
+            <div class="relative m-2 border-2 border-cyan-400 rounded-lg" data-te-input-wrapper-init>
+
               <input
                 type="text"
                 placeholder="Enter author"
                 value={author}
                 onChange={handleChangeAuthor}
+                class="peer block +-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                 autoComplete="off"
-                id="input"
+                id="inputAuthor"
               ></input>
+              <label
+                for="inputAuthor"
+                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.85rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              >Enter Author
+              </label>
+              </div>
               <button type="submit" value="Submit" className="bookform-submit"></button>
+              {/* <button type="submit" value="Submit" className="bg-[url('images/searchIcon.png')] bg-gradient-to-r from-purple-500 to-pink-500"></button> */}
               <button type="button" id="reset" onClick={resetForm}></button>
             </div>
           </form>

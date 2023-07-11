@@ -25,6 +25,10 @@ body {
   box-sizing: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -98,7 +102,7 @@ a:hover {
 }
 
 #submit, #reset {
-  border-radius: 20px;
+  border-radius: 50%;
   /* background-color: #acb8ec; */
   margin: 3px;
   cursor: pointer;
@@ -118,11 +122,12 @@ button[type="submit"].review-submit{
 }
 
 button[type="submit"].bookform-submit, button[id="reset"] {
-  background-size: contain; 
+  background-size:contain; 
   background-repeat: no-repeat;
-  width: 20px; 
-  height: 30px;
-  cursor: pointer;
+  width: 10px; 
+  height: 10px;
+  border: solid;
+  padding: 10px;
 }
 
 .form-inputs-and-buttons {
