@@ -86,7 +86,7 @@ export default function Navbar() {
       <span>
       <nav className="nav">
         <div className="site-title" onClick={homepage}>
-          Book Library
+        BookMarked
         </div>
         <ul>
           <li>

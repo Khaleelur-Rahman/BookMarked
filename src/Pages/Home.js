@@ -48,9 +48,13 @@ function Home() {
           src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           class="w-full"
           alt="Sample image" />
-          <div /> Welcome to your very own book management system, where you can add books that interest you to read in the future or add books that you have already read with your own customized review. Login or register to better manage your book world!!
+          <div /> Welcome to BookMarked: Where Your Book World Comes Alive!
 
-      </div>
+          <div /> Discover, Collect, and Review Your Literary Adventures!
+
+          <div /> Unlock the Magic of Books: Register or Login Now!
+
+        </div>
 
       <div class="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
         <form>
