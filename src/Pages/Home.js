@@ -39,7 +39,7 @@ function Home() {
                 <div>Hello {user && user?.email} !</div>
                 )} */}
             <section class="h-screen">
-  <div class="h-full flex items-center justify-center">
+  <div class="flex items-center justify-center">
     <div
       class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
       <div

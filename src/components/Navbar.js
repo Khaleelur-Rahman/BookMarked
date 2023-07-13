@@ -85,7 +85,7 @@ export default function Navbar() {
     return (
       <span>
       <nav className="nav">
-        <div className="site-title" onClick={homepage}>
+        <div className="text-5xl font-medium" onClick={homepage}>
         BookMarked
         </div>
         <ul>
