@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .App{
-  overflow: auto;
+  overflow: visible;
 }
 
 img {
@@ -18,7 +18,7 @@ body {
   scroll-behavior: smooth;
   min-width: 100px;
   min-height: 100vh;
-  /* overflow : auto; */
+  overflow: hidden;
 }
 
 *{
