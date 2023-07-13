@@ -120,8 +120,8 @@ export default function Navbar() {
                 )}
                 {user ? (
                   <div>
-                    <li className="profile-dropdown-subitem">
-                       <Link to={"/Login"} onClick={logout}>
+                    <li className="profile-dropdown-subitem" onClick={logout}>
+                       <Link to={"/Login"}>
                         Logout
                       </Link>
                     </li>
