@@ -91,22 +91,22 @@ function BookForm() {
     }
   });
 
-  console.log(user);
+  // console.log(user);
   
   return (
     // console.log(user);
     !user ? (
-      <div id="book-search">
+      <div id="book-search" className='flex flex-col justify-center items-center'>
         <div className="form">
           <form onSubmit={handleSubmit}>
-            <span className="header">Book Search</span>
+            <span className="font-bold text-3xl mr-10">Book Search</span>
             <br /><br />
             <div className="form-inputs-and-buttons">
             <div class="relative m-2 border-2 border-cyan-400 rounded-lg" data-te-input-wrapper-init>
 
               <input
                 type="text"
-                placeholder="Enter book"
+                placeholder=" "
                 value={searchQuery}
                 onChange={handleChangeBook}
                 autoComplete="off"
@@ -116,7 +116,7 @@ function BookForm() {
               ></input>
               <label
               for="inputBook"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.85rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+              class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-10 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
               >Enter Title
             </label>
             </div>
@@ -124,7 +124,7 @@ function BookForm() {
 
               <input
                 type="text"
-                placeholder="Enter author"
+                placeholder=" "
                 value={author}
                 onChange={handleChangeAuthor}
                 class="peer block +-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -133,8 +133,8 @@ function BookForm() {
               ></input>
               <label
                 for="inputAuthor"
-                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.85rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              >Enter Author
+                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-10 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-10"
+                >Enter Author
               </label>
               </div>
               <button type="submit" value="Submit" className="bookform-submit"></button>
