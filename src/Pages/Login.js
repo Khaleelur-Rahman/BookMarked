@@ -24,8 +24,11 @@ function Login () {
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
           // console.log(user);
-          // console.log(navigate(-1));
-          navigate(-1);
+          if(document.referrer.charAt(document.referrer.length-1) === '/') {
+            window.location.href = "/BookForm";
+          } else {
+            navigate(-1);
+          }
         } catch (error) {
           console.log(error.message);
         }
@@ -37,7 +40,12 @@ function Login () {
             const provider = googleProvider;
             const user = await signInWithPopup(auth, provider);
             // console.log(user);
-            navigate(-1);
+            // console.log(document.referrer);
+            if(document.referrer.charAt(document.referrer.length-1) === '/') {
+              window.location.href = "/BookForm";
+            } else {
+              navigate(-1);
+            }
         }   catch (error) {
             console.log(error.message);
         }
