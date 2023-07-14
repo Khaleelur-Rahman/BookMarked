@@ -335,12 +335,14 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 
 .profile-dropdown-subitem {
   color: #020608;
+  font-weight: 400;
   list-style: none;
   display: flex;
   justify-content: center; 
   align-items: center; 
   height: 30px; 
   padding: 10px;
+  cursor : context-menu;
 }
 
 .profile-dropdown-subitem a {

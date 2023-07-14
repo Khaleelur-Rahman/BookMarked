@@ -107,11 +107,11 @@ export default function Navbar() {
         </ul>
       </nav>
     <div className="profile-dropdown-content" id="profile-dropdown-content">
-    {user ? (   <div>
+    {user ? (   <span>
                   <li className="profile-dropdown-subitem">
                     {user && user?.email}
                   </li>
-                </div>
+                </span>
                 ) : (
                 <div>
                   <li className="profile-dropdown-subitem">
