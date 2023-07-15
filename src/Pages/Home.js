@@ -61,7 +61,10 @@ function Home() {
             <div /> Unlock the Magic of Books: Register or Login Now!
         </div>
 
+
+        {user === null ? (
         <div class="text-center lg:text-left mt-10 flex flex-row items-center justify-center">
+          
           <button
             type="button"
             onClick={handleLogin}
@@ -78,7 +81,12 @@ function Home() {
             data-te-ripple-color="light">
             Register
           </button>    
-        </div>     
+          
+          
+        </div>    
+        ) : (
+          <div className="flex justify-center items-center mt-20 font-bold">Welcome back {user && user?.email}!</div>
+        )} 
       </div>
     </div>
   </div>
