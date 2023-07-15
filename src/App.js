@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Protected from './components/Protected';
 
+
 function App() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);

@@ -25,7 +25,7 @@ function Home() {
     };
 
     return (
-        <div className="flex items-center justify-center mt-10">
+        <div className="flex items-center justify-center mt-10 mb-12">
             {/* <div className="home-title">
                 Welcome to your very own book management system, where you can add books that interest you to read in the future or add books that you have already read with your own customized review. Sign in or register to better manage your book world!!
             </div>
