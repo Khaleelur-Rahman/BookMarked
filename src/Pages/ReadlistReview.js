@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { auth } from '../backend/firebase-config';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from 'react-router-dom';
 // import { Firestore } from 'firebase/firestore';
 
 function ReadlistReview() {
@@ -58,9 +59,6 @@ function ReadlistReview() {
       userId: user.uid
     });
 
-    toast.success (state.state.volumeInfo.title + " was added", {
-      position: toast.POSITION.TOP_RIGHT,
-    })
 
     console.log("Document written with ID: ", docRef.id);
     window.location.href = "/Read"
@@ -163,31 +161,62 @@ function ReadlistReview() {
                 className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
                 defaultValue={description !== "" ? description : state.bookDescription}
                 onChange={handleChangeDescription}
+                required
               ></textarea>
               <br />
               <div className='mt-8'>
                 {state.bookDate === undefined ? (
-                  // <Link 
-                  // to={"/Wishlist"} 
-                  // state = {{state :  }}
-                <button 
-                  type="submit" 
-                  value="Submit" 
-                  className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  onClick={handleSubmitNewBook}
-                > 
-                Add to Readlist 
-                </button> 
+                  <span>
+                  <Link 
+                  to={"/Read"}
+                  state = {{ 
+                    type : "new",
+                    book : state.state,
+                    title :state.state.volumeInfo.title,
+                    description: description,
+                    rating: rating,
+                    dateCompleted: dateCompleted,
+                    userId : user.uid
+                  }}
+                  >
+                    <button 
+                    type="submit" 
+                    value="Submit" 
+                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    // onClick={handleSubmitNewBook}  
+                  >
+                    Add to Readlist
+                  </button>
+                  </Link>
+                  
+                </span>
                 )
                 : (
-                <button 
-                  type="submit" 
-                  value="Submit" 
-                  className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  onClick={handleSubmitEditBook}
-                > 
-                Edit Book 
-                </button>
+                  <span>
+                  <Link 
+                  to="/Read"
+                  state = {{ 
+                    type : "edit",
+                    book: state.state,
+                    title: state.state.volumeInfo.title,
+                    docId: state.docId,
+                    description: description,
+                    rating: rating,
+                    dateCompleted: dateCompleted,
+                    userId: user.uid
+                  }}
+  
+                  >
+                    <button 
+                      type="submit" 
+                      value="Submit" 
+                      className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      // onClick={handleSubmitEditBook}
+                    >
+                    Edit Book
+                    </button>
+                  </Link>
+                </span>
                 )
                 }
               </div>

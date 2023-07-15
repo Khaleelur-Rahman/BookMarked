@@ -1,21 +1,96 @@
-import { collection, getDocs, query, deleteDoc, doc} from "firebase/firestore";
+import { collection, getDocs, query, deleteDoc, doc, updateDoc, addDoc} from "firebase/firestore";
 import connection from "../backend/connection";
 import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
 import { auth } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
-// import useDelete from "../components/custom-hooks/useDelete";
+import { useLocation } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Read() {
 
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const user = auth.currentUser;
+  const {state} = useLocation();
+
+  const performUpdate = async () => {
+    if (state && state.type==="edit") {
+      const db = connection();
+      // console.log(state.docId);
+
+      try {
+        await updateDoc(doc(db, 'Read', state.docId), {
+          book: state.book,
+          title: state.title,
+          docId: state.docId,
+          description: state.description,
+          rating: state.rating,
+          dateCompleted: state.dateCompleted,
+          userId: state.userId,
+        });
+
+        console.log("Document successfully updated");
+      } catch (error) {
+        console.error("Error updating document:", error);
+      }
+
+      toast(`${state.title} was edited`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+      } else if (state && state.type === "new") {
+        const db = connection();
+
+       const docRef = await addDoc(collection(db, "Read"), {
+          book : state.book,
+          title :state.title,
+          description: state.description,
+          rating: state.rating,
+          dateCompleted: state.dateCompleted,
+          userId : state.userId
+        });
+
+    const res = await updateDoc(doc(db, 'Read', docRef.id), {
+      book: state.book,
+      title: state.title,
+      docId: docRef.id,
+      description: state.description,
+      rating: state.rating,
+      dateCompleted: state.dateCompleted,
+      userId: user.uid
+    });
+          console.log("Document written with ID: ", docRef.id);
+          toast(`${state.title} was added to Readlist`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+  };
+
+  useEffect(() => {
+    performUpdate();
+  }, [state]);
 
   function setLink(url) {
     window.location.href = url;
   }
 
-  async function bookDelete(id) {
+  async function bookDelete(id,title) {
     const db = connection();
     // const res = await db.collection('Read').doc(id).delete();
     const res = await deleteDoc(doc(db, "Read",id));
@@ -53,7 +128,7 @@ function Read() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div onClick={() => bookDelete(doc.data().docId)}>
+                <div onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
                   Delete
                 </div>
 

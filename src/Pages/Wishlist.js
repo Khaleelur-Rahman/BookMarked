@@ -45,7 +45,7 @@ function Wishlist() {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "dark",
+        theme: "light",
       });
       } else if (state && state.type === "new") {
         const db = connection();
@@ -81,15 +81,14 @@ function Wishlist() {
 
   useEffect(() => {
     performUpdate();
-    
-  }, []);
+  }, [state]);
 
 
   function setLink(url) {
     window.location.href = url;
   }
 
-  async function bookDelete(id) {
+  async function bookDelete(id,title) {
     const db = connection();
     const res = await deleteDoc(doc(db, "Read",id));
     console.log(res);
@@ -126,7 +125,7 @@ function Wishlist() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div onClick={() => bookDelete(doc.data().docId)}>
+                <div onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
                   Delete
                 </div>
                 </div>
