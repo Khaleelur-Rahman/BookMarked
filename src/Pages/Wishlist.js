@@ -40,7 +40,7 @@ function Wishlist() {
                   src={book.volumeInfo?.imageLinks?.thumbnail}
                   alt={book.volumeInfo?.title}
                 />
-                <div>{trimAndAddDots(book.volumeInfo.title)}</div>
+                <div className="text-xl text-slate-800 font-semibold subpixel-antialiased m-3">{trimAndAddDots(book.volumeInfo.title)}</div>
                 <div>Date to read: {doc.data().dateToRead}</div>
                 <div className="image-links">
                 <Link
@@ -80,14 +80,16 @@ function Wishlist() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="mb-200">Loading...</div>;
   }
 
   return (
-    <div className="wishist-component">
-      <div className="wishlist-header">Wishlist</div>
-      <br /><br />
-      <div className="wishlist-books">{images}</div>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow pb-16">
+        <div className="wishlist-header">Wishlist</div>
+        <br /><br />
+        <div className="wishlist-books">{images}</div>
+      </div>
     </div>
   );
 }

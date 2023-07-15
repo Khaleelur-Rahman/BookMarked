@@ -173,7 +173,7 @@ function BookForm() {
                   </Link> 
                   <br></br>
                   <div className="book-details-link" onClick={() => setLink(book.volumeInfo.infoLink)}>
-                    Details
+                    Book Details
                   </div>
                 </div>
               </div>

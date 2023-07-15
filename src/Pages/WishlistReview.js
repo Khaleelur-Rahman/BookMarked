@@ -80,61 +80,68 @@ function WishlistReview() {
     },[state.bookDate, state.notes, dateToRead, notes]);
 
   return (
-    <div className='book-details-review'>
-      {state ? (
-        <div>
-          <div className='wishlist-review-column-1'>
-            <img
-              className="book-image-review"
-              src={state.state.volumeInfo.imageLinks?.thumbnail}
-              alt={state.state.volumeInfo.title}
-            />
-            <div className='review-title'>
-              {state.state.volumeInfo.title}
-            </div>
+    <div className='my-10 flex justify-center items-center'>
+  {state ? (
+    <div className='text-center'>
+      <div className=''>
+        <div className="flex flex-col items-center">
+          <img
+            className="h-60 w-40 border-2 border-blue-300 rounded-lg"
+            src={state.state.volumeInfo.imageLinks?.thumbnail}
+            alt={state.state.volumeInfo.title}
+          />
+          <div className='review-title'>
+            {state.state.volumeInfo.title} by 
           </div>
+          <div>
+            {state.state.volumeInfo.authors[0]}
+          </div>
+        </div>
+      </div>
 
-          <div className='wishlist-review-column-2'>
-          <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
-              <h3>Enter the details below to add to Wishlist:</h3>
-              <label htmlFor = "reviewDateCompleted">Intended date of read : </label>
-              <input 
-              type={inputDateType} 
-              className='reviewDateCompleted'
+      <div className='mt-10'>
+        <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
+          <h3 className='text-lg text-slate-700 dark:text-slate-400 font-bold'>Enter the details below to add to Wishlist:</h3><br />
+          <div className='flex justify-center items-center mb-4'>
+            <label htmlFor="reviewDateCompleted">Intended date of read:</label>
+            <input
+              type={inputDateType}
+              className='inline border rounded-lg border-black-200 w-28 ml-2'
               onFocus={() => setDateType('date')}
               onBlur={() => setDateType('text')}
               value={dateToRead}
               defaultValue={dateToRead !== "" ? dateToRead : state.bookDate}
               onChange={handleChangeDateCompleted}
               required
-              ></input>
-              <br />
-              <label htmlFor = "reviewDescription">Notes : </label>
-              <textarea 
-              className='reviewDescription'
+            />
+          </div>
+          <div className='flex justify-center items-center mb-4'>
+            <label htmlFor="reviewDescription">Notes:</label>
+            <textarea
+              className='inline border border-black-200 resize-y rounded-lg ml-2 w-50'
               defaultValue={notes !== "" ? notes : state.notes}
               onChange={handleChangeDescription}
-              ></textarea>
-              <br />
-              <div>
-                {state.bookDate === undefined ? (
-                    <button type="submit" value="Submit" className="review-submit">
-                    Add to Wishlist
-                    </button>
-                    ) : (
-                    <button type="submit" value="Submit" className="review-submit">
-                    Edit Book
-                    </button>
-                  )}
-                </div>
-            </form>
-            
+            ></textarea>
           </div>
-        </div>
-      ) : (
-        <div>No book found.</div>
-      )}
+          <div className='flex justify-center'>
+            {state.bookDate === undefined ? (
+              <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Add to Wishlist
+              </button>
+            ) : (
+              <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit Book
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
+  ) : (
+    <div>No book found.</div>
+  )}
+</div>
+
   );
 }
 
