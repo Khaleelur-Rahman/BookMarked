@@ -189,7 +189,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   font-weight: bolder;
   cursor: pointer;
   position: absolute;
-  top: 45%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;

@@ -66,7 +66,7 @@ function Read() {
       description: state.description,
       rating: state.rating,
       dateCompleted: state.dateCompleted,
-      userId: user.uid
+      userId: state.userId
     });
           console.log("Document written with ID: ", docRef.id);
           toast(`${state.title} was added to Readlist`, {
@@ -84,7 +84,7 @@ function Read() {
 
   useEffect(() => {
     performUpdate();
-  }, [state]);
+  }, []);
 
   function setLink(url) {
     window.location.href = url;
@@ -95,7 +95,7 @@ function Read() {
     // const res = await db.collection('Read').doc(id).delete();
     const res = await deleteDoc(doc(db, "Read",id));
     console.log(res);
-    setLink("/Read");
+    // setLink("/Read");
   }
 
   useEffect(() => {
@@ -106,7 +106,7 @@ function Read() {
         .filter((doc) => doc.data().userId === user.uid)
         .map((doc) => {
           const book = doc.data().book;
-          // console.log(doc.data());
+          console.log(doc.data().docId);
           return (
             <div className="book-details">
               <img
@@ -128,7 +128,7 @@ function Read() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
+                <div className ="mt-5" onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
                   Delete
                 </div>
 

@@ -81,7 +81,7 @@ function Wishlist() {
 
   useEffect(() => {
     performUpdate();
-  }, [state]);
+  }, []);
 
 
   function setLink(url) {
@@ -125,7 +125,7 @@ function Wishlist() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
+                <div className ="mt-5" onClick={() => bookDelete(doc.data().docId,book.volumeInfo.title)}>
                   Delete
                 </div>
                 </div>
