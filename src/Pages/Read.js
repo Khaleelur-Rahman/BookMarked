@@ -40,8 +40,8 @@ function Read() {
                 src={book.volumeInfo?.imageLinks?.thumbnail}
                 alt={book.volumeInfo?.title}
               />
-              <div>{trimAndAddDots(book.volumeInfo.title)}</div>
-              <div>{doc.data().rating} / 5</div>
+              <div className="text-xl text-slate-800 font-semibold subpixel-antialiased m-3">{trimAndAddDots(book.volumeInfo.title)}</div>
+              <div className="text-lg ">Rating : {doc.data().rating} / 5</div>
               <div className="image-links"> 
                 <Link
                     to={"/BookForm/ReadlistReview"} state={{ state: book, bookRating: doc.data().rating, bookDescription: doc.data().description, bookDate: doc.data().dateCompleted, docId: doc.data().docId}}
@@ -84,10 +84,12 @@ function Read() {
   }
 
   return (
-    <div className="read-component">
-      <div className="read-header">Readlist</div>
-      <br /><br />
-      <div className="read-books">{images}</div>
+    <div className="flex flex-col min-h-screen">
+      <div className="flex-grow pb-16">
+        <div className="read-header">Readlist</div>
+        <br /><br />
+        <div className="read-books">{images}</div>
+      </div>
     </div>
   );
 }

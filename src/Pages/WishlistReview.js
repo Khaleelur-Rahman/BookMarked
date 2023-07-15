@@ -82,24 +82,22 @@ function WishlistReview() {
   return (
     <div className='my-10 flex justify-center items-center'>
   {state ? (
-    <div className='text-center'>
-      <div className=''>
+      <div className='text-center'>
         <div className="flex flex-col items-center">
           <img
             className="h-60 w-40 border-2 border-blue-300 rounded-lg"
             src={state.state.volumeInfo.imageLinks?.thumbnail}
             alt={state.state.volumeInfo.title}
           />
-          <div className='review-title'>
-            {state.state.volumeInfo.title} by 
+          <div className='text-xl font-bold'>
+            {state.state.volumeInfo.title}  
           </div>
           <div>
-            {state.state.volumeInfo.authors[0]}
+            by {state.state.volumeInfo.authors[0]}
           </div>
         </div>
-      </div>
 
-      <div className='mt-10'>
+      <div className='mt-10 mb-20'>
         <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
           <h3 className='text-lg text-slate-700 dark:text-slate-400 font-bold'>Enter the details below to add to Wishlist:</h3><br />
           <div className='flex justify-center items-center mb-4'>
@@ -115,7 +113,7 @@ function WishlistReview() {
               required
             />
           </div>
-          <div className='flex justify-center items-center mb-4'>
+          <div className='flex justify-center items-center mb-14'>
             <label htmlFor="reviewDescription">Notes:</label>
             <textarea
               className='inline border border-black-200 resize-y rounded-lg ml-2 w-50'

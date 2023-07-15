@@ -92,28 +92,31 @@ function ReadlistReview() {
   }, [state.bookDescription, , state.bookDate, state.bookRating, rating, dateCompleted, description]);
 
   return (
-    <div className='book-details-review'>
+    <div className='my-10 flex justify-center items-center'>
       {state ? (
-        <div>
-          <div className='readlist-review-column-1'>
+        <div className='text-center'>
+          <div className='flex flex-col items-center'>
             <img
-              className="book-image-review"
+              className="h-60 w-40 border-2 border-blue-300 rounded-lg"
               src={state.state.volumeInfo.imageLinks?.thumbnail}
               alt={state.state.volumeInfo.title}
             />
-            <div className='review-title'>
+            <div className='text-xl font-bold'>
               {state.state.volumeInfo.title}
+            </div>
+            <div>
+              by {state.state.volumeInfo.authors[0]}
             </div>
           </div>
 
-          <div className='readlist-review-column-2'>
+          <div className='mt-10 mb-20'>
           <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
-              <h3>Write your review below to add to Readlist:</h3>
+              <h3 className='text-lg text-slate-700 dark:text-slate-400 font-bold'>Write your review below to add to Readlist:</h3>
               {/* {console.log(rating === "")} */}
             <label htmlFor="reviewStars">Rating: </label>
             <input
               type={ratingType}
-              className="reviewStars"
+              className="inline border rounded-lg border-black-200 w-12 ml-2 m-3"
               min="0"
               max="5"
               step="0.1"
@@ -128,7 +131,7 @@ function ReadlistReview() {
               <label htmlFor = "reviewDateCompleted">Date completed : </label>
               <input 
               type={inputDateType} 
-              className='reviewDateCompleted'
+              className='inline border rounded-lg border-black-200 w-28 ml-2 mb-4'
               // placeholder= {state.bookDate !== '' ? state.bookDate : "Date Completed"}
               onFocus={() => setDateType('date')}
               onBlur={() => setDateType('text')}
@@ -148,17 +151,17 @@ function ReadlistReview() {
               onChange={handleChangeDescription}
               ></textarea> */}
               <textarea
-                className="reviewDescription"
+                className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
                 defaultValue={description !== "" ? description : state.bookDescription}
                 onChange={handleChangeDescription}
               ></textarea>
               <br />
-              <div>
+              <div className='mt-8'>
                 {state.bookDate === undefined ? (
-                <button type="submit" value="Submit" className="review-submit"> Add to Readlist </button> 
+                <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Add to Readlist </button> 
                 )
                 : (
-                <button type="submit" value="Submit" className="review-submit"> Edit Book </button>
+                <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Edit Book </button>
                 )
                 }
               </div>
