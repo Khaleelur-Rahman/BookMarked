@@ -3,6 +3,8 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { auth, googleProvider} from '../backend/firebase-config';
 import useGoBackHistory from '../components/custom-hooks/useGoBackHistory';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login () {
 
@@ -30,6 +32,18 @@ function Login () {
             navigate(-1);
           }
         } catch (error) {
+          setLoginEmail("");
+          setLoginPassword("");
+          toast.error('Invalid Login details!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
           console.log(error.message);
         }
         // window.location.href = () => useGoBackHistory;
@@ -47,8 +61,20 @@ function Login () {
               navigate(-1);
             }
         }   catch (error) {
-            console.log(error.message);
-        }
+            setLoginEmail("");
+            setLoginPassword("");
+            toast.error('Invalid Login details!', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
+            console.log(error.message);        
+          }
     }
 
     const gotoResgister = () => {
@@ -108,7 +134,7 @@ function Login () {
 
           <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
             <input 
-            type="text" 
+            type="email" 
             id="email" 
             value={loginEmail}
             onChange={(event) => setLoginEmail(event.target.value)}
