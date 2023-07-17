@@ -4,6 +4,8 @@ import connection from '../backend/connection';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { auth } from '../backend/firebase-config';
+import noBookCoverImage from "../images/No-book-cover.png";
+
 
 function WishlistReview() {
   // const location = useLocation();
@@ -93,7 +95,7 @@ function WishlistReview() {
         <div className="flex flex-col items-center">
           <img
             className="h-60 w-40 border-2 border-blue-300 rounded-lg"
-            src={state.state.volumeInfo.imageLinks?.thumbnail}
+            src={state.state.volumeInfo.imageLinks?state.state.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
             alt={state.state.volumeInfo.title}
           />
           <div className='text-xl font-bold'>

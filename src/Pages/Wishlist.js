@@ -6,6 +6,8 @@ import { auth } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import noBookCoverImage from "../images/No-book-cover.png";
+
 
 
 function Wishlist() {
@@ -41,7 +43,7 @@ function Wishlist() {
                 <img
                   key={doc.id}
                   className="wishlist-books-image"
-                  src={book.volumeInfo?.imageLinks?.thumbnail}
+                  src={book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
                   alt={book.volumeInfo?.title}
                 />
                 <div className="text-xl text-slate-800 font-semibold subpixel-antialiased m-3">{trimAndAddDots(book.volumeInfo.title)}</div>
