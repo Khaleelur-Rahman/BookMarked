@@ -53,7 +53,7 @@ function Read() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div onClick={() => bookDelete(doc.data().docId)}>
+                <div className ="mt-6" onClick={() => bookDelete(doc.data().docId)}>
                   Delete
                 </div>
 
