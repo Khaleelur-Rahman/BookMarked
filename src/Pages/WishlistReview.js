@@ -1,13 +1,9 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { trimAndAddDots } from '../components/utils';
 import connection from '../backend/connection';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { auth } from '../backend/firebase-config';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 function WishlistReview() {
   // const location = useLocation();
@@ -55,61 +51,24 @@ function WishlistReview() {
     window.location.href = "/Wishlist"
     };
 
-    // const redirect = (address, title, action) => {
-    //   const navigate = useNavigate();
-    //   navigate(address, {
-    //     state : {
-    //       title : title,
-    //       action : action
-    //     },
-    //   });
-    // };
-
     async function handleSubmitEditBook(e) {
       e.preventDefault();
-    
+  
       const db = connection();
       console.log(state.docId);
-    
-      try {
-        await updateDoc(doc(db, 'ToRead', state.docId), {
-          book: state.state,
-          title: state.state.volumeInfo.title,
-          docId: state.docId,
-          notes: notes,
-          dateToRead: dateToRead,
-          userId: user.uid,
-        });
-    
-        // const navigate = useNavigate();
-        // redirect("/Readlist", state.state.volumeInfo.title, "edited")
-
-        // const toastState = {
-        //   message: `${state.state.volumeInfo.title} was edited`,
-        //   options: {
-        //     position: "top-right",
-        //     autoClose: 5000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //     theme: "light",
-        //   }
-        // };
-        //       const navigate = useNavigate();
-
-        // You can set the state as a location state before navigating
-        // navigate('/Wishlist', { state:  toastState });
-    
-        console.log("Document successfully updated");
-      } catch (error) {
-        console.error("Error updating document:", error);
-      }
-    
-      window.location.href = "/Wishlist";
+      const res = await updateDoc(doc(db, 'ToRead', state.docId), {
+        book : state.state,
+        title :state.state.volumeInfo.title,
+        docId: state.docId,
+        notes: notes,
+        dateToRead: dateToRead,
+        userId : user.uid
+      });
+      window.location.href = "/Wishlist"
+      // await db.collection('Read').doc(state.docId).
+  
+      console.log("Updated " + res);
     }
-    
 
     useEffect(() => {
       if(state.bookDate !== "" && dateToRead === "") {
@@ -164,54 +123,13 @@ function WishlistReview() {
           </div>
           <div className='flex justify-center'>
             {state.bookDate === undefined ? (
-              <span>
-                <Link 
-                to={"/Wishlist"}
-                state = {{ 
-                  type : "new",
-                  book : state.state,
-                  title :state.state.volumeInfo.title,
-                  notes: notes,
-                  dateToRead: dateToRead,
-                  userId : user.uid,
-                }}
-                >
-                  <button 
-                  type="submit" 
-                  value="Submit" 
-                  className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  // onClick={handleSubmitNewBook}  
-                >
-                  Add to Wishlist
-                </button>
-                </Link>
-                
-              </span>
+              <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Add to Wishlist
+              </button>
             ) : (
-              <span>
-                <Link 
-                to="/Wishlist"
-                state = {{ 
-                  type : "edit",
-                  book: state.state,
-                  title: state.state.volumeInfo.title,
-                  docId: state.docId,
-                  notes: notes,
-                  dateToRead: dateToRead,
-                  userId: user.uid,
-                }}
-
-                >
-                  <button 
-                    type="submit" 
-                    value="Submit" 
-                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    // onClick={handleSubmitEditBook}
-                  >
-                  Edit Book
-                  </button>
-                </Link>
-              </span>
+              <button type="submit" value="Submit" className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit Book
+              </button>
             )}
           </div>
         </form>
