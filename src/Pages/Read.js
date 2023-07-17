@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
 import { auth } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import useDelete from "../components/custom-hooks/useDelete";
 
 function Read() {
@@ -15,11 +17,15 @@ function Read() {
     window.location.href = url;
   }
 
-  async function bookDelete(id) {
+  async function bookDelete(id,title) {
     const db = connection();
+    localStorage.setItem("bookTitle",title)
+    localStorage.setItem("action", "deleted");
+    // console.log(localStorage.getItem('bookTitle'));
     // const res = await db.collection('Read').doc(id).delete();
+    // console.log(id);
     const res = await deleteDoc(doc(db, "Read",id));
-    console.log(res);
+    // console.log(res);
     setLink("/Read");
   }
 
@@ -53,7 +59,7 @@ function Read() {
                 <div onClick={() => setLink(book.volumeInfo.infoLink)}>
                     Book Details
                 </div>
-                <div className ="mt-6" onClick={() => bookDelete(doc.data().docId)}>
+                <div className ="mt-6" onClick={() => bookDelete(doc.data().docId, book.volumeInfo.title)}>
                   Delete
                 </div>
 
@@ -83,9 +89,36 @@ function Read() {
     return <div>Loading...</div>;
   }
 
+  const displayToast = () => {
+    // console.log(localStorage.getItem('bookTitle'));
+    if(localStorage.getItem('bookTitle') !== null) {
+      const title = localStorage.getItem('bookTitle');
+      const action = localStorage.getItem('action');
+      localStorage.clear();
+
+      // return (
+      //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
+      //     {`${title} was ${action}`}
+      //   </div>
+      // )
+
+      toast(`${title} was ${action}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow pb-16">
+        {displayToast()}
         <div className="read-header">Readlist</div>
         <br /><br />
         <div className="read-books">{images}</div>

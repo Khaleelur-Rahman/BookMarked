@@ -55,6 +55,10 @@ function ReadlistReview() {
       dateCompleted: dateCompleted,
       userId: user.uid
     });
+    
+    localStorage.setItem("bookTitle",state.state.volumeInfo.title)
+    localStorage.setItem("action", "added");
+
     console.log("Document written with ID: ", docRef.id);
     window.location.href = "/Read"
   };
@@ -73,6 +77,9 @@ function ReadlistReview() {
       dateCompleted: dateCompleted,
       userId: user.uid
     });
+    localStorage.setItem("bookTitle",state.state.volumeInfo.title)
+    localStorage.setItem("action", "edited");
+
     window.location.href = "/Read"
     // await db.collection('Read').doc(state.docId).
 
