@@ -167,7 +167,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   align-items: center;
 }
 
-.book-details .book-image ,.read-books-image ,.wishlist-books-image  {
+.book-details .book-image ,.read-books-image ,.wishlist-books-image {
   opacity: 1;
   transition: filter 0.3s;
   height: 200px;
@@ -178,7 +178,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 }
 
 
-.book-details:hover .book-image {
+.book-details:hover .book-image, .book-details:hover .wishlist-books-image, .book-details:hover .read-books-image {
   cursor: pointer;
   filter: blur(4px);
   -webkit-filter: blur(4px);
