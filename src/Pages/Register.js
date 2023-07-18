@@ -35,6 +35,17 @@ function Register () {
             .catch((error) => {
                 console.log(error.code)
                 console.log(error.message);
+
+                toast.error('Retry registration!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
             });
     }
 

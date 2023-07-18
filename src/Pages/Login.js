@@ -124,7 +124,7 @@ function Login () {
         //   </div>
         // )
   
-        toast(`${email} registered successfully! Please login with your credentials`, {
+        toast.success(`${email} registered successfully! Please login with your credentials`, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

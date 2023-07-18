@@ -107,7 +107,7 @@ function BookForm() {
       //   </div>
       // )
 
-      toast(`${email} logged in successfully!`, {
+      toast.success(`${email} logged in successfully!`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
