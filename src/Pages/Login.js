@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from "react";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
 import { auth, googleProvider} from '../backend/firebase-config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,9 +19,12 @@ function Login () {
         return () => unsubscribe();
       }, []);
 
-    const login = async () => {
+    const login = async (event) => {
+      event.preventDefault();
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+          localStorage.setItem("loginEmail",user.user.email);
+
           // console.log(user);
           // if(document.referrer.charAt(document.referrer.length-1) === '/') {
           //   window.location.href = "/BookForm";
@@ -46,11 +49,42 @@ function Login () {
         // window.location.href = () => useGoBackHistory;
       }
 
-    const LoginWithGoogle = async () => {
+    const LoginWithGoogle = async (event) => {
+        event.preventDefault();
+
+        // signInWithPopup(auth,googleProvider)
+        //   .then((result) => {
+        //     const credential = GoogleAuthProvider.credentialFromResult(result);
+
+        //     const user = result.user;
+
+        //     localStorage.setItem("loginEmail", user.email);
+
+        //     window.location.href = "/BookForm";
+        //   }).catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+
+        //     setLoginEmail("");
+        //     setLoginPassword("");
+        //     toast.error('Invalid Login Details!', {
+        //       position: "top-right",
+        //       autoClose: 5000,
+        //       hideProgressBar: false,
+        //       closeOnClick: true,
+        //       pauseOnHover: false,
+        //       draggable: true,
+        //       progress: undefined,
+        //       theme: "light",
+        //     });
+        // })
+    // }
+
         try {
             const provider = googleProvider;
             const user = await signInWithPopup(auth, provider);
-            // console.log(user);
+            localStorage.setItem("loginEmail", user.user.email);
+            console.log(user.user.email);
             // // console.log(document.referrer);
             // if(document.referrer.charAt(document.referrer.length-1) === '/') {
               window.location.href = "/BookForm";
@@ -78,6 +112,31 @@ function Login () {
         window.location.href = "/register";
     }
 
+    const displayToast = () => {
+      // console.log(localStorage.getItem('bookTitle'));
+      if(localStorage.getItem('registerEmail') !== null) {
+        const email = localStorage.getItem('registerEmail');
+        localStorage.clear();
+  
+        // return (
+        //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
+        //     {`${title} was ${action}`}
+        //   </div>
+        // )
+  
+        toast(`${email} registered successfully! Please login with your credentials`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+    }
+
     return (
         <div>
         {/* //     <h3 className="login-header">Login to access the features </h3>
@@ -93,7 +152,7 @@ function Login () {
         //       </div>
         //     </div> */}
 
-        
+        {displayToast()}
         <h3 class ="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400">Login to access the features </h3>
         <div class="flex justify-center content-center mt-20">
         {/* <h3 className="login-header">Login to access the features </h3> */}

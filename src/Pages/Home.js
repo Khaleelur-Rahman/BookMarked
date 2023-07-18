@@ -63,7 +63,7 @@ function Home() {
 
 
         {user === null ? (
-        <div class="text-center lg:text-left mt-10 flex flex-row items-center justify-center">
+        <div class="text-center lg:text-left my-20 flex flex-row items-center justify-center">
           
           <button
             type="button"

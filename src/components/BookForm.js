@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { auth } from "../backend/firebase-config";
 import { onAuthStateChanged } from 'firebase/auth';
 import noBookCoverImage from "../images/No-book-cover.png";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -92,10 +94,37 @@ function BookForm() {
   });
 
   // console.log(user);
+
+  const displayToast = () => {
+    // console.log(localStorage.getItem('bookTitle'));
+    if(localStorage.getItem('loginEmail') !== null) {
+      const email = localStorage.getItem('loginEmail');
+      localStorage.clear();
+
+      // return (
+      //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
+      //     {`${title} was ${action}`}
+      //   </div>
+      // )
+
+      toast(`${email} logged in successfully!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }
   
   return (
     // console.log(user);
     !user ? (
+      <div>
+      {displayToast()}
       <div id="book-search" className='flex flex-col justify-center items-center'>
         <div className="form">
           <form onSubmit={handleSubmit}>
@@ -181,6 +210,7 @@ function BookForm() {
           </div>
         ) : null}
       </div>
+    </div>
     ) : (
       window.location.href = "/Login"
     )

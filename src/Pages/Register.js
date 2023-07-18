@@ -21,39 +21,21 @@ function Register () {
       }, []);
     
 
-    const register = async () => {
-        // console.log("Hello");
-        // console.log(registerEmail);
-        // console.log(registerPassword);
+    const register = async (event) => {
 
+        event.preventDefault();
 
         createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
             .then((userCredentials) => {
                 const user = userCredentials.user;
                 console.log(user);
-                toast.success('Registration successful!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    });
+                localStorage.setItem("registerEmail", user.email);
                 window.location.href = "/Login";
             })
             .catch((error) => {
                 console.log(error.code)
                 console.log(error.message);
             });
-        // try {
-        //     const user = await createUserWithEmailAndPassword(auth,registerEmail,registerPassword);
-        //     // console.log(user);
-        //     gotoLogin();
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
     }
 
     const gotoLogin = () => {
