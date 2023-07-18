@@ -1,6 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth,i } from 'firebase/auth';
 import { auth } from '../backend/firebase-config';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import 'firebase/auth';
 
@@ -29,7 +31,17 @@ function Register () {
             .then((userCredentials) => {
                 const user = userCredentials.user;
                 console.log(user);
-                // window.location.href = "/BookForm";
+                toast.success('Registration successful!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                window.location.href = "/Login";
             })
             .catch((error) => {
                 console.log(error.code)

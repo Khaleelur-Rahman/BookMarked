@@ -26,9 +26,9 @@ body {
   flex-direction: column;
 }
 
-/* *{
+*{
   box-sizing: inherit;
-} */
+}
 
 button {
   cursor: pointer;

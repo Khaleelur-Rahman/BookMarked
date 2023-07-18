@@ -36,7 +36,9 @@ function Wishlist() {
       const imageElements = docsSnap.docs
         .filter((doc) => doc.data().userId === user.uid)
         .map((doc) => {
+          
           const book = doc.data().book;
+          console.log(book)
           return (
             <div>
               <div className="book-details">
@@ -121,7 +123,15 @@ function Wishlist() {
         {displayToast()}
         <div className="wishlist-header">Wishlist</div>
         <br /><br />
-        <div className="wishlist-books">{images}</div>
+        <div className="wishlist-books">
+          {images.length === 0 ? (
+            <div className="text-xl font-medium">
+              No books found. Go to book search to add books to wishlist!
+            </div>
+            ) : (
+              <div className="wishlist-books">{images}</div>
+          )}
+        </div>
       </div>
     </div>
   );

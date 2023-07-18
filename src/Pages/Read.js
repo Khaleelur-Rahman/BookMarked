@@ -122,7 +122,15 @@ function Read() {
         {displayToast()}
         <div className="read-header">Readlist</div>
         <br /><br />
-        <div className="read-books">{images}</div>
+        <div className="read-books">
+        {images.length === 0 ? (
+            <div className="text-xl font-medium">
+              No books found. Go to book search to add books to Readlist!
+            </div>
+            ) : (
+              <div className="read-books">{images}</div>
+          )}
+        </div>
       </div>
     </div>
   );
