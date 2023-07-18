@@ -26,9 +26,9 @@ body {
   flex-direction: column;
 }
 
-*{
+/* *{
   box-sizing: inherit;
-}
+} */
 
 button {
   cursor: pointer;
@@ -424,6 +424,7 @@ button[class="login-with-google"] {
   position: relative;
   left: 40%;
 }
+
 
 
 

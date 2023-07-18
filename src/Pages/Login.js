@@ -1,8 +1,6 @@
 import React, { useState , useEffect} from "react";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup} from 'firebase/auth';
 import { auth, googleProvider} from '../backend/firebase-config';
-import useGoBackHistory from '../components/custom-hooks/useGoBackHistory';
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,7 +10,6 @@ function Login () {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [user, setUser] = useState(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -26,15 +23,15 @@ function Login () {
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
           // console.log(user);
-          if(document.referrer.charAt(document.referrer.length-1) === '/') {
+          // if(document.referrer.charAt(document.referrer.length-1) === '/') {
+          //   window.location.href = "/BookForm";
+          // } else {
             window.location.href = "/BookForm";
-          } else {
-            navigate(-1);
-          }
+          // }
         } catch (error) {
           setLoginEmail("");
           setLoginPassword("");
-          toast.error('Invalid Login details!', {
+          toast.error('Invalid Login Details!', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -54,16 +51,16 @@ function Login () {
             const provider = googleProvider;
             const user = await signInWithPopup(auth, provider);
             // console.log(user);
-            // console.log(document.referrer);
-            if(document.referrer.charAt(document.referrer.length-1) === '/') {
+            // // console.log(document.referrer);
+            // if(document.referrer.charAt(document.referrer.length-1) === '/') {
               window.location.href = "/BookForm";
-            } else {
-              navigate(-1);
-            }
+            // } else {
+              // navigate(-1);
+            // }
         }   catch (error) {
             setLoginEmail("");
             setLoginPassword("");
-            toast.error('Invalid Login details!', {
+            toast.error('Invalid Login Details!', {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -170,6 +167,7 @@ function Login () {
                 data-te-ripple-init
                 data-te-ripple-color="light"
                 onClick={login}
+                data-testid = "login-button"
               >
                 Login
               </button>

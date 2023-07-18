@@ -1,27 +1,14 @@
 import React, { useState , useEffect } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth,i } from 'firebase/auth';
 import { auth } from '../backend/firebase-config';
+
+import 'firebase/auth';
 
 function Register () {
 
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [user, setUser] = useState(null);
-    
-
-    const register = async () => {
-        try {
-            const user = await createUserWithEmailAndPassword(auth,registerEmail,registerPassword);
-            // console.log(user);
-            window.location.href = "/BookForm";
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-
-    const gotoLogin = () => {
-        window.location.href = "/Login";
-    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -30,6 +17,36 @@ function Register () {
     
         return () => unsubscribe();
       }, []);
+    
+
+    const register = async () => {
+        // console.log("Hello");
+        // console.log(registerEmail);
+        // console.log(registerPassword);
+
+
+        createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                console.log(user);
+                // window.location.href = "/BookForm";
+            })
+            .catch((error) => {
+                console.log(error.code)
+                console.log(error.message);
+            });
+        // try {
+        //     const user = await createUserWithEmailAndPassword(auth,registerEmail,registerPassword);
+        //     // console.log(user);
+        //     gotoLogin();
+        // } catch (error) {
+        //     console.log(error.message);
+        // }
+    }
+
+    const gotoLogin = () => {
+        window.location.href = "/Login";
+    }
 
     
     return (
@@ -68,6 +85,8 @@ function Register () {
             <input 
             type="password" 
             id="password" 
+            pattern="(?=.*\d)(?=.*[\W_]).{7,}" 
+            title="Minimum of 7 characters. Should have at least one special character and one number."
             value={registerPassword}
             onChange={(event) => setRegisterPassword(event.target.value)}
             class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
@@ -78,26 +97,29 @@ function Register () {
             class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >Password</label>
           </div>
-                    <div className="flex justify-end content-center">
-                        <button 
-                            type="submit" 
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            onClick={register}
-                        >
-                            Register
-                        </button>
-                    </div>
-                    <p class="mb-0 mt-5 pt-1 text-sm font-semibold">
-                    Already have an account?
-                    <a
-                        href="#!"
-                        class="ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                        onClick={gotoLogin}
-                    >Login</a
-                    >
-                    </p>
-                </form>
+
+            <div className="flex justify-end content-center">
+                 <button 
+                    type="submit" 
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick={register}
+                >
+                    Register
+                </button>
             </div>
+
+            <p class="mb-0 mt-5 pt-1 text-sm font-semibold">
+                Already have an account?
+                <a
+                    href="#!"
+                    class="ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                    onClick={gotoLogin}
+                >
+                Login
+                </a>
+            </p>
+        </form>
+    </div>
             
         </div>
     )
