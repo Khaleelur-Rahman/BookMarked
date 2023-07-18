@@ -19,6 +19,22 @@ function Register () {
     
         return () => unsubscribe();
       }, []);
+
+      const displayToast = (message) => {
+        return (
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        
+        })
+        )
+      }
     
 
     const register = async (event) => {
@@ -36,16 +52,23 @@ function Register () {
                 console.log(error.code)
                 console.log(error.message);
 
-                toast.error('Retry registration!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: false,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                      displayToast(`Email address ${registerEmail} already in use.`);
+                      break;
+                    case 'auth/invalid-email':
+                      displayToast(`Email address ${registerEmail} is invalid.`);
+                      break;
+                    case 'auth/operation-not-allowed':
+                      displayToast(`Error during sign up.`);
+                      break;
+                    case 'auth/weak-password':
+                      displayToast('Password is not strong enough. Add additional characters including special characters and numbers.');
+                      break;
+                    default:
+                      displayToast(error.message);
+                      break;
+                  } 
             });
     }
 
