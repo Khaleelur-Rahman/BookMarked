@@ -80,11 +80,11 @@ function Register () {
                     
                     <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
             <input 
-            type="text" 
+            type="email" 
             id="email" 
             value={registerEmail}
             onChange={(event) => setRegisterEmail(event.target.value)}
-            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
             placeholder=" " 
             />
             <label 
@@ -101,7 +101,7 @@ function Register () {
             title="Minimum of 7 characters. Should have at least one special character and one number."
             value={registerPassword}
             onChange={(event) => setRegisterPassword(event.target.value)}
-            class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
             placeholder=" " 
             />
             <label 
