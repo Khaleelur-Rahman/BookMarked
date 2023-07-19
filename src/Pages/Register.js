@@ -24,7 +24,7 @@ function Register () {
         return (
         toast.error(message, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 6000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -63,7 +63,7 @@ function Register () {
                       displayToast(`Error during sign up.`);
                       break;
                     case 'auth/weak-password':
-                      displayToast('Password is not strong enough. Add additional characters including special characters and numbers.');
+                      displayToast('Password should be of minimum 7 characters. Should have at least one special character and one number.');
                       break;
                     default:
                       displayToast(error.message);
@@ -114,7 +114,7 @@ function Register () {
             type="password" 
             id="password" 
             pattern="(?=.*\d)(?=.*[\W_]).{7,}" 
-            title="Minimum of 7 characters. Should have at least one special character and one number."
+            title="Password should be of minimum 7 characters. Should have at least one special character and one number."
             value={registerPassword}
             onChange={(event) => setRegisterPassword(event.target.value)}
             class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 

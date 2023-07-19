@@ -115,18 +115,29 @@ function Login () {
     const displayToast = () => {
       // console.log(localStorage.getItem('bookTitle'));
       if(localStorage.getItem('registerEmail') !== null) {
+
         const email = localStorage.getItem('registerEmail');
+
         localStorage.clear();
-  
-        // return (
-        //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
-        //     {`${title} was ${action}`}
-        //   </div>
-        // )
   
         toast.success(`${email} registered successfully! Please login with your credentials`, {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else if(localStorage.getItem('logoutEmail') !== null) {
+        const email = localStorage.getItem('logoutEmail');
+        
+        localStorage.clear();
+  
+        toast.success(`${email} logged out successfully!`, {
+          position: "top-right",
+          autoClose: 6000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: false,

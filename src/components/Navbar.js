@@ -2,6 +2,9 @@ import { Link } from "react-router-dom"
 import { auth } from "../backend/firebase-config"
 import { signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Navbar() {
@@ -19,10 +22,21 @@ export default function Navbar() {
   
     const logout = async () => {
       try {
+        localStorage.setItem('logoutEmail',user.email);
         await signOut(auth);
         setUser(null);
         console.log("User logged out");
       } catch (error) {
+        toast.error('Error logging out!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         console.log(error.message);
       }
     };
