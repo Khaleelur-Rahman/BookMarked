@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 function Home() {
     const [user, setUser] = useState(auth.user);
 
+    console.log(user)
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((currentUser) => {
           setUser(currentUser);
@@ -85,7 +87,7 @@ function Home() {
           
         </div>    
         ) : (
-          <div className="flex justify-center items-center mt-20 font-bold">Welcome back {user && user?.email}!</div>
+          <div className="flex justify-center items-center my-20 font-bold">Welcome back {user && user?.email}!</div>
         )} 
       </div>
     </div>

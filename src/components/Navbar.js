@@ -98,7 +98,7 @@ export default function Navbar() {
     
     return (
       <span>
-      <nav className="nav">
+      <nav data-testid="navbar" className="nav">
         <div className="text-5xl font-medium" onClick={homepage}>
         BookMarked
         </div>
