@@ -34,16 +34,27 @@ function Login () {
         } catch (error) {
           setLoginEmail("");
           setLoginPassword("");
-          toast.error('Invalid Login Details!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
+          // toast.error('Invalid Login Details!', {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: false,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          //   });
+          switch (error.code) {
+            case 'auth/user-not-found':
+              displayToastError("User not found!");
+              break;
+            case 'auth/wrong-password':
+              displayToastError("Wrong password!");
+              break;
+            default:
+              displayToastError(error.message);
+              break;
+          }
           console.log(error.message);
         }
         // window.location.href = () => useGoBackHistory;
@@ -94,22 +105,40 @@ function Login () {
         }   catch (error) {
             setLoginEmail("");
             setLoginPassword("");
-            toast.error('Invalid Login Details!', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });
+            switch (error.code) {
+              case 'auth/user-not-found':
+                displayToast(`User not found!`);
+                break;
+              case 'auth/wrong-password':
+                displayToast(`Wrong password!`);
+                break;
+              default:
+                displayToast(error.message);
+                break;
+            }
+            // 
             console.log(error.message);        
           }
     }
 
     const gotoResgister = () => {
         window.location.href = "/register";
+    }
+
+    const displayToastError = (message) => {
+      return (
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 6000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        
+        })
+        )
     }
 
     const displayToast = () => {
