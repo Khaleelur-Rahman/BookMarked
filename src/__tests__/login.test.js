@@ -1,7 +1,9 @@
 import { render, screen, fireEvent,waitFor } from "@testing-library/react";
 import Login from "../Pages/Login";
+import BookForm from "../components/BookForm";
 import '@testing-library/jest-dom'
 import { ToastContainer } from "react-toastify";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Login", () => {
     test("Login form with email and password input should be in the document", async () => {
@@ -177,4 +179,33 @@ describe("Login", () => {
             expect(toastMessage).toBeInTheDocument();
         });     
     })
+
+    test('Valid account login redirects to Book Search Page', async() => {
+        render(
+          <BrowserRouter>
+            <Login />
+            <BookForm />
+          </BrowserRouter>
+        );
+    
+        const email = screen.getByLabelText("Email Address");
+        expect(email).toBeInTheDocument();
+        expect(email.value).toMatch("");
+      
+        const password = screen.getByLabelText("Password");
+        expect(password).toBeInTheDocument();
+        expect(password.value).toMatch("");
+      
+        const registerButton = await screen.findAllByRole('button', { name: /Login/i });
+        expect(registerButton).toHaveLength(1);
+      
+        fireEvent.change(email, { target: { value: "khaleelurrahman@gmail.com" } });
+        fireEvent.change(password, { target: { value: "Munni123!@#" } });
+      
+        fireEvent.click(registerButton[0]);
+    
+        const bookSearch = screen.getByText(/Book Search/i);
+        expect(bookSearch).toBeInTheDocument();
+    
+      });
 })

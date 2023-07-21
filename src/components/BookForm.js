@@ -166,14 +166,14 @@ function BookForm() {
                 >Enter Author
               </label>
               </div>
-              <button type="submit" value="Submit" className="bookform-submit"></button>
+              <button type="submit" value="Submit" className="bookform-submit" data-testid="bookform-submit"></button>
               {/* <button type="submit" value="Submit" className="bg-[url('images/searchIcon.png')] bg-gradient-to-r from-purple-500 to-pink-500"></button> */}
-              <button type="button" id="reset" onClick={resetForm}></button>
+              <button type="button" id="reset" onClick={resetForm} data-testid="bookform-reset"></button>
             </div>
           </form>
         </div>
         {bookResult ? (
-          <div className="image-container" id="image-container">
+          <div className="image-container" id="image-container" data-testid = "bookform-results">
             {bookResult.map((book) => (
               
               <div className="book-details" key={book.id}>

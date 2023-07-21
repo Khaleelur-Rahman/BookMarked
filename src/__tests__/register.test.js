@@ -1,5 +1,4 @@
 import Register from "../Pages/Register";
-import Index from "../index.html";
 import { ToastContainer } from 'react-toastify';
 
 import { fireEvent, render, screen, waitFor  } from "@testing-library/react";

@@ -104,16 +104,16 @@ export default function Navbar() {
         </div>
         <ul className="flex flex-row mr-5">
           <li className="mt-6">
-            <Link to={"/BookForm"} >Book Search</Link>
+            <Link to={"/BookForm"} data-testid="book-search">Book Search</Link>
           </li>
           <li className="mt-6">
-            <Link to={"/Wishlist"}>Wishlist</Link>
+            <Link to={"/Wishlist"} data-testid="wishlist">Wishlist</Link>
           </li>
           <li className="mt-6">
-            <Link to={"/Read"}>Readlist</Link>
+            <Link to={"/Read"} data-testid="readlist">Readlist</Link>
           </li>
-          <li className="ml-2" id ="profile">
-              <a href="" className="profile-drop-button">
+          <li className="ml-2" id ="profile" data-testid="profile">
+              <a href="" className="profile-drop-button" data-testid = "profile-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
 
               </a>
