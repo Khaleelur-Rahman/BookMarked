@@ -21,6 +21,11 @@ function Login () {
 
     const login = async (event) => {
       event.preventDefault();
+
+      if(loginEmail === "" || loginPassword === "") {
+        displayToastError("Email address and password should not be empty!");
+      }
+      else {
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
           localStorage.setItem("loginEmail",user.user.email);
@@ -57,11 +62,16 @@ function Login () {
           }
           console.log(error.message);
         }
-        // window.location.href = () => useGoBackHistory;
       }
+        // window.location.href = () => useGoBackHistory;
+    }
 
     const LoginWithGoogle = async (event) => {
         event.preventDefault();
+
+        if(loginEmail === "" || loginPassword === "") {
+          displayToastError("Email address and password should not be empty!");
+        }
 
         // signInWithPopup(auth,googleProvider)
         //   .then((result) => {
@@ -90,34 +100,35 @@ function Login () {
         //     });
         // })
     // }
-
-        try {
-            const provider = googleProvider;
-            const user = await signInWithPopup(auth, provider);
-            localStorage.setItem("loginEmail", user.user.email);
-            console.log(user.user.email);
-            // // console.log(document.referrer);
-            // if(document.referrer.charAt(document.referrer.length-1) === '/') {
-              window.location.href = "/BookForm";
-            // } else {
-              // navigate(-1);
-            // }
-        }   catch (error) {
-            setLoginEmail("");
-            setLoginPassword("");
-            switch (error.code) {
-              case 'auth/user-not-found':
-                displayToast(`User not found!`);
-                break;
-              case 'auth/wrong-password':
-                displayToast(`Wrong password!`);
-                break;
-              default:
-                displayToast(error.message);
-                break;
+        else {
+          try {
+              const provider = googleProvider;
+              const user = await signInWithPopup(auth, provider);
+              localStorage.setItem("loginEmail", user.user.email);
+              console.log(user.user.email);
+              // // console.log(document.referrer);
+              // if(document.referrer.charAt(document.referrer.length-1) === '/') {
+                window.location.href = "/BookForm";
+              // } else {
+                // navigate(-1);
+              // }
+          }   catch (error) {
+              setLoginEmail("");
+              setLoginPassword("");
+              switch (error.code) {
+                case 'auth/user-not-found':
+                  displayToast(`User not found!`);
+                  break;
+                case 'auth/wrong-password':
+                  displayToast(`Wrong password!`);
+                  break;
+                default:
+                  displayToast(error.message);
+                  break;
+              }
+              // 
+              console.log(error.message);        
             }
-            // 
-            console.log(error.message);        
           }
     }
 
@@ -235,7 +246,8 @@ function Login () {
             value={loginEmail}
             onChange={(event) => setLoginEmail(event.target.value)}
             class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-            placeholder=" " 
+            placeholder=" "
+            required 
             />
             <label 
             for="email" 
@@ -250,7 +262,8 @@ function Login () {
             value={loginPassword}
             onChange={(event) => setLoginPassword(event.target.value)}
             class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-            placeholder=" " 
+            placeholder=" "
+            required
             />
             <label 
             for="password" 

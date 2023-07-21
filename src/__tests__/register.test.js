@@ -1,5 +1,4 @@
 import Register from "../Pages/Register";
-import Login from "../Pages/Login";
 import Index from "../index.html";
 import { ToastContainer } from 'react-toastify';
 
@@ -120,4 +119,94 @@ describe('Register', () => {
             expect(toastMessage).toBeInTheDocument();
         });     
     });
+
+    test("Empty Email address error", async() => {
+      render(
+          <>
+            <Register />
+            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+          </>
+        );
+
+      const email = screen.getByLabelText("Email Address");
+      expect(email).toBeInTheDocument();
+      expect(email.value).toMatch("");
+    
+      const password = screen.getByLabelText("Password");
+      expect(password).toBeInTheDocument();
+      expect(password.value).toMatch("");
+    
+      const registerButton = await screen.findAllByRole('button', { name: /Register/i });
+      expect(registerButton).toHaveLength(1);
+    
+      fireEvent.change(email, { target: { value: "" } });
+      fireEvent.change(password, { target: { value: "Munni" } });
+    
+      fireEvent.click(registerButton[0]);
+
+      await waitFor(() => {
+          const toastMessage = screen.getByText(/Email address and password should not be empty/i);
+          expect(toastMessage).toBeInTheDocument();
+      });     
+  })
+
+  test("Empty Password error", async() => {
+      render(
+          <>
+            <Register />
+            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+          </>
+        );
+
+      const email = screen.getByLabelText("Email Address");
+      expect(email).toBeInTheDocument();
+      expect(email.value).toMatch("");
+    
+      const password = screen.getByLabelText("Password");
+      expect(password).toBeInTheDocument();
+      expect(password.value).toMatch("");
+    
+      const registerButton = await screen.findAllByRole('button', { name: /Register/i });
+      expect(registerButton).toHaveLength(1);
+    
+      fireEvent.change(email, { target: { value: "khaleelrrahman2002@gmail.com" } });
+      fireEvent.change(password, { target: { value: "" } });
+    
+      fireEvent.click(registerButton[0]);
+
+      await waitFor(() => {
+          const toastMessage = screen.getByText(/Email address and password should not be empty/i);
+          expect(toastMessage).toBeInTheDocument();
+      });     
+  })
+
+  test("Both Email address and Password empty error", async() => {
+      render(
+          <>
+            <Register />
+            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+          </>
+        );
+
+      const email = screen.getByLabelText("Email Address");
+      expect(email).toBeInTheDocument();
+      expect(email.value).toMatch("");
+    
+      const password = screen.getByLabelText("Password");
+      expect(password).toBeInTheDocument();
+      expect(password.value).toMatch("");
+    
+      const registerButton = await screen.findAllByRole('button', { name: /Register/i });
+      expect(registerButton).toHaveLength(1);
+    
+      fireEvent.change(email, { target: { value: "" } });
+      fireEvent.change(password, { target: { value: "" } });
+    
+      fireEvent.click(registerButton[0]);
+
+      await waitFor(() => {
+          const toastMessage = screen.getByText(/Email address and password should not be empty/i);
+          expect(toastMessage).toBeInTheDocument();
+      });     
+  })
 })

@@ -41,35 +41,40 @@ function Register () {
 
         event.preventDefault();
 
-        createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
-            .then((userCredentials) => {
-                const user = userCredentials.user;
-                console.log(user);
-                localStorage.setItem("registerEmail", user.email);
-                window.location.href = "/Login";
-            })
-            .catch((error) => {
-                console.log(error.code)
-                console.log(error.message);
+        if(registerEmail === "" || registerPassword === "") {
+          displayToast("Email address and password should not be empty!");
+        } else {
 
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                      displayToast(`Email address ${registerEmail} already in use.`);
-                      break;
-                    case 'auth/invalid-email':
-                      displayToast(`Email address ${registerEmail} is invalid.`);
-                      break;
-                    case 'auth/operation-not-allowed':
-                      displayToast(`Error during sign up.`);
-                      break;
-                    case 'auth/weak-password':
-                      displayToast('Password should be of minimum 7 characters. Should have at least one special character and one number.');
-                      break;
-                    default:
-                      displayToast(error.message);
-                      break;
-                  } 
-            });
+          createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
+              .then((userCredentials) => {
+                  const user = userCredentials.user;
+                  console.log(user);
+                  localStorage.setItem("registerEmail", user.email);
+                  window.location.href = "/Login";
+              })
+              .catch((error) => {
+                  console.log(error.code)
+                  console.log(error.message);
+
+                  switch (error.code) {
+                      case 'auth/email-already-in-use':
+                        displayToast(`Email address ${registerEmail} already in use.`);
+                        break;
+                      case 'auth/invalid-email':
+                        displayToast(`Email address ${registerEmail} is invalid.`);
+                        break;
+                      case 'auth/operation-not-allowed':
+                        displayToast(`Error during sign up.`);
+                        break;
+                      case 'auth/weak-password':
+                        displayToast('Password should be of minimum 7 characters. Should have at least one special character and one number.');
+                        break;
+                      default:
+                        displayToast(error.message);
+                        break;
+                    } 
+              });
+            }
     }
 
     const gotoLogin = () => {
@@ -101,7 +106,8 @@ function Register () {
             value={registerEmail}
             onChange={(event) => setRegisterEmail(event.target.value)}
             class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-            placeholder=" " 
+            placeholder=" "
+            required 
             />
             <label 
             for="email" 
@@ -118,7 +124,8 @@ function Register () {
             value={registerPassword}
             onChange={(event) => setRegisterPassword(event.target.value)}
             class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
-            placeholder=" " 
+            placeholder=" "
+            required 
             />
             <label 
             for="password" 
