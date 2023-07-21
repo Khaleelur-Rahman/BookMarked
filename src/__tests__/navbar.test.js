@@ -212,6 +212,6 @@ describe('Navbar', () => {
 
       expect(dropdown1.textContent).toBe("Login");
       expect(dropdown2.textContent).toBe("Register");
-
   });
+
 });
