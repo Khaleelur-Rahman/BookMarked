@@ -121,21 +121,21 @@ export default function Navbar() {
         </ul>
       </nav>
     <div className="profile-dropdown-content" id="profile-dropdown-content">
-    {user ? (   <span>
-                  <li className="profile-dropdown-subitem">
+    {user ? (   <div >
+                  <li className="profile-dropdown-subitem" data-testid = "dropdown1">
                     {user && user?.email}
                   </li>
-                </span>
+                </div>
                 ) : (
                 <div>
-                  <li className="profile-dropdown-subitem">
+                  <li className="profile-dropdown-subitem" data-testid = "dropdown1">
                     <Link to={"/Login"}>Login</Link>
                   </li>
                 </div>
                 )}
                 {user ? (
-                  <div>
-                    <li className="profile-dropdown-subitem" onClick={logout}>
+                  <div >
+                    <li className="profile-dropdown-subitem" data-testid = "dropdown2" onClick={logout}>
                        <Link to={"/Login"}>
                         Logout
                       </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
                   ) : (
                   <div>
 
-                    <li className="profile-dropdown-subitem">
+                    <li className="profile-dropdown-subitem" data-testid = "dropdown2">
                       <Link to={"/Register"}>Register</Link>
                     </li>
                   </div>
