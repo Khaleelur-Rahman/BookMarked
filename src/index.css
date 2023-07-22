@@ -411,7 +411,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   cursor: pointer;
 }
 
-button[class="login-with-google"] {
+button[className="login-with-google"] {
   background-image: url(./images/google-icon.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;

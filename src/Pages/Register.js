@@ -91,31 +91,31 @@ function Register () {
                 <br /><br />
                 <button onClick={register} className='register-submit-button'>Register</button>
             </div> */}
-            <h3 class="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400"> Register with email address</h3>
+            <h3 className="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400"> Register with email address</h3>
             
-            <div class ="flex justify-center content-center mt-20">
+            <div className ="flex justify-center content-center mt-20">
                 
-                <form class="bg-white shadow-md shadow-cyan-500/50 rounded px-8 pt-6 pb-8 mb-4">
+                <form className="bg-white shadow-md shadow-cyan-500/50 rounded px-8 pt-6 pb-8 mb-4">
                     
-                    <h1 class="flex justify-center content-center mb-8 text-xl font-semibold whitespace-nowrap dark:text-white">Register</h1>
+                    <h1 className="flex justify-center content-center mb-8 text-xl font-semibold whitespace-nowrap dark:text-white">Register</h1>
                     
-                    <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
+                    <div className="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
             <input 
             type="email" 
             id="email" 
             value={registerEmail}
             onChange={(event) => setRegisterEmail(event.target.value)}
-            class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            className="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
             placeholder=" "
             required 
             />
             <label 
             for="email" 
-            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >Email Address</label>
           </div>
 
-          <div class="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
+          <div className="relative mb-6 border-b-2 border-cyan-400" data-te-input-wrapper-init>
             <input 
             type="password" 
             id="password" 
@@ -123,20 +123,20 @@ function Register () {
             title="Password should be of minimum 7 characters. Should have at least one special character and one number."
             value={registerPassword}
             onChange={(event) => setRegisterPassword(event.target.value)}
-            class="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+            className="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
             placeholder=" "
             required 
             />
             <label 
             for="password" 
-            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+            className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >Password</label>
           </div>
 
             <div className="flex justify-end content-center">
                  <button 
                     type="submit" 
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     onClick={register}
                     id="register"
                 >
@@ -144,11 +144,11 @@ function Register () {
                 </button>
             </div>
 
-            <p class="mb-0 mt-5 pt-1 text-sm font-semibold">
+            <p className="mb-0 mt-5 pt-1 text-sm font-semibold">
                 Already have an account?
                 <a
                     href="#!"
-                    class="ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                    className="ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
                     onClick={gotoLogin}
                 >
                 Login
