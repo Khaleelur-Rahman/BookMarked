@@ -3,6 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider} from "firebase/auth"; 
 
 const firebaseConfig = {
+    //Details of Api Key for Firebase and Firestore Auth
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_PROJECT_ID,
@@ -14,9 +15,9 @@ const firebaseConfig = {
     
     const app = initializeApp(firebaseConfig);
 
-    export const connectiontoDb = getFirestore(app);
+    export const connectiontoDb = getFirestore(app); //db variable that can be used in other components
 
-    export const auth = getAuth(app);
+    export const auth = getAuth(app); //authentication variable that can be used in other components
 
-    export const googleProvider = new GoogleAuthProvider();
+    export const googleProvider = new GoogleAuthProvider(); //used for google authentication
 
