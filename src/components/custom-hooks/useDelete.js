@@ -1,10 +1,10 @@
 import React from 'react'
 import { deleteDoc, doc } from 'firebase/firestore';
-import connection from '../../backend/connection';
+import { connectiontoDb } from '../../backend/firebase-config';
 
 async function useDelete(id) {
     
-    const db = connection();
+    const db = connectiontoDb;
     // const res = await db.collection('Read').doc(id).delete();
     const res = await deleteDoc(doc(db, "Read",id));
     console.log(res);

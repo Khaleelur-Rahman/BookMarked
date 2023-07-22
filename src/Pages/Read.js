@@ -1,8 +1,7 @@
 import { collection, getDocs, query, deleteDoc, doc} from "firebase/firestore";
-import connection from "../backend/connection";
 import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
-import { auth } from "../backend/firebase-config";
+import { auth, connectiontoDb } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +18,7 @@ function Read() {
   }
 
   async function bookDelete(id,title) {
-    const db = connection();
+    const db = connectiontoDb;
     localStorage.setItem("bookTitle",title)
     localStorage.setItem("action", "deleted");
     // console.log(localStorage.getItem('bookTitle'));
@@ -32,7 +31,7 @@ function Read() {
 
   useEffect(() => {
     const fetchData = async (user) => {
-      const db = connection();
+      const db = connectiontoDb;
       const docsSnap = await getDocs(query(collection(db, "Read")));
       const imageElements = docsSnap.docs
         .filter((doc) => doc.data().userId === user.uid)

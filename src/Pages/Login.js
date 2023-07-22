@@ -1,23 +1,28 @@
 import React, { useState , useEffect} from "react";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider} from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider} from '../backend/firebase-config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuthState from "../components/custom-hooks/useAuthState"
 
 function Login () {
 
     
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);
-        });
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    //       setUser(currentUser);
+    //     });
     
-        return () => unsubscribe();
-      }, []);
+    //     return () => unsubscribe();
+    //   }, []);
+
+    // setUser(useAuthState(auth));
+
+    const user = useAuthState(auth);
 
     const login = async (event) => {
       event.preventDefault();
@@ -29,26 +34,12 @@ function Login () {
         try {
           const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
           localStorage.setItem("loginEmail",user.user.email);
-
-          // console.log(user);
-          // if(document.referrer.charAt(document.referrer.length-1) === '/') {
-          //   window.location.href = "/BookForm";
-          // } else {
             window.location.href = "/BookForm";
-          // }
+
         } catch (error) {
           setLoginEmail("");
           setLoginPassword("");
-          // toast.error('Invalid Login Details!', {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: false,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "light",
-          //   });
+
           switch (error.code) {
             case 'auth/user-not-found':
               displayToastError("User not found!");
@@ -69,49 +60,12 @@ function Login () {
     const LoginWithGoogle = async (event) => {
         event.preventDefault();
 
-        if(loginEmail === "" || loginPassword === "") {
-          displayToastError("Email address and password should not be empty!");
-        }
-
-        // signInWithPopup(auth,googleProvider)
-        //   .then((result) => {
-        //     const credential = GoogleAuthProvider.credentialFromResult(result);
-
-        //     const user = result.user;
-
-        //     localStorage.setItem("loginEmail", user.email);
-
-        //     window.location.href = "/BookForm";
-        //   }).catch((error) => {
-        //     const errorCode = error.code;
-        //     const errorMessage = error.message;
-
-        //     setLoginEmail("");
-        //     setLoginPassword("");
-        //     toast.error('Invalid Login Details!', {
-        //       position: "top-right",
-        //       autoClose: 5000,
-        //       hideProgressBar: false,
-        //       closeOnClick: true,
-        //       pauseOnHover: false,
-        //       draggable: true,
-        //       progress: undefined,
-        //       theme: "light",
-        //     });
-        // })
-    // }
-        else {
           try {
               const provider = googleProvider;
               const user = await signInWithPopup(auth, provider);
               localStorage.setItem("loginEmail", user.user.email);
               console.log(user.user.email);
-              // // console.log(document.referrer);
-              // if(document.referrer.charAt(document.referrer.length-1) === '/') {
                 window.location.href = "/BookForm";
-              // } else {
-                // navigate(-1);
-              // }
           }   catch (error) {
               setLoginEmail("");
               setLoginPassword("");
@@ -129,7 +83,7 @@ function Login () {
               // 
               console.log(error.message);        
             }
-          }
+          // }
     }
 
     const gotoResgister = () => {
@@ -190,23 +144,9 @@ function Login () {
 
     return (
         <div>
-        {/* //     <h3 className="login-header">Login to access the features </h3>
-        //     <div className="login-buttons">
-        //       <div className="login">
-        //         <input type='text' placeholder='Enter your email address' onChange={(event) => setLoginEmail(event.target.value)}></input>
-        //         <input type='password' placeholder='Enter your password' onChange={(event) => setLoginPassword(event.target.value)}></input>
-        //         <button onClick={login}>Login</button>
-        //       </div>
-        //       <div className="login-other-functions">
-        //         <button onClick={LoginWithGoogle} className="login-with-google"></button>
-        //         <button onClick={gotoResgister}>Register</button>
-        //       </div>
-        //     </div> */}
-
         {displayToast()}
         <h3 class ="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400">Login to access the features </h3>
         <div class="flex justify-center content-center mt-20">
-        {/* <h3 className="login-header">Login to access the features </h3> */}
         <form class="bg-white shadow-md shadow-cyan-500/50 rounded px-8 pt-6 pb-8 mb-4">
           <div
             class="flex flex-start items-center justify-center lg:justify-center">

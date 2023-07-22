@@ -4,27 +4,32 @@ import { signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useAuthState from "./custom-hooks/useAuthState"
 
 
 
 export default function Navbar() {
-    const [user, setUser] = useState(auth.user);
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-          setUser(currentUser);
-        });
+  // const[user,setUser] = useState(auth.user);
+
+    // useEffect(() => {
+    //     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    //       setUser(currentUser);
+    //     });
     
-        return () => {
-          unsubscribe();
-        };
-      }, []);
+    //     return () => {
+    //       unsubscribe();
+    //     };
+    //   }, []);
+
+    // setUser(useAuthState(auth));
+    const user = useAuthState(auth);
   
     const logout = async () => {
       try {
         localStorage.setItem('logoutEmail',user.email);
         await signOut(auth);
-        setUser(null);
+        // setUser(null);
         console.log("User logged out");
       } catch (error) {
         toast.error('Error logging out!', {

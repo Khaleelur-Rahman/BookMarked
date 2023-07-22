@@ -1,14 +1,11 @@
 import { collection, getDocs, query,deleteDoc, doc } from "firebase/firestore";
-import connection from "../backend/connection";
 import React, { useEffect, useState } from "react";
 import { trimAndAddDots } from "../components/utils";
-import { auth } from "../backend/firebase-config";
+import { auth, connectiontoDb } from "../backend/firebase-config";
 import { Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import noBookCoverImage from "../images/No-book-cover.png";
-
-
 
 function Wishlist() {
 
@@ -20,7 +17,7 @@ function Wishlist() {
   }
 
   async function bookDelete(id,title) {
-    const db = connection();
+    const db = connectiontoDb;
     // const res = await db.collection('Read').doc(id).delete();
     localStorage.setItem("bookTitle",title)
     localStorage.setItem("action", "deleted");
@@ -31,7 +28,7 @@ function Wishlist() {
 
   useEffect(() => {
     const fetchData = async (user) => {
-      const db = connection();
+      const db = connectiontoDb;
       const docsSnap = await getDocs(query(collection(db, "ToRead")));
       const imageElements = docsSnap.docs
         .filter((doc) => doc.data().userId === user.uid)

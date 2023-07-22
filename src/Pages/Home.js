@@ -1,22 +1,26 @@
 // import { useHistory } from 'react-router-dom';
 import { auth } from "../backend/firebase-config";
 import { useState, useEffect } from "react";
+import useAuthState from "../components/custom-hooks/useAuthState"
+
 
 function Home() {
-    const [user, setUser] = useState(auth.user);
+    // const [user, setUser] = useState(auth.user);
 
     console.log(user)
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-          setUser(currentUser);
-        });
+    // useEffect(() => {
+    //     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+    //       setUser(currentUser);
+    //     });
     
-        return () => {
-          unsubscribe();
-        };
-      }, []);
+    //     return () => {
+    //       unsubscribe();
+    //     };
+    //   }, []);
     // const history = useHistory();
+
+    const user = useAuthState(auth);
 
     const handleLogin = () => {
         window.location.href = "/Login";

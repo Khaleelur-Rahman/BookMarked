@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../index.css';
-import connection from '../backend/connection';
-import { collection, addDoc } from 'firebase/firestore';
 import {trimAndAddDots} from './utils';
 import { Link } from 'react-router-dom';
 import { auth } from "../backend/firebase-config";
-import { onAuthStateChanged } from 'firebase/auth';
 import noBookCoverImage from "../images/No-book-cover.png";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
-// Api key AIzaSyDXazWuIbPnNRVSTptlWmdEvIJXJ0scUns
 
 function BookForm() {
   const [bookResult, setBooks] = useState([]);
@@ -61,24 +54,6 @@ function BookForm() {
     setCantFindAdded(false);
   }
 
-  async function addToRead(book) {
-    // const db = connection();
-    // const docRef = await addDoc(collection(db, "ToRead"), {
-    //   book
-    // });
-    // console.log("Document written with ID: ", docRef.id);
-    window.location.href = "/BookForm/WishlistReview"
-  }
-
-  async function addRead(book) {
-    // const db = connection();
-    // const docRef = await addDoc(collection(db, "Read"), {
-    //   book
-    // });
-    // console.log("Document written with ID: ", docRef.id);
-    window.location.href = "/BookForm/ReadlistReview"
-  }
-
   function cantFindStatement() {
     const container = document.getElementById("book-search");
     const statement = document.createElement("div");
@@ -93,19 +68,12 @@ function BookForm() {
     }
   });
 
-  // console.log(user);
-
   const displayToast = () => {
-    // console.log(localStorage.getItem('bookTitle'));
+
     if(localStorage.getItem('loginEmail') !== null) {
+
       const email = localStorage.getItem('loginEmail');
       localStorage.clear();
-
-      // return (
-      //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
-      //     {`${title} was ${action}`}
-      //   </div>
-      // )
 
       toast.success(`${email} logged in successfully!`, {
         position: "top-right",
@@ -121,7 +89,6 @@ function BookForm() {
   }
   
   return (
-    // console.log(user);
     !user ? (
       <div>
       {displayToast()}
@@ -167,7 +134,6 @@ function BookForm() {
               </label>
               </div>
               <button type="submit" value="Submit" className="bookform-submit" data-testid="bookform-submit"></button>
-              {/* <button type="submit" value="Submit" className="bg-[url('images/searchIcon.png')] bg-gradient-to-r from-purple-500 to-pink-500"></button> */}
               <button type="button" id="reset" onClick={resetForm} data-testid="bookform-reset"></button>
             </div>
           </form>
@@ -177,7 +143,6 @@ function BookForm() {
             {bookResult.map((book) => (
               
               <div className="book-details" key={book.id}>
-                {/* {console.log(book)} */}
                 <img
                   className="book-image"
                   src={book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: noBookCoverImage}

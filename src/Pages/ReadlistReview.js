@@ -1,19 +1,14 @@
 import { useLocation } from 'react-router-dom';
-import { trimAndAddDots } from '../components/utils';
-import connection from '../backend/connection';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { auth } from '../backend/firebase-config';
+import { auth ,connectiontoDb } from '../backend/firebase-config';
 import noBookCoverImage from "../images/No-book-cover.png";
-// import { Firestore } from 'firebase/firestore';
 
 function ReadlistReview() {
-  // const location = useLocation();
   const {state} = useLocation();
 
   const user = auth.currentUser;
 
-  // const [review, setReview] = useState(0);
   const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
   const [dateCompleted, setDateCompleted] = useState('');
@@ -32,12 +27,10 @@ function ReadlistReview() {
       setDateCompleted(event.target.value)
     }
 
-  // console.log(state);
-
   async function handleSubmitNewBook(e) {
       e.preventDefault();
 
-      const db = connection();
+      const db = connectiontoDb;
       const docRef = await addDoc(collection(db, "Read"), {
       book : state.state,
       title :state.state.volumeInfo.title,
@@ -67,7 +60,7 @@ function ReadlistReview() {
   async function handleSubmitEditBook(e) {
     e.preventDefault();
 
-    const db = connection();
+    const db = connectiontoDb;
     console.log(state.docId);
     const res = await updateDoc(doc(db, 'Read', state.docId), {
       book: state.state,
@@ -82,7 +75,6 @@ function ReadlistReview() {
     localStorage.setItem("action", "edited");
 
     window.location.href = "/Read"
-    // await db.collection('Read').doc(state.docId).
 
     console.log("Updated " + res);
   }
@@ -151,14 +143,6 @@ function ReadlistReview() {
               ></input>
               <br />
               <label htmlFor = "reviewDescription">Description : </label>
-              {/* <textarea 
-              className='reviewDescription'
-              value = {description}
-              // value={state.bookDescription !== '' ? state.bookDescription : ""}
-              defaultValue={state.bookDescription !== "" ? state.bookDescription : ""}
-              // placeholder={state.bookDescription !== '' ? state.bookDescription : ""}
-              onChange={handleChangeDescription}
-              ></textarea> */}
               <textarea
                 className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
                 defaultValue={description !== "" ? description : state.bookDescription}

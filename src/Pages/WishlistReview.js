@@ -1,9 +1,8 @@
 import { useLocation } from 'react-router-dom';
-import { trimAndAddDots } from '../components/utils';
-import connection from '../backend/connection';
+// import connectiontoDb from '../backend/firebase-config';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { auth } from '../backend/firebase-config';
+import { auth, connectiontoDb } from '../backend/firebase-config';
 import noBookCoverImage from "../images/No-book-cover.png";
 
 
@@ -32,7 +31,7 @@ function WishlistReview() {
   async function handleSubmitNewBook(e){
       e.preventDefault();
 
-      const db = connection();
+      const db = connectiontoDb;
       const docRef = await addDoc(collection(db, "ToRead"), {
       book : state.state,
       title :state.state.volumeInfo.title,
@@ -59,7 +58,7 @@ function WishlistReview() {
     async function handleSubmitEditBook(e) {
       e.preventDefault();
   
-      const db = connection();
+      const db = connectiontoDb;
       console.log(state.docId);
       const res = await updateDoc(doc(db, 'ToRead', state.docId), {
         book : state.state,
