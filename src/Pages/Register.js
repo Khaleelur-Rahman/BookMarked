@@ -48,14 +48,10 @@ function Register () {
           createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
               .then((userCredentials) => {
                   const user = userCredentials.user;
-                  console.log(user);
                   localStorage.setItem("registerEmail", user.email);
                   window.location.href = "/Login";
               })
               .catch((error) => {
-                  console.log(error.code)
-                  console.log(error.message);
-
                   switch (error.code) {
                       case 'auth/email-already-in-use':
                         displayToast(`Email address ${registerEmail} already in use.`);

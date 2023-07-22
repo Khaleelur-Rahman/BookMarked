@@ -22,7 +22,6 @@ function Wishlist() {
     localStorage.setItem("bookTitle",title)
     localStorage.setItem("action", "deleted");
     const res = await deleteDoc(doc(db, "ToRead",id));
-    console.log(res);
     setLink("/Wishlist");
   }
 
@@ -35,7 +34,6 @@ function Wishlist() {
         .map((doc) => {
           
           const book = doc.data().book;
-          console.log(book)
           return (
             <div>
               <div className="book-details">
@@ -89,17 +87,10 @@ function Wishlist() {
   }
 
   const displayToast = () => {
-    // console.log(localStorage.getItem('bookTitle'));
     if(localStorage.getItem('bookTitle') !== null) {
       const title = localStorage.getItem('bookTitle');
       const action = localStorage.getItem('action');
       localStorage.clear();
-
-      // return (
-      //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
-      //     {`${title} was ${action}`}
-      //   </div>
-      // )
 
       toast(`${title} was ${action}`, {
         position: "top-right",

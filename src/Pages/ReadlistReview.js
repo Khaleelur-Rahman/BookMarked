@@ -53,7 +53,6 @@ function ReadlistReview() {
     localStorage.setItem("bookTitle",state.state.volumeInfo.title)
     localStorage.setItem("action", "added");
 
-    console.log("Document written with ID: ", docRef.id);
     window.location.href = "/Read"
   };
 
@@ -61,7 +60,6 @@ function ReadlistReview() {
     e.preventDefault();
 
     const db = connectiontoDb;
-    console.log(state.docId);
     const res = await updateDoc(doc(db, 'Read', state.docId), {
       book: state.state,
       title: state.state.volumeInfo.title,
@@ -76,7 +74,6 @@ function ReadlistReview() {
 
     window.location.href = "/Read"
 
-    console.log("Updated " + res);
   }
 
   useEffect(() => {
@@ -113,7 +110,6 @@ function ReadlistReview() {
           <div className='mt-10 mb-20'>
           <form onSubmit={state.bookDate === undefined ? handleSubmitNewBook : handleSubmitEditBook}>
               <h3 className='text-lg text-slate-700 dark:text-slate-400 font-bold'>Write your review below to add to Readlist:</h3>
-              {/* {console.log(rating === "")} */}
             <label htmlFor="reviewStars">Rating: </label>
             <input
               type={ratingType}

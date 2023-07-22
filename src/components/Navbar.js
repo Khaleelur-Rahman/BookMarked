@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { auth } from "../backend/firebase-config"
 import { signOut } from "firebase/auth";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import useAuthState from "./custom-hooks/useAuthState"
@@ -10,19 +10,6 @@ import useAuthState from "./custom-hooks/useAuthState"
 
 export default function Navbar() {
 
-  // const[user,setUser] = useState(auth.user);
-
-    // useEffect(() => {
-    //     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
-    //       setUser(currentUser);
-    //     });
-    
-    //     return () => {
-    //       unsubscribe();
-    //     };
-    //   }, []);
-
-    // setUser(useAuthState(auth));
     const user = useAuthState(auth);
   
     const logout = async () => {
@@ -30,7 +17,6 @@ export default function Navbar() {
         localStorage.setItem('logoutEmail',user.email);
         await signOut(auth);
         // setUser(null);
-        console.log("User logged out");
       } catch (error) {
         toast.error('Error logging out!', {
           position: "top-right",
@@ -42,7 +28,6 @@ export default function Navbar() {
           progress: undefined,
           theme: "light",
           });
-        console.log(error.message);
       }
     };
   
@@ -79,28 +64,6 @@ export default function Navbar() {
       };
     }, []);
 
-    // function callDropDown() {
-      
-    //     const profileElement = document.getElementById("profile");
-    //     console.log(profileElement)
-    //     const dropdown = document.getElementsByClassName("profile-dropdown-content")[0];
-      
-    //     profileElement.addEventListener("mouseover", showDropdown);
-    //     dropdown.addEventListener("mouseover", showDropdown);
-    //     profileElement.addEventListener("mouseout", hideDropdown);
-    //     dropdown.addEventListener("mouseout", hideDropdown);
-      
-    //     function showDropdown() {
-    //       dropdown.style.display = "block";
-    //     }
-      
-    //     function hideDropdown() {
-    //       dropdown.style.display = "none";
-    //     }
-    // }
-
-    
-    
     return (
       <span>
       <nav data-testid="navbar" className="nav">
@@ -157,9 +120,7 @@ export default function Navbar() {
 
                   )}
     </div>
-    {/* {Window.onload = callDropDown} */}
     </span>
-    // {solve}
     );
     
   }

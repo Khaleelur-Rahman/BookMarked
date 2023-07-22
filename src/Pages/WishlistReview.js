@@ -7,13 +7,9 @@ import noBookCoverImage from "../images/No-book-cover.png";
 
 
 function WishlistReview() {
-  // const location = useLocation();
   const {state} = useLocation();
-
   const user = auth.currentUser;
 
-  // const [review, setReview] = useState(0);
-  // const [rating, setRating] = useState(0);
   const [notes, setNotes] = useState('');
   const [dateToRead, setDateToRead] = useState('');
   const [inputDateType, setDateType] = useState("text");
@@ -25,8 +21,6 @@ function WishlistReview() {
   function handleChangeDateCompleted(event) {
       setDateToRead(event.target.value)
     }
-
-  // console.log(state);
 
   async function handleSubmitNewBook(e){
       e.preventDefault();
@@ -51,7 +45,6 @@ function WishlistReview() {
     localStorage.setItem("bookTitle",state.state.volumeInfo.title)
     localStorage.setItem("action", "added");
 
-    console.log("Document written with ID: ", docRef.id);
     window.location.href = "/Wishlist"
     };
 
@@ -59,7 +52,6 @@ function WishlistReview() {
       e.preventDefault();
   
       const db = connectiontoDb;
-      console.log(state.docId);
       const res = await updateDoc(doc(db, 'ToRead', state.docId), {
         book : state.state,
         title :state.state.volumeInfo.title,
@@ -73,9 +65,7 @@ function WishlistReview() {
       localStorage.setItem("action", "edited");
 
       window.location.href = "/Wishlist"
-      // await db.collection('Read').doc(state.docId).
-  
-      console.log("Updated " + res);
+
     }
 
     useEffect(() => {

@@ -21,11 +21,7 @@ function Read() {
     const db = connectiontoDb;
     localStorage.setItem("bookTitle",title)
     localStorage.setItem("action", "deleted");
-    // console.log(localStorage.getItem('bookTitle'));
-    // const res = await db.collection('Read').doc(id).delete();
-    // console.log(id);
     const res = await deleteDoc(doc(db, "Read",id));
-    // console.log(res);
     setLink("/Read");
   }
 
@@ -37,7 +33,6 @@ function Read() {
         .filter((doc) => doc.data().userId === user.uid)
         .map((doc) => {
           const book = doc.data().book;
-          // console.log(doc.data());
           return (
             <div className="book-details">
               <img
@@ -90,17 +85,10 @@ function Read() {
   }
 
   const displayToast = () => {
-    // console.log(localStorage.getItem('bookTitle'));
     if(localStorage.getItem('bookTitle') !== null) {
       const title = localStorage.getItem('bookTitle');
       const action = localStorage.getItem('action');
       localStorage.clear();
-
-      // return (
-      //   <div className="absolute p-2 right-0 top-30 border-2 border-cyan-400 rounded-lg font-bold text-slate-500">
-      //     {`${title} was ${action}`}
-      //   </div>
-      // )
 
       toast(`${title} was ${action}`, {
         position: "top-right",

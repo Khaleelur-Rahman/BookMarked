@@ -10,17 +10,6 @@ function Login () {
     
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-    // const [user, setUser] = useState(null);
-
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    //       setUser(currentUser);
-    //     });
-    
-    //     return () => unsubscribe();
-    //   }, []);
-
-    // setUser(useAuthState(auth));
 
     const user = useAuthState(auth);
 
@@ -51,10 +40,8 @@ function Login () {
               displayToastError(error.message);
               break;
           }
-          console.log(error.message);
         }
       }
-        // window.location.href = () => useGoBackHistory;
     }
 
     const LoginWithGoogle = async (event) => {
@@ -64,7 +51,6 @@ function Login () {
               const provider = googleProvider;
               const user = await signInWithPopup(auth, provider);
               localStorage.setItem("loginEmail", user.user.email);
-              console.log(user.user.email);
                 window.location.href = "/BookForm";
           }   catch (error) {
               setLoginEmail("");
@@ -80,10 +66,7 @@ function Login () {
                   displayToast(error.message);
                   break;
               }
-              // 
-              console.log(error.message);        
             }
-          // }
     }
 
     const gotoResgister = () => {
@@ -107,7 +90,6 @@ function Login () {
     }
 
     const displayToast = () => {
-      // console.log(localStorage.getItem('bookTitle'));
       if(localStorage.getItem('registerEmail') !== null) {
 
         const email = localStorage.getItem('registerEmail');
@@ -241,5 +223,6 @@ function Login () {
       </div>
     );
 }
+
 
 export default Login;

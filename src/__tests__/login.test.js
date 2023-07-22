@@ -64,7 +64,7 @@ describe("Login", () => {
         render(
             <>
               <Login />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 
@@ -94,7 +94,7 @@ describe("Login", () => {
         render(
             <>
               <Login />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 
@@ -124,7 +124,7 @@ describe("Login", () => {
         render(
             <>
               <Login />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 
@@ -154,7 +154,7 @@ describe("Login", () => {
         render(
             <>
               <Login />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 

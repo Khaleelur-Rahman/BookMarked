@@ -1,6 +1,5 @@
 import Register from "../Pages/Register";
 import { ToastContainer } from 'react-toastify';
-
 import { fireEvent, render, screen, waitFor  } from "@testing-library/react";
 import '@testing-library/jest-dom'
 
@@ -63,7 +62,7 @@ describe('Register', () => {
         render(
             <>
               <Register />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 
@@ -93,7 +92,7 @@ describe('Register', () => {
         render(
             <>
               <Register />
-              <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+              <ToastContainer /> 
             </>
           );
 
@@ -123,7 +122,7 @@ describe('Register', () => {
       render(
           <>
             <Register />
-            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+            <ToastContainer /> 
           </>
         );
 
@@ -153,7 +152,7 @@ describe('Register', () => {
       render(
           <>
             <Register />
-            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+            <ToastContainer /> 
           </>
         );
 
@@ -183,7 +182,7 @@ describe('Register', () => {
       render(
           <>
             <Register />
-            <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
+            <ToastContainer /> 
           </>
         );
 
