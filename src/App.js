@@ -19,12 +19,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  const handleLogin = (user, token) => {
-    setIsLoggedIn(true);
-    setUser(user);
-    setToken(token);
-  };
-
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUser(null);
@@ -33,7 +27,7 @@ function App() {
 
   if (isLoggedIn) {
     return (
-      <div className="App">
+      <div className="App">  {/*Handles logout*/}
         <Navbar />
         <Protected user={user} token={token} handleLogout={handleLogout} />
       </div>
@@ -42,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
+      <Routes>   {/*Various routes used in the project*/}
         <Route path ="/" element = {<Home />} />
         <Route path ="/Login" element = {<Login />} />
         <Route path ="/Register" element = {<Register />} />
