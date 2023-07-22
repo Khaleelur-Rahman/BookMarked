@@ -17,15 +17,17 @@ function BookForm() {
 
 
   function handleChangeBook(event) {
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value);  //handle book title input changes
   }
 
   function handleChangeAuthor(event) {
-    setAuthor(event.target.value);
+    setAuthor(event.target.value);       //handle book author input changes
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    //Fetch api results from google books endpoint using api key
     axios
       .get(
         `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${author}&maxResults=40&printType=books&key=${process.env.REACT_APP_GOOGLEBOOKS_API_KEY}`
@@ -33,7 +35,7 @@ function BookForm() {
       .then((response) => {
         setBooks(response.data.items);
         if (!cantFindAdded) {
-          cantFindStatement();
+          cantFindStatement();    //cannot find any books based on form inputs
           setCantFindAdded(true);
         }
       })
@@ -58,19 +60,19 @@ function BookForm() {
     const container = document.getElementById("book-search");
     const statement = document.createElement("div");
     statement.className = "cant-find-statement"
-    statement.appendChild(document.createTextNode("Can't find the book you are looking for? Try refining your search :)"));
+    statement.appendChild(document.createTextNode("Can't find the book you are looking for? Try refining your search :)"));   //cannot find book statement added to document
     container.appendChild(statement);
   }
 
   const unsubscribe = auth.onAuthStateChanged((user) => {
     if(!user) {
-      window.location.href = "/Login";
+      window.location.href = "/Login";  //If user is not logged in, book search input will not be displayed and will be redirected to login page
     }
   });
 
   const displayToast = () => {
 
-    if(localStorage.getItem('loginEmail') !== null) {
+    if(localStorage.getItem('loginEmail') !== null) {  //successful login
 
       const email = localStorage.getItem('loginEmail');
       localStorage.clear();
@@ -143,15 +145,15 @@ function BookForm() {
             {bookResult.map((book) => (
               
               <div className="book-details" key={book.id}>
-                <img
+                <img                                    
                   className="book-image"
                   src={book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
-                  alt={book.volumeInfo.title}
+                  alt={book.volumeInfo.title}     //display book image
                 />
                 <div className="display-book-title">
-                  {trimAndAddDots(book.volumeInfo.title)}
+                  {trimAndAddDots(book.volumeInfo.title)}   
                 </div>
-                <div className="image-links">
+                <div className="image-links">   {/*Contains links to add book to either readlist,wishlist or to book details on a specific website */}
                   <Link
                   to={"/BookForm/WishlistReview"} state={{ state: book }}
                   className="add-read"
@@ -177,7 +179,7 @@ function BookForm() {
       </div>
     </div>
     ) : (
-      window.location.href = "/Login"
+      window.location.href = "/Login"    //If user is not logged in, book search input will not be displayed and will be redirected to login page
     )
   );  
 }

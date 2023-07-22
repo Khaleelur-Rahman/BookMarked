@@ -31,7 +31,7 @@ export default function Navbar() {
       }
     };
   
-    const homepage = () => {
+    const homepage = () => {      //Function to faciliate navigation when website title is clicked
         if(user!==undefined) {
             window.location.href = "/BookForm";
         } else {
@@ -39,7 +39,7 @@ export default function Navbar() {
         }
     };
 
-    useEffect(() => {
+    useEffect(() => {   //Facilitate profile dropdown functionality
       const profileElement = document.getElementById("profile");
       const dropdown = document.getElementById("profile-dropdown-content");
   
@@ -88,7 +88,7 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-    <div className="profile-dropdown-content" id="profile-dropdown-content">
+    <div className="profile-dropdown-content" id="profile-dropdown-content">  {/*Profile dropdown menu based based on if user is logged in or not*/}
     {user ? (   <span>
                   <li className="profile-dropdown-subitem">
                     {user && user?.email}
