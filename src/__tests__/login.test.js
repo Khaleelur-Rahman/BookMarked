@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 
 describe("Login", () => {
+  
     test("Login form with email and password input should be in the document", async () => {
         const component = render(<Login />);
 

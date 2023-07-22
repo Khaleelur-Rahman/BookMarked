@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import '@testing-library/jest-dom'
 
 describe("footer", () => {
+    
     test("Contains github and linkedin Links", () => {
         render(<Footer />);
         const github = screen.getByTestId("github-link");

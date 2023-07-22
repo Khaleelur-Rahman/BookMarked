@@ -4,7 +4,8 @@ import '@testing-library/jest-dom'
 
 
 describe("BookForm", () => {
-    test("All inputs and buttons are presents", () => {
+    
+    test("All inputs and buttons are present", () => {
         render(<BookForm />);
 
         const bookTitle = screen.getByLabelText(/Enter Title/i);

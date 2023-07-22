@@ -7,9 +7,8 @@ import BookForm from '../components/BookForm';
 import '@testing-library/jest-dom'
 
 
-// Test suite for Navbar
 describe('Navbar', () => {
-  // Test case: Presence of all the required links
+  
   test("Presence of all the required links", () => {
     render(
       <BrowserRouter>

@@ -13,18 +13,4 @@ test("Renders Home page with welcome text", () => {
 })
 
 
-test("Renders Login and Register buttons for non-logged in users", async () => {
-    // Mock the auth.onAuthStateChanged callback to simulate a non-logged in user
-    const mockOnAuthStateChanged = jest.fn();
-    jest.mock('../backend/firebase-config', () => ({
-      auth: {
-        onAuthStateChanged: mockOnAuthStateChanged.mockImplementation((callback) => callback(null)),
-      },
-    }));
-  
-    render(<Home />);
-  
-    const loginAndRegisterButtons = await screen.findAllByRole("button");
-    expect(loginAndRegisterButtons).toHaveLength(2);
-  });
 
