@@ -1,6 +1,6 @@
 // import { useHistory } from 'react-router-dom';
 import { auth } from "../backend/firebase-config";
-import useAuthState from "../components/custom-hooks/useAuthState"
+import useAuthState from "../hooks/custom-hooks/useAuthState"
 
 
 function Home() {

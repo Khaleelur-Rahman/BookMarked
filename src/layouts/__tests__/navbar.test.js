@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen,fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom'; 
-import Navbar from '../components/Navbar';
-import Login from '../Pages/Login';
-import BookForm from '../components/BookForm';
+import Navbar from '../../layouts/Navbar';
+import Login from '../../Pages/Login';
+import BookForm from '../../pages/BookForm';
 import '@testing-library/jest-dom'
 
 
 describe('Navbar', () => {
-  
+
   test("Presence of all the required links", () => {
     render(
       <BrowserRouter>

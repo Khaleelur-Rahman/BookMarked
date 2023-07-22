@@ -1,6 +1,6 @@
 import { render, screen, fireEvent,waitFor } from "@testing-library/react";
-import Login from "../Pages/Login";
-import BookForm from "../components/BookForm";
+import Login from "../../Pages/Login";
+import BookForm from "../BookForm";
 import '@testing-library/jest-dom'
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";

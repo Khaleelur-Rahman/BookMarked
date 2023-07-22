@@ -3,7 +3,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 
 import { auth, googleProvider} from '../backend/firebase-config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useAuthState from "../components/custom-hooks/useAuthState"
+import useAuthState from "../hooks/custom-hooks/useAuthState"
 
 function Login () {
 

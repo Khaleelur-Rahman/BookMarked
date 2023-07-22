@@ -1,4 +1,4 @@
-import Register from "../Pages/Register";
+import Register from "../Register";
 import { ToastContainer } from 'react-toastify';
 import { fireEvent, render, screen, waitFor  } from "@testing-library/react";
 import '@testing-library/jest-dom'

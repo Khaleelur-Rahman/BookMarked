@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-// import connectiontoDb from '../backend/firebase-config';
 import { collection, addDoc,updateDoc,doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { auth, connectiontoDb } from '../backend/firebase-config';

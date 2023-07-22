@@ -4,7 +4,7 @@ import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import useAuthState from "./custom-hooks/useAuthState"
+import useAuthState from "../hooks/custom-hooks/useAuthState"
 
 
 

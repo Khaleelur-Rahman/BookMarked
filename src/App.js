@@ -1,14 +1,14 @@
-import Wishlist from './Pages/Wishlist';
-import Read from './Pages/Read';
-import ReadlistReview from './Pages/ReadlistReview';
-import WishlistReview from './Pages/WishlistReview';
-import Home from './Pages/Home';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import BookForm from './components/BookForm';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import './index'
+import Wishlist from './pages/Wishlist';
+import Read from './pages/Read';
+import ReadlistReview from './pages/ReadlistReview';
+import WishlistReview from './pages/WishlistReview';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import BookForm from './pages/BookForm';
+import Navbar from './layouts/Navbar';
+import Footer from './layouts/Footer';
+import './assets/index.css'
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Protected from './components/Protected';

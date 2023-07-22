@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen} from '@testing-library/react';
-import Footer from '../components/Footer';
+import Footer from '../../layouts/Footer';
 import '@testing-library/jest-dom'
 
 describe("footer", () => {
-    
+
     test("Contains github and linkedin Links", () => {
         render(<Footer />);
         const github = screen.getByTestId("github-link");
