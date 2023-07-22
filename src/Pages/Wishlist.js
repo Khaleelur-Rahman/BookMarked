@@ -9,23 +9,23 @@ import noBookCoverImage from "../images/No-book-cover.png";
 
 function Wishlist() {
 
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [images, setImages] = useState([]);  //Set images of received books from the database
+  const [isLoading, setIsLoading] = useState(true);  //Display loading when the backend is fetching data from the database
+
 
   function setLink(url) {
     window.location.href = url;
   }
 
-  async function bookDelete(id,title) {
+  async function bookDelete(id,title) {  //Function to delete a book from the database
     const db = connectiontoDb;
-    // const res = await db.collection('Read').doc(id).delete();
     localStorage.setItem("bookTitle",title)
     localStorage.setItem("action", "deleted");
     const res = await deleteDoc(doc(db, "ToRead",id));
     setLink("/Wishlist");
   }
 
-  useEffect(() => {
+  useEffect(() => {  //Display all the books in the "Read" database by matching logged in user's id
     const fetchData = async (user) => {
       const db = connectiontoDb;
       const docsSnap = await getDocs(query(collection(db, "ToRead")));
@@ -73,7 +73,7 @@ function Wishlist() {
         fetchData(user);
       } else {
         setIsLoading(false);
-        window.location.href = "/Login";
+        window.location.href = "/Login";   //Return to login page if user is not logged in
       }
     });
 

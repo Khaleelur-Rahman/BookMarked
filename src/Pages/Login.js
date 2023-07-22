@@ -51,7 +51,7 @@ function Login () {
               const provider = googleProvider;
               const user = await signInWithPopup(auth, provider);
               localStorage.setItem("loginEmail", user.user.email);
-                window.location.href = "/BookForm";
+              window.location.href = "/BookForm";
           }   catch (error) {
               setLoginEmail("");
               setLoginPassword("");

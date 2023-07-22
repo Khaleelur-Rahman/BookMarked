@@ -64,7 +64,7 @@ function Home() {
           
         </div>    
         ) : (
-          <div className="flex justify-center items-center my-20 font-bold">Welcome back {user && user?.email}!</div>
+          <div className="flex justify-center items-center my-20 font-bold">Welcome back {user && user?.email}!</div>  //when user is logged in
         )} 
       </div>
     </div>

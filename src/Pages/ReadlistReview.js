@@ -5,15 +5,16 @@ import { auth ,connectiontoDb } from '../backend/firebase-config';
 import noBookCoverImage from "../images/No-book-cover.png";
 
 function ReadlistReview() {
-  const {state} = useLocation();
+  const {state} = useLocation();   //Receive the state that is passes from the Read.js page
 
   const user = auth.currentUser;
 
   const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
   const [dateCompleted, setDateCompleted] = useState('');
-  const [inputDateType, setDateType] = useState("text");
-  const [ratingType, setRatingType] = useState("text");
+
+  const [inputDateType, setDateType] = useState("text");  //Display the date as a text and when input is active, change to type date
+  const [ratingType, setRatingType] = useState("text");   //Display the rating as a text and when input is active, change to type number
 
   function handleChangeRating(event) {
     setRating(event.target.value)
@@ -27,7 +28,7 @@ function ReadlistReview() {
       setDateCompleted(event.target.value)
     }
 
-  async function handleSubmitNewBook(e) {
+  async function handleSubmitNewBook(e) {  //Add the book and userId to the "Read" list if the book is not already in the database 
       e.preventDefault();
 
       const db = connectiontoDb;
@@ -56,7 +57,7 @@ function ReadlistReview() {
     window.location.href = "/Read"
   };
 
-  async function handleSubmitEditBook(e) {
+  async function handleSubmitEditBook(e) { //Edit the book and userId in the "Read" list if the book is already in the database
     e.preventDefault();
 
     const db = connectiontoDb;
@@ -76,7 +77,7 @@ function ReadlistReview() {
 
   }
 
-  useEffect(() => {
+  useEffect(() => {   //Handle proper setting of the input fields according to if the book is already in the database or not
     if (state.bookDescription !== "" && description === "") {
       setDescription(state.bookDescription);
     }
@@ -95,7 +96,6 @@ function ReadlistReview() {
           <div className='flex flex-col items-center'>
             <img
               className="h-60 w-40 border-2 border-blue-300 rounded-lg"
-              // src={book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
               src={state.state.volumeInfo.imageLinks?state.state.volumeInfo.imageLinks.thumbnail: noBookCoverImage}
               alt={state.state.volumeInfo.title}
             />
@@ -129,7 +129,6 @@ function ReadlistReview() {
               <input 
               type={inputDateType} 
               className='inline border rounded-lg border-black-200 w-28 ml-2 mb-4'
-              // placeholder= {state.bookDate !== '' ? state.bookDate : "Date Completed"}
               onFocus={() => setDateType('date')}
               onBlur={() => setDateType('text')}
               value={dateCompleted}
@@ -159,7 +158,7 @@ function ReadlistReview() {
           </div>
         </div>
       ) : (
-        <div>No book found.</div>
+        <div>No book found.</div>    //No book found in the database
       )}
     </div>
   );

@@ -12,7 +12,8 @@ function WishlistReview() {
 
   const [notes, setNotes] = useState('');
   const [dateToRead, setDateToRead] = useState('');
-  const [inputDateType, setDateType] = useState("text");
+
+  const [inputDateType, setDateType] = useState("text");  //Display the date as a text and when input is active, change to type date
 
   function handleChangeDescription(event) {
     setNotes(event.target.value)
@@ -22,7 +23,7 @@ function WishlistReview() {
       setDateToRead(event.target.value)
     }
 
-  async function handleSubmitNewBook(e){
+  async function handleSubmitNewBook(e){ //Add the book and userId to the "Read" list if the book is not already in the database 
       e.preventDefault();
 
       const db = connectiontoDb;
@@ -48,7 +49,7 @@ function WishlistReview() {
     window.location.href = "/Wishlist"
     };
 
-    async function handleSubmitEditBook(e) {
+    async function handleSubmitEditBook(e) {  //Edit the book and userId in the "Read" list if the book is already in the database
       e.preventDefault();
   
       const db = connectiontoDb;
@@ -67,8 +68,8 @@ function WishlistReview() {
       window.location.href = "/Wishlist"
 
     }
-
-    useEffect(() => {
+ 
+    useEffect(() => {  //Handle proper setting of the input fields according to if the book is already in the database or not
       if(state.bookDate !== "" && dateToRead === "") {
         setDateToRead(state.bookDate);
       } 
@@ -135,7 +136,7 @@ function WishlistReview() {
       </div>
     </div>
   ) : (
-    <div>No book found.</div>
+    <div>No book found.</div> //No book found in the database
   )}
 </div>
 

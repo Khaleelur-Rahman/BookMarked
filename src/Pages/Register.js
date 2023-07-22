@@ -3,22 +3,15 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, getAuth,i } from 'f
 import { auth } from '../backend/firebase-config';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuthState from "../components/custom-hooks/useAuthState"
 
-import 'firebase/auth';
 
 function Register () {
 
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
-    const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);
-        });
-    
-        return () => unsubscribe();
-      }, []);
+    const user = useAuthState(auth);
 
       const displayToast = (message) => {
         return (
@@ -35,7 +28,6 @@ function Register () {
         })
         )
       }
-    
 
     const register = async (event) => {
 
@@ -45,7 +37,7 @@ function Register () {
           displayToast("Email address and password should not be empty!");
         } else {
 
-          createUserWithEmailAndPassword(auth,registerEmail,registerPassword)
+          createUserWithEmailAndPassword(auth,registerEmail,registerPassword)  //create a new user using email and password
               .then((userCredentials) => {
                   const user = userCredentials.user;
                   localStorage.setItem("registerEmail", user.email);
@@ -80,13 +72,6 @@ function Register () {
     
     return (
         <div >
-            
-            {/* <div className="register-buttons">
-                <input type='text' placeholder='Enter your email address' onChange={(event) => setRegisterEmail(event.target.value)}></input>
-                <input type='password' placeholder='Enter your password' onChange={(event) => setRegisterPassword(event.target.value)}></input>
-                <br /><br />
-                <button onClick={register} className='register-submit-button'>Register</button>
-            </div> */}
             <h3 className="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400"> Register with email address</h3>
             
             <div className ="flex justify-center content-center mt-20">
