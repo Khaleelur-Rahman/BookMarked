@@ -18,7 +18,6 @@ body {
   scroll-behavior: smooth;
   min-width: 100%;
   min-height: 100%;
-  /* overflow: hidden; */
 }
 
 .min-h-screen {
@@ -38,16 +37,9 @@ button {
   margin-bottom: 40px;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #e2f1f8;
-  overflow: visible;
-  height: 120px;
-  /* width: fit-content; */
-}
 
+
+/*Footer styles*/
 .footer {
   position: relative;
   bottom: 0;
@@ -60,7 +52,6 @@ button {
   justify-content: center;
   background-color: #e2f1f8;
   overflow: visible;
-  /* flex-shrink: 0; */
 }
 
 .footer > div {
@@ -70,10 +61,16 @@ button {
   font-weight: bold;
 }
 
-.site-title {
-  font-size: 40px;
-  font-family: Arial, Helvetica, sans-serif;
-  cursor: pointer;
+
+
+/*navbar styles*/
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e2f1f8;
+  overflow: visible;
+  height: 120px;
 }
 
 ul {
@@ -81,13 +78,11 @@ ul {
   list-style: none;
 }
 
-
 .nav > ul > li > a{
   text-decoration: none;
   color: black;
   font-weight: bold;
   margin: 20px;
-
 }
 
 a:hover {
@@ -99,6 +94,9 @@ a:hover {
   text-decoration-color: goldenrod;
 }
 
+
+
+/*Book search form styles*/
 .form {
   text-align: center;
 }
@@ -113,7 +111,6 @@ a:hover {
 
 #submit, #reset {
   border-radius: 50%;
-  /* background-color: #acb8ec; */
   margin: 3px;
   cursor: pointer;
   position: relative;
@@ -147,6 +144,9 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   align-items: center;
 }
 
+
+
+/*Wishlist and Readlist styles*/
 .header {
   font-size: 24px;
   font-weight: bold;
@@ -176,7 +176,6 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   border-radius: 10px;
   margin: 10px;
 }
-
 
 .book-details:hover .book-image, .book-details:hover .wishlist-books-image, .book-details:hover .read-books-image {
   cursor: pointer;
@@ -237,30 +236,33 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   text-align: center;
 }
 
+
+
+/*Can't find statement for no book result during book search */
 .cant-find-statement {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
-  /* margin-bottom: 150px; */
   font-family: Arial, Helvetica, sans-serif;
   font-size: large;
   font-weight: bold;
 }
 
+
+
+/*Links that are part of the book images in book search, readlist,wishlist pages */
 .book-details-review {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* top: 30%; */
 }
 
 .wishlist-review-column-1, .readlist-review-column-1 {
   float: left;
   width: 20%;
   position: relative;
-  /* left: 60%; */
   display: flex;
   flex-direction: column;
 }
@@ -270,8 +272,6 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   width: 60%;
   position: relative;
   margin-left : 30px;
-  /* margin-top:20px; */
-  /* left: 70%; */
   display: flex;
   flex-direction: column;
 }
@@ -284,45 +284,7 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 
 
 
-
-/*Home Page*/
-.home {
-  display: inline-block;
-  align-items: center;
-  text-align: center;
-}
-
-.home-page-buttons, .login-buttons, .register-buttons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-top: 20px;
-  display: flex;
-}
-
-.register-home-button, .login-home-button {
-  border: 4px solid black;
-  border-radius: 8px;
-  padding: 4px;
-  margin: 4px;
-  width : 80px;
-  cursor: pointer;
-}
-
-
-/*Dropdown*/
-/* .profile-drop-button {
-  color: black;
-  font-weight: bold;
-  font-size: 16px;
-  border: none;
-  text-decoration: none;
-} */
-/* .profile-drop-button svg, ul {
-  vertical-align: middle;
-} */
-
+/* Profile dropdown*/
 .profile-dropdown-content {
   display: none;
   position:absolute;
@@ -332,17 +294,11 @@ button[type="submit"].bookform-submit, button[id="reset"] {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   z-index: 1;
-  /* left: 90%; */
 }
 
 .profile:hover >  .profile-dropdown-content{
   display: block;
 }
-
-/* .nav ul li .profile-drop-button :hover + .profile-dropdown-content {
-  display : block;
-  opacity: 1;
-} */
 
 .profile-dropdown-subitem {
   color: #020608;
@@ -370,60 +326,6 @@ button[type="submit"].bookform-submit, button[id="reset"] {
 }
 
 
-
-
-
-/*login*/
-/* .login-header, .register-header{
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-} */
-
-.login-buttons, .register-buttons{
-  display: inline;
-}
-
-.login {
-  display: flex;
-}
-
-.login input, .register-buttons input{
-  border-radius: 10px;
-}
-
-.login button{
-  border-radius: 16px;
-  cursor: pointer;
-}
-
-.login-other-functions {
-  position: relative;
-  align-items: center;
-  text-align: center;
-}
-
-.login-other-functions button , .register-buttons button{
-  margin: 10px;
-  border-radius: 16px;
-  cursor: pointer;
-}
-
-button[className="login-with-google"] {
-  background-image: url(../images/google-icon.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  width: 30px;
-  height: 30px;
-}
-
-.register-submit-button {
-  display: flex;
-  position: relative;
-  left: 40%;
-}
 
 
 
