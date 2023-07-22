@@ -35,7 +35,7 @@ function BookForm() {
     event.preventDefault();
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${author}&maxResults=40&printType=books&key=AIzaSyDXazWuIbPnNRVSTptlWmdEvIJXJ0scUns`
+        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${author}&maxResults=40&printType=books&key=${process.env.REACT_APP_GOOGLEBOOKS_API_KEY}`
       )
       .then((response) => {
         setBooks(response.data.items);

@@ -128,6 +128,7 @@ function WishlistReview() {
               className='inline border border-black-200 resize-y rounded-lg ml-2 w-50'
               defaultValue={notes !== "" ? notes : state.notes}
               onChange={handleChangeDescription}
+              required
             ></textarea>
           </div>
           <div className='flex justify-center'>

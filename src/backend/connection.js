@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 export default function connection() {
 
     const firebaseConfig = {
-        apiKey: "AIzaSyBg30U9BLiwKrWpQxsqZdoNEif_947nGqw",
-        authDomain: "booklibrary-919a0.firebaseapp.com",
-        projectId: "booklibrary-919a0",
-        storageBucket: "booklibrary-919a0.appspot.com",
-        messagingSenderId: "1094807566860",
-        appId: "1:1094807566860:web:81adc42e02b2c24073cc29",
-        measurementId: "G-L35FY2RY15"
+        apiKey: process.env.REACT_APP_API_KEY,
+        authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+        projectId: process.env.REACT_APP_PROJECT_ID,
+        storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+        messagingSenderId: process.env.REACT_APP_MESSAGING_SENDING_iD,
+        appId: process.env.REACT_APP_APP_ID,
+        measurementId: process.env.REACT_APP_MEASUREMENT_ID
     }
     
     const app = initializeApp(firebaseConfig);
