@@ -34,8 +34,7 @@ describe("Register", () => {
     render(
       <>
         <Register />
-        <ToastContainer />{" "}
-        {/* Wrap the component rendering in the ToastContainer */}
+        <ToastContainer />{/* Wrap the component rendering in the ToastContainer */}
       </>,
     );
 
@@ -85,9 +84,9 @@ describe("Register", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, {
-      target: { value: "khaleelrrahman2002@gmail.com" },
+      target: { value: "khaleelur@gmail.com" },
     });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -119,7 +118,7 @@ describe("Register", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, {
-      target: { value: "khaleelrrahman2002@gmail.com" },
+      target: { value: "khaleelur2002@gmail.com" },
     });
     fireEvent.change(password, { target: { value: "Munni" } });
 
@@ -155,7 +154,7 @@ describe("Register", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, { target: { value: "" } });
-    fireEvent.change(password, { target: { value: "Munni" } });
+    fireEvent.change(password, { target: { value: "abc123" } });
 
     fireEvent.click(registerButton[0]);
 

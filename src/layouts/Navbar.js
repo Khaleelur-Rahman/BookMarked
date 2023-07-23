@@ -86,7 +86,7 @@ export default function Navbar() {
           </li>
           <li className="ml-2" id="profile" data-testid="profile">
             <a
-              href=""
+              href="/BookForm"
               className="profile-drop-button"
               data-testid="profile-icon"
             >

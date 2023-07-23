@@ -5,6 +5,12 @@ import "@testing-library/jest-dom";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 
+/*
+MOCK USER INFO THAT IS PRESENT IN THE DATABASE : 
+EMAIL: "khaleelur@gmail.com"
+PASSWORD: "abc123!@#"
+*/
+
 describe("Login", () => {
   test("Login form with email and password input should be in the document", async () => {
     const component = render(<Login />);
@@ -36,8 +42,7 @@ describe("Login", () => {
     render(
       <>
         <Login />
-        <ToastContainer />{" "}
-        {/* Wrap the component rendering in the ToastContainer */}
+        <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
       </>,
     );
 
@@ -55,9 +60,9 @@ describe("Login", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, {
-      target: { value: "khaleelrrahman2002@gmail.com" },
+      target: { value: "khaleelur@gmail.com" },
     });
-    fireEvent.change(password, { target: { value: "Munni" } });
+    fireEvent.change(password, { target: { value: "abc123" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -89,9 +94,9 @@ describe("Login", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, {
-      target: { value: "khaleelrrahman200@gmail.com" },
+      target: { value: "khaleelu@gmail.com" },
     });
-    fireEvent.change(password, { target: { value: "Munni" } });
+    fireEvent.change(password, { target: { value: "abc123" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -123,7 +128,7 @@ describe("Login", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, { target: { value: "" } });
-    fireEvent.change(password, { target: { value: "Munni" } });
+    fireEvent.change(password, { target: { value: "abc123" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -157,7 +162,7 @@ describe("Login", () => {
     expect(registerButton).toHaveLength(1);
 
     fireEvent.change(email, {
-      target: { value: "khaleelrrahman2002@gmail.com" },
+      target: { value: "khaleelur@gmail.com" },
     });
     fireEvent.change(password, { target: { value: "" } });
 
@@ -226,8 +231,8 @@ describe("Login", () => {
     });
     expect(registerButton).toHaveLength(1);
 
-    fireEvent.change(email, { target: { value: "khaleelurrahman@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(email, { target: { value: "khaleelur@gmail.com" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 

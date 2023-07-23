@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import BookForm from "../../components/BookForm";
+import BookForm from "../BookForm";
 import "@testing-library/jest-dom";
 
 describe("BookForm", () => {

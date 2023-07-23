@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/index.css";
+import "../styles/index.css";
 import { trimAndAddDots } from "../components/utils";
 import { Link } from "react-router-dom";
 import { auth } from "../backend/firebase-config";

@@ -6,6 +6,12 @@ import Login from "../../Pages/Login";
 import BookForm from "../../pages/BookForm";
 import "@testing-library/jest-dom";
 
+/*
+MOCK USER INFO THAT IS PRESENT IN THE DATABASE : 
+EMAIL: "khaleelur@gmail.com"
+PASSWORD: "abc123!@#"
+*/
+
 describe("Navbar", () => {
   test("Presence of all the required links", () => {
     render(
@@ -49,8 +55,8 @@ describe("Navbar", () => {
     });
     expect(registerButton).toHaveLength(1);
 
-    fireEvent.change(email, { target: { value: "khaleelurrahman@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(email, { target: { value: "khaleelur@gmail.com" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -102,8 +108,8 @@ describe("Navbar", () => {
     });
     expect(registerButton).toHaveLength(1);
 
-    fireEvent.change(email, { target: { value: "khaleelurrahman@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(email, { target: { value: "khaleelur@gmail.com" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -155,8 +161,8 @@ describe("Navbar", () => {
     });
     expect(registerButton).toHaveLength(1);
 
-    fireEvent.change(email, { target: { value: "khaleelurrahman@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(email, { target: { value: "khaleelur@gmail.com" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 
@@ -207,8 +213,8 @@ describe("Navbar", () => {
     });
     expect(registerButton).toHaveLength(1);
 
-    fireEvent.change(email, { target: { value: "khaleelur@gmail.com" } });
-    fireEvent.change(password, { target: { value: "Munni123!@#" } });
+    fireEvent.change(email, { target: { value: "khaleel@gmail.com" } });
+    fireEvent.change(password, { target: { value: "abc123!@#" } });
 
     fireEvent.click(registerButton[0]);
 
