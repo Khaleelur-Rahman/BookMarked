@@ -135,8 +135,10 @@ function BookForm() {
                 >Enter Author
               </label>
               </div>
-              <button type="submit" value="Submit" className="bookform-submit" data-testid="bookform-submit"></button>
-              <button type="button" id="reset" onClick={resetForm} data-testid="bookform-reset"></button>
+              <div>
+                <button type="submit" value="Submit" className="bookform-submit" data-testid="bookform-submit"></button>
+                <button type="button" id="reset" onClick={resetForm} data-testid="bookform-reset"></button>
+              </div>
             </div>
           </form>
         </div>

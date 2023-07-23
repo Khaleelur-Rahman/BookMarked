@@ -5,6 +5,9 @@ module.exports = {
     fontFamily : {
       'urban' : ["Urbanist","sans-serif"]
     },
+    screens: {
+      'sm' : '642px'
+    },
     extend: {},
   },
   plugins: [],

@@ -71,7 +71,7 @@ export default function Navbar() {
         BookMarked
         </div>
         <ul className="flex flex-row mr-5">
-          <li className="mt-6">
+          <li className="mt-6 whitespace-pre">
             <Link to={"/BookForm"} data-testid="book-search">Book Search</Link>
           </li>
           <li className="mt-6">
