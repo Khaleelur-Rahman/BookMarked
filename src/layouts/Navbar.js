@@ -65,7 +65,7 @@ export default function Navbar() {
     }, []);
 
     return (
-      <span>
+      <span className="navbar-container">
       <nav data-testid="navbar" className="nav">
         <div className="text-5xl font-medium" onClick={homepage}>
         BookMarked

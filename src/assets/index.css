@@ -64,6 +64,12 @@ button {
 
 
 /*navbar styles*/
+.navbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
