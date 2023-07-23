@@ -67,8 +67,8 @@ export default function Navbar() {
     return (
       <span className="navbar-container">
       <nav data-testid="navbar" className="nav">
-        <div className="text-5xl font-medium" onClick={homepage}>
-        BookMarked
+        <div className="website-header" onClick={homepage}>
+        BookMarked!
         </div>
         <ul className="flex flex-row mr-5">
           <li className="mt-6 whitespace-pre">
