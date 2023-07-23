@@ -38,7 +38,7 @@ describe("Login", () => {
         <Login />
         <ToastContainer />{" "}
         {/* Wrap the component rendering in the ToastContainer */}
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -72,7 +72,7 @@ describe("Login", () => {
       <>
         <Login />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -106,7 +106,7 @@ describe("Login", () => {
       <>
         <Login />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -129,7 +129,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -140,7 +140,7 @@ describe("Login", () => {
       <>
         <Login />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -165,7 +165,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -176,7 +176,7 @@ describe("Login", () => {
       <>
         <Login />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -199,7 +199,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -210,7 +210,7 @@ describe("Login", () => {
       <BrowserRouter>
         <Login />
         <BookForm />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const email = screen.getByLabelText("Email Address");

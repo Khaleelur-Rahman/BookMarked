@@ -36,7 +36,7 @@ describe("Register", () => {
         <Register />
         <ToastContainer />{" "}
         {/* Wrap the component rendering in the ToastContainer */}
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -68,7 +68,7 @@ describe("Register", () => {
       <>
         <Register />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -102,7 +102,7 @@ describe("Register", () => {
       <>
         <Register />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -127,7 +127,7 @@ describe("Register", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Password should be of minimum 7 characters/i
+        /Password should be of minimum 7 characters/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -138,7 +138,7 @@ describe("Register", () => {
       <>
         <Register />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -161,7 +161,7 @@ describe("Register", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -172,7 +172,7 @@ describe("Register", () => {
       <>
         <Register />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -197,7 +197,7 @@ describe("Register", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -208,7 +208,7 @@ describe("Register", () => {
       <>
         <Register />
         <ToastContainer />
-      </>
+      </>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -231,7 +231,7 @@ describe("Register", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i
+        /Email address and password should not be empty/i,
       );
       expect(toastMessage).toBeInTheDocument();
     });

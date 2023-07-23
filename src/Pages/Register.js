@@ -49,7 +49,7 @@ function Register() {
               break;
             case "auth/weak-password":
               displayToast(
-                "Password should be of minimum 7 characters. Should have at least one special character and one number."
+                "Password should be of minimum 7 characters. Should have at least one special character and one number.",
               );
               break;
             default:

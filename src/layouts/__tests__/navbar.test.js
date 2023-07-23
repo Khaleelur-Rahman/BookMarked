@@ -11,7 +11,7 @@ describe("Navbar", () => {
     render(
       <BrowserRouter>
         <Navbar />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const bookSearch = screen.getByText(/Book Search/i);
@@ -33,7 +33,7 @@ describe("Navbar", () => {
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -67,7 +67,7 @@ describe("Navbar", () => {
       <BrowserRouter>
         <Navbar />
         <Login />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const bookSearchButton = screen.getByTestId("book-search");
@@ -86,7 +86,7 @@ describe("Navbar", () => {
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -120,7 +120,7 @@ describe("Navbar", () => {
       <BrowserRouter>
         <Navbar />
         <Login />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const bookSearchButton = screen.getByTestId("wishlist");
@@ -139,7 +139,7 @@ describe("Navbar", () => {
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -173,7 +173,7 @@ describe("Navbar", () => {
       <BrowserRouter>
         <Navbar />
         <Login />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const bookSearchButton = screen.getByTestId("readlist");
@@ -191,7 +191,7 @@ describe("Navbar", () => {
       <BrowserRouter>
         <Navbar />
         <Login />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const email = screen.getByLabelText("Email Address");

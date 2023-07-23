@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../backend/firebase-config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,7 +21,7 @@ function Login() {
         const user = await signInWithEmailAndPassword(
           auth,
           loginEmail,
-          loginPassword
+          loginPassword,
         );
         localStorage.setItem("loginEmail", user.user.email);
         window.location.href = "/BookForm";
@@ -106,7 +103,7 @@ function Login() {
           draggable: true,
           progress: undefined,
           theme: "light",
-        }
+        },
       );
     } else if (localStorage.getItem("logoutEmail") !== null) {
       const email = localStorage.getItem("logoutEmail");

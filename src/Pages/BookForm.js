@@ -29,7 +29,7 @@ function BookForm() {
     //Fetch api results from google books endpoint using api key
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${author}&maxResults=40&printType=books&key=${process.env.REACT_APP_GOOGLEBOOKS_API_KEY}`
+        `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}+inauthor:${author}&maxResults=40&printType=books&key=${process.env.REACT_APP_GOOGLEBOOKS_API_KEY}`,
       )
       .then((response) => {
         setBooks(response.data.items);
@@ -60,8 +60,8 @@ function BookForm() {
     statement.className = "cant-find-statement";
     statement.appendChild(
       document.createTextNode(
-        "Can't find the book you are looking for? Try refining your search :)"
-      )
+        "Can't find the book you are looking for? Try refining your search :)",
+      ),
     ); //cannot find book statement added to document
     container.appendChild(statement);
   }

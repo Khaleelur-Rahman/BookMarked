@@ -13,7 +13,6 @@ export default function Navbar() {
     try {
       localStorage.setItem("logoutEmail", user.email);
       await signOut(auth);
-      // setUser(null);
     } catch (error) {
       toast.error("Error logging out!", {
         position: "top-right",
