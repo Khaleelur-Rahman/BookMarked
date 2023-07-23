@@ -33,15 +33,15 @@ function Home() {
 
       <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
       <div className="flex flex-col items-center justify-center">
-            <div className="font-urban text-lg font-lg"> 
+            <div className="font-urban text-lg font-lg text-center"> 
               Welcome to BookMarked: Where Your Book World Comes Alive! 
             </div>
 
-            <div className="font-urban text-lg font-lg"> 
+            <div className="font-urban text-lg font-lg text-center"> 
               Discover, Collect, and Review Your Literary Adventures!
             </div>
 
-            <div className="font-urban text-lg font-lg"> 
+            <div className="font-urban text-lg font-lg text-center"> 
               Unlock the Magic of Books: Register or Login Now!
             </div>
         </div>
@@ -70,7 +70,7 @@ function Home() {
           
         </div>    
         ) : (
-          <div className="flex justify-center items-center my-20 font-bold text-2xl">Welcome back {user && user?.email}!</div>  //when user is logged in
+          <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">Welcome back {user && user?.email}!</div>  //when user is logged in
         )} 
       </div>
     </div>
