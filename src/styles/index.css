@@ -112,9 +112,9 @@ a:hover {
 .website-header {
   font-size: 45px;
   font-weight: bold;
-  -webkit-text-fill-color: rgb(141, 156, 156);
+  -webkit-text-fill-color: rgb(32, 200, 200);
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: rgb(9, 14, 45);
+  -webkit-text-stroke-color: rgb(37, 53, 156);
 }
 
 /*Book search form styles*/

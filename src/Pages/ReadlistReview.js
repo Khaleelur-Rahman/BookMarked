@@ -159,14 +159,17 @@ function ReadlistReview() {
                 required
               ></input>
               <br />
-              <label htmlFor="reviewDescription">Description : </label>
-              <textarea
-                className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
-                defaultValue={
-                  description !== "" ? description : state.bookDescription
-                }
-                onChange={handleChangeDescription}
-              ></textarea>
+              <div className="flex justify-center items-center mb-14">
+                <label htmlFor="reviewDescription">Review:</label>
+                <textarea
+                  id="reviewDescription"
+                  className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
+                  defaultValue={
+                    description !== "" ? description : state.bookDescription
+                  }
+                  onChange={handleChangeDescription}
+                ></textarea>
+              </div>
               <br />
               <div className="mt-8">
                 {state.bookDate === undefined ? (
