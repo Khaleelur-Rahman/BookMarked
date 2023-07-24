@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/BookMarked/static/css/main.96872bac.css",
+    "main.js": "/BookMarked/static/js/main.8b52a7c2.js",
+    "static/media/No-book-cover.png": "/BookMarked/static/media/No-book-cover.c64380435ed5468914b9.png",
+    "index.html": "/BookMarked/index.html",
+    "main.96872bac.css.map": "/BookMarked/static/css/main.96872bac.css.map",
+    "main.8b52a7c2.js.map": "/BookMarked/static/js/main.8b52a7c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.96872bac.css",
+    "static/js/main.8b52a7c2.js"
+  ]
+}
