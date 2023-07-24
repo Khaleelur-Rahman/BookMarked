@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 import BookForm from "./pages/BookForm";
 import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
-import "./assets/index.css";
+import "./styles/index.css";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Protected from "./components/Protected";
