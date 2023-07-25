@@ -27,7 +27,6 @@ function App() {
   if (isLoggedIn) {
     return (
       <div className="App">
-
         {/*Handles logout*/}
         <Navbar />
         <Protected user={user} token={token} handleLogout={handleLogout} />
@@ -39,7 +38,7 @@ function App() {
       <Navbar />
       <Routes>
         {/*Various routes used in the project*/}
-        <Route path="/BookMarked" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/BookForm" element={<BookForm />} />

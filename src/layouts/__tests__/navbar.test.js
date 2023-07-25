@@ -7,7 +7,7 @@ import BookForm from "../../pages/BookForm";
 import "@testing-library/jest-dom";
 
 /*
-MOCK USER INFO THAT IS PRESENT IN THE DATABASE : 
+MOCK USER INFO THAT IS PRESENT IN THE DATABASE (If not present, add this user using email and password): 
 EMAIL: "khaleelur@gmail.com"
 PASSWORD: "abc123!@#"
 */

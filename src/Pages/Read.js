@@ -50,7 +50,6 @@ function Read() {
               </div>
               <div className="text-lg ">Rating : {doc.data().rating} / 5</div>
               <div className="image-links">
-                {" "}
                 {/*Contains all the links to perform functions such as to edit description, view book details and delete the book*/}
                 <Link
                   to={"/BookForm/ReadlistReview"}

@@ -110,7 +110,6 @@ export default function Navbar() {
         </ul>
       </nav>
       <div className="profile-dropdown-content" id="profile-dropdown-content">
-        {" "}
         {/*Profile dropdown menu based based on if user is logged in or not*/}
         {user ? (
           <span>
