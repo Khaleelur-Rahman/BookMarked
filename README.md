@@ -22,7 +22,7 @@ BookMarked! was desgined to eradicate the pain of book lovers', like myself, who
 
 
 
-## Description
+## Tech Stack
 
 BookMarked! is a project that was built primarily around Javascript. The various frameworks and libraries used in this project are : 
 
@@ -60,6 +60,16 @@ https://bookmarkedproj.netlify.app
 
 
 ## Screenshots
+
+![HomePage](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/38969fb7-9d7c-40f3-b46d-534dccf3c804=30x30) 
+![Login](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/aab7d1de-a63a-4022-bac5-4a321fbe191e)
+![Register](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/0c21f87a-2794-4fa2-beb3-905e5cb52242)
+![Booksearch](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/42bd1bfa-80cc-48b9-baf6-c28628df4442)
+![booksearchResults](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/4d9a770e-a86b-4342-b9a7-3b776d49a4f4)
+![ReadlistReview](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/655ff59f-946a-4147-90b5-c3648062531f)
+![WishlistReview](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/3f40c057-1a81-4456-9877-af0c250474b5)
+![readlist](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/d2161865-945d-4613-bee0-6ba55c8a22d6)
+![wishlist](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/2f79f20a-0464-4424-b320-30be007a463a)
 
 
 
