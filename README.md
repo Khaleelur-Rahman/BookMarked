@@ -1,14 +1,50 @@
 
 # BookMarked!
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![eslint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)
+![prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+\
+![GitHub commit activity (main)](https://img.shields.io/github/commit-activity/m/Khaleelur-Rahman/BookMarked)
+![GitHub contributors](https://img.shields.io/github/contributors/Khaleelur-Rahman/BookMarked)
+![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
+![Static Badge](https://img.shields.io/badge/repo%20status-active-brightgreen)
 
-## A Robust React.js Project that depicts the usage of a backend and database coupled with REST API Integration
+![website-image](https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp)
 
 
+### A Robust React.js Project that depicts the usage of a backend and database coupled with REST API Integration
 
+
+## Table of Contents
+&nbsp;1. [What is BookMarked!](#what-is-bookmarked)
+
+&nbsp;2. [Why BookMarked!](#why-bookmarked)
+
+&nbsp;3. [Description](#tech-stack)
+
+&nbsp;4. [What does BookMarked! offer?](#what-does-bookmarked-offer)
+
+&nbsp;5. [Working with the project locally](#working-with-the-project-locally)
+
+&nbsp;6. [Running Tests](#running-tests)
+
+&nbsp;7. [Demo](#demo)
+
+&nbsp;8. [Screenshots](#screenshots)
+
+&nbsp;9. [Contributing](#contributing)
+
+&nbsp;10. [License](#license)
+
+&nbsp;11. [Contact](#contact)
+
+&nbsp;12. [Acknowledgements](#acknowledgements)
 
 ## What is BookMarked!
 
-**BookMarked! is a tool that can help you write reviews for books that you have read and to keep track of the books that you would like to read in the future, in just a few clicks.**
+BookMarked! is a tool that can help you write reviews for books that you have read and to keep track of the books that you would like to read in the future, in just a few clicks.
 ## Why BookMarked! 
 
 
@@ -26,17 +62,21 @@ BookMarked! was desgined to eradicate the pain of book lovers', like myself, who
 
 BookMarked! is a project that was built primarily around Javascript. The various frameworks and libraries used in this project are : 
 
+[![My Skills](https://skills.thijs.gg/icons?i=react,js,css,tailwind,nodejs,git)](https://skills.thijs.gg)
 
-- **Frontend** - *React.js*
-- **Styling** - *Tailwind CSS and vanilla CSS*
-- **Backend** - *Node.js*
-- **Database** - *Firebase*
-- **Authentication** - *Firebase Authentication*
-- **Routing** - *react-router-dom*
-- **API Requests** - *axios*
-- **Version Control** - *git*
+
+
+- **Frontend** - *[React.js](https://legacy.reactjs.org/docs/getting-started.html)*
+- **Styling** - *[Tailwind CSS](https://tailwindcss.com/resources) and [vanilla CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)*
+- **Backend** - *[Node.js](https://nodejs.org/it/docs)*
+- **Database** - *[Firebase](https://firebase.google.com/docs)*
+- **Authentication** - *[Firebase Authentication](https://firebase.google.com/docs/auth)*
+- **Pop-up Notifications** - *[Toastify](https://fkhadra.github.io/react-toastify/introduction)*
+- **Routing** - *[react-router-dom](https://reactrouter.com/en/main)*
+- **API Requests** - *[axios](https://axios-http.com/docs/intro)*
+- **Version Control** - *[git](https://git-scm.com/doc)*
 - **Hosting** - 
-- **Testing** - *Jest*
+- **Testing** - *[Jest](https://jestjs.io/docs/getting-started)*
 
 
 ## What does BookMarked! offer?
@@ -52,7 +92,106 @@ BookMarked! is a project that was built primarily around Javascript. The various
 - View book details on google books website
 
 
+## Working with the project locally
 
+
+&nbsp;1. **Fork the repository:** Click the "Fork" button at the top right corner of this GitHub repository. This will create a copy of the project in your GitHub account.
+
+\
+  2. **Clone the repository:** Clone the forked repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/your-username/your-forked-repo.git
+```
+\
+3. **Navigate to the project directory:** Move into the project directory using the following command:
+
+```bash
+cd your-forked-repo
+```
+\
+4. **Install all the required dependencies:** Use npm to install all the necessary dependencies for the project:
+```bash
+npm install
+```
+\
+5. **Create a database** ([firebase project](https://firebase.google.com/docs)): Navigate to https://console.firebase.google.com/u/0/ 
+and follow the steps :
+
+-   Select Add project (if you already have an existing project) or Create a project (if this is your first project). Follow the prompts to add `project name` and `Google Analytics`. Click `create project` to start creating project.
+
+- Once done, you will land on this page:
+  ![landingPageFS](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/020dd44e-8178-49a6-a9dc-37fa275d489e)
+
+  Click on `Build` and then `Firestore Database`. Then, click `create database`.
+- Select `start in production mode` and a `firestore location`
+- If `cannot enable firestore for this project` error occurs, try to disable CORS in your browser.
+- Once in the `Cloud Firestore page`, create two documents with auto-Ids `ToRead` :
+    
+| Field       | Type     | 
+| :--------   | :------- | 
+| `book`      | `map`    | 
+| `dateToRead`| `string` |
+| `docID`     | `string` | 
+| `notes`     | `string` | 
+| `title`     | `string` | 
+| `userId`    | `string` |
+
+
+and `Read` :
+
+| Field         | Type     | 
+| :--------     | :------- | 
+| `book`        | `map`    | 
+| `dateCompleted`| `string` |
+| `description` | `string` | 
+| `rating`      | `string` | 
+| `userId`      | `string` |
+
+- Go to `project settings` and select `firebase to your webapp`. Take note of all the SDK's that is displayed.
+
+\
+6. **REST API with Google Books** :
+
+- Go to https://console.cloud.google.com/apis/dashboard and add a project
+- Enable `books API` in google console
+- Go to `credentials` to obtain `API Key` 
+
+\
+7. **Create a `.env`** file at the root of the directory which looks something like this: 
+<img src="https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/2b345b56-5cda-4caf-975e-902d9594561e" width ="500" height="500">
+\
+Add the relevant info into the file which were taken from steps 4 and 5. 
+
+\
+8. **Run the project:** Start the development server and run the project locally using the following command:
+```bash
+npm run start
+```
+
+\
+9. **View the project in the browser:** Once the project is running, open your web browser and go to http://localhost:3000/ to view the app. Any changes you make to the code will automatically be reflected in the browser.
+
+Woohoo! You have successfully set up and started the React project on your local machine. Now you can start working on the project, make changes, and explore the codebase. Happy coding!
+
+## Running Tests
+![Static Badge](https://img.shields.io/badge/test-passing-brightgreen)
+
+The project contains test cases to verify the functionality of various components using [Jest](https://jestjs.io/docs/getting-started). The test files are located in the `layouts` and `pages` folders. 
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
+
+Press `a` to run all the test cases or run the following command to run specific test files
+
+```bash
+  npm run  -- path_to_test_file
+```
+\
+Feel free to add your own test cases and files :)
 
 ## Demo
 
@@ -71,6 +210,30 @@ https://bookmarkedproj.netlify.app
 ![readlist](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/d2161865-945d-4613-bee0-6ba55c8a22d6)
 ![wishlist](https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/2f79f20a-0464-4424-b320-30be007a463a)
 
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Contact
+
+KHALEELUR RAHMAN:
+
+[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/khaleelur-rahman-a79284262/)
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](khaleelrrahman2002@gmail.com)
 
 
+## Acknowledgements
 
+ - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Awesome README](https://github.com/matiassingers/awesome-readme)
+ - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ - [w3Schools](https://www.w3schools.com)
+ - [geeksforgeeks](https://www.geeksforgeeks.org/)
+ - [The Ultimate List of Web-Safe HTML and CSS Fonts](https://blog.hubspot.com/website/web-safe-html-css-fonts)
+ - [Malven's flexbox cheatsheet](https://flexbox.malven.co/)
