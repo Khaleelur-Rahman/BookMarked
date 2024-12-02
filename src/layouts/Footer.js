@@ -1,14 +1,9 @@
 import React from "react";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
 
 function Footer() {
-  const githubPage = () => {
-    window.location.href = "https://github.com/Khaleelur-Rahman";
-  };
-
-  const linkedinPage = () => {
-    window.location.href =
-      "https://www.linkedin.com/in/khaleelur-rahman-a79284262/";
-  };
+  const navigate = useNavigation();
+  
   return (
     <div className="footer">
       <div className="about-details">By Khaleelur Rahman</div>
@@ -17,7 +12,7 @@ function Footer() {
           type="button"
           data-te-ripple-color="light"
           className="mx-1 h-9 w-9 bg-sky-500/50 rounded-full bg-primary uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-          onClick={githubPage}
+          onClick={() => navigate("https://github.com/Khaleelur-Rahman")}
           data-testid="github-link"
         >
           <svg
@@ -33,7 +28,7 @@ function Footer() {
           type="button"
           data-te-ripple-color="light"
           className="mx-1 h-9 w-9 bg-sky-500/50 rounded-full bg-primary uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-          onClick={linkedinPage}
+          onClick={() => navigate("https://www.linkedin.com/in/khaleelur-rahman-a79284262/")}
           data-testid="linkedin-link"
         >
           <svg
