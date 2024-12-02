@@ -10,6 +10,9 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Khaleelur-Rahman/BookMarked)
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 ![Static Badge](https://img.shields.io/badge/repo%20status-active-brightgreen)
+![Static Badge](https://img.shields.io/badge/netlify-deployed-blue)
+
+
 
 ![website-image](https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp)
 
@@ -49,7 +52,7 @@ BookMarked! is a tool that can help you write reviews for books that you have re
 
 
 
-Have you ever felt the pain of not remembering what books you have read and how do the books end? 
+Have you ever felt the pain of not remembering what books you have read and how the stories end? 
 
 Fret not, you are not alone! 
 
@@ -62,7 +65,7 @@ BookMarked! was desgined to eradicate the pain of book lovers', like myself, who
 
 BookMarked! is a project that was built primarily around Javascript. The various frameworks and libraries used in this project are : 
 
-[![My Skills](https://skills.thijs.gg/icons?i=react,js,css,tailwind,nodejs,git)](https://skills.thijs.gg)
+![My Skills](https://skills.thijs.gg/icons?i=react,js,css,tailwind,nodejs,git,netlify)
 
 
 
@@ -75,7 +78,7 @@ BookMarked! is a project that was built primarily around Javascript. The various
 - **Routing** - *[react-router-dom](https://reactrouter.com/en/main)*
 - **API Requests** - *[axios](https://axios-http.com/docs/intro)*
 - **Version Control** - *[git](https://git-scm.com/doc)*
-- **Hosting** - 
+- **Hosting** - *[netlify](https://docs.netlify.com/)*
 - **Testing** - *[Jest](https://jestjs.io/docs/getting-started)*
 
 
@@ -86,9 +89,9 @@ BookMarked! is a project that was built primarily around Javascript. The various
 - Fully responsive
 - Mobile-friendly
 - Search books from a pool of 400 million books in over 500 languages
-- Add books to readlist with a custom review and rating that you have already read
+- Add books that you have  read to readlist with a custom review and rating 
 - Add books to wishlist that you intend to read in the future
-- View,edit and delete books' description
+- View, edit and delete books' description
 - View book details on google books website
 
 
@@ -148,7 +151,9 @@ and `Read` :
 | `rating`      | `string` | 
 | `userId`      | `string` |
 
-- Go to `project settings` and select `firebase to your webapp`. Take note of all the SDK's that is displayed.
+- Go to `project settings` and select `firebase to your webapp`. Take note of all the SDK's that is displayed:
+  <img src="https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/2b345b56-5cda-4caf-975e-902d9594561e" width ="500" height="500">
+- Set up authentication as email address and password and using gmail.
 
 \
 6. **REST API with Google Books** :
@@ -159,7 +164,7 @@ and `Read` :
 
 \
 7. **Create a `.env`** file at the root of the directory which looks something like this: 
-<img src="https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/2b345b56-5cda-4caf-975e-902d9594561e" width ="500" height="500">
+<img src ="https://github.com/Khaleelur-Rahman/BookMarked/assets/111182931/be8ebb82-9dbb-470a-91be-15063d3828e5" width ="500" height="500">
 \
 Add the relevant info into the file which were taken from steps 4 and 5. 
 
