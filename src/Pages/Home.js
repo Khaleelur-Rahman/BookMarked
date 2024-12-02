@@ -1,16 +1,22 @@
 import { auth } from "../backend/firebase-config";
 import useAuthState from "../hooks/custom-hooks/useAuthState";
+import LoginAndRegisterHomeButtons from "../components/LoginAndRegisterHomeButtons";
+import LoadingSpinner from "../components/LoadingSpinner";
+import WelcomeUser from "../components/WelcomeUser";
+import { useMemo, Suspense } from "react";
 
 function Home() {
   const user = useAuthState(auth);
 
-  const handleLogin = () => {
-    window.location.href = "/Login";
-  };
-
-  const handleRegister = () => {
-    window.location.href = "/Register";
-  };
+  const homePageContent = useMemo(() => {
+    if (user === undefined) {
+      return <LoadingSpinner />;
+    } else if (user !== null) {
+      return <WelcomeUser user = {user} />;
+    } else {
+      return <LoginAndRegisterHomeButtons />;
+    }
+  }, [user]);
 
   return (
     <div className="flex items-center justify-center mt-10 mb-12">
@@ -21,7 +27,7 @@ function Home() {
               <img
                 src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
                 className="w-full"
-                alt="Sample image"
+                alt="BookMarked webapp icon"
               />
             </div>
 
@@ -40,32 +46,12 @@ function Home() {
                 </div>
               </div>
 
-              {user === null ? (
+              <Suspense fallback={<LoadingSpinner />}>
                 <div className="text-center lg:text-left my-20 flex flex-row items-center justify-center">
-                  <button
-                    type="button"
-                    onClick={handleLogin}
-                    className="mr-10 inline-block rounded bg-cyan-50 px-7 pb-2.5 pt-3 text-sm font-medium uppercase font-medium leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
-                  >
-                    Login
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleRegister}
-                    className="inline-block rounded bg-cyan-50 px-7 pb-2.5 pt-3 text-sm font-medium uppercase font-medium leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
-                  >
-                    Register
-                  </button>
+                  {homePageContent}
                 </div>
-              ) : (
-                <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
-                  Welcome back {user && user?.email}!
-                </div> //when user is logged in
-              )}
+              </Suspense>
+
             </div>
           </div>
         </div>
