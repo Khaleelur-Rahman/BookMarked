@@ -3,7 +3,6 @@ import axios from "axios";
 import "../styles/index.css";
 import { trimAndAddDots } from "../components/utils";
 import { Link } from "react-router-dom";
-import { auth } from "../backend/firebase-config";
 import noBookCoverImage from "../images/No-book-cover.png";
 import "react-toastify/dist/ReactToastify.css";
 import DisplayToast from "../components/DisplayToast";
@@ -14,15 +13,14 @@ import {
   TOAST_SUCCESS,
 } from "../constants/toastConstants";
 import { API_PATH } from "../constants/commonConstants";
-import useNavigation from "../hooks/custom-hooks/useNavigation";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
+import { setUrl } from "../backend/functions";
 
 function BookForm() {
   const [bookResult, setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [author, setAuthor] = useState("");
 
-  const navigate = useNavigation();
   useUserLoggedIn();
 
   useEffect(() => {
@@ -169,7 +167,7 @@ function BookForm() {
                 <br></br>
                 <div
                   className="book-details-link"
-                  onClick={() => navigate(book.volumeInfo.infoLink)}
+                  onClick={() => setUrl(book.volumeInfo.infoLink)}
                 >
                   Book Details
                 </div>

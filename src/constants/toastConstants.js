@@ -20,6 +20,8 @@ export const TOAST_ERROR_DURING_REGISTRATION =
   "Error during registration, try again!";
 export const TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD =
   "Email address and password should not be empty!";
+export const TOAST_ERROR_DELETING_BOOK = "Error deleting book! Try again!"
+export const TOAST_ERROR_FETCHING_BOOKS = "Error fetching books! Try again!";
 
 // toast messages for valid op
 export const TOAST_REGISTERED_SUCCESSFULLY = (email) => 
