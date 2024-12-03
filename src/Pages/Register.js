@@ -5,6 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "../components/Button";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
 import DisplayToast from "../components/DisplayToast";
+import {
+  TOAST_EMAIL_IN_USE,
+  TOAST_ERROR,
+  TOAST_ERROR_DURING_REGISTRATION,
+  TOAST_INVALID_EMAIL,
+  TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD,
+  TOAST_WEAK_PASSWORD,
+} from "../constants/toastConstants";
 
 function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -16,7 +24,7 @@ function Register() {
     event.preventDefault();
 
     if (registerEmail === "" || registerPassword === "") {
-      DisplayToast("error", "Email address and password should not be empty!");
+      DisplayToast(TOAST_ERROR, TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD);
     } else {
       createUserWithEmailAndPassword(auth, registerEmail, registerPassword) //create a new user using email and password
         .then((userCredentials) => {
@@ -27,25 +35,23 @@ function Register() {
         .catch((error) => {
           switch (error.code) {
             case "auth/email-already-in-use":
-              DisplayToast("error", `Email address ${registerEmail} already in use.`);
+              DisplayToast(TOAST_ERROR, TOAST_EMAIL_IN_USE(registerEmail));
               break;
             case "auth/invalid-email":
-              DisplayToast("error", `Email address ${registerEmail} is invalid.`);
+              DisplayToast(TOAST_ERROR, TOAST_INVALID_EMAIL(registerEmail));
               break;
             case "auth/operation-not-allowed":
-              DisplayToast("error", "Error during sign up.");
+              DisplayToast(TOAST_ERROR, TOAST_ERROR_DURING_REGISTRATION);
               break;
             case "auth/weak-password":
-              DisplayToast("error",
-                "Password should be of minimum 7 characters. Should have at least one special character and one number.",
-              );
+              DisplayToast(TOAST_ERROR, TOAST_WEAK_PASSWORD);
               break;
             default:
-              DisplayToast("error", error.message);
+              DisplayToast(TOAST_ERROR, error.message);
               break;
           }
-          setRegisterEmail("")
-          setRegisterPassword("")
+          setRegisterEmail("");
+          setRegisterPassword("");
         });
     }
   };
@@ -107,10 +113,7 @@ function Register() {
           </div>
 
           <div className="flex justify-end content-center">
-            <Button
-              type="submit"
-              onClick={handleRegister}
-            >
+            <Button type="submit" onClick={handleRegister}>
               Register
             </Button>
           </div>
@@ -120,7 +123,9 @@ function Register() {
             <a
               href="#!"
               className="text-blue-600 ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-              onClick={() => {navigate("/Login")}}
+              onClick={() => {
+                navigate("/Login");
+              }}
             >
               Login here
             </a>
