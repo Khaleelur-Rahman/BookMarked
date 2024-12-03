@@ -24,4 +24,9 @@ export const TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD =
 // toast messages for valid op
 export const TOAST_REGISTERED_SUCCESSFULLY = (email) => 
   `${email} registered successfully! Please login with your credentials!`;
+export const TOAST_LOGGED_IN_SUCCESSFULLY = (email) =>
+  `${email} logged in successfully!`;
 export const TOAST_LOGGED_OUT_SUCCESSFULLY = (email) => `${email} logged out successfully!`;
+
+// toast messages for book search results
+export const TOAST_BOOK_NOT_FOUND = "Book not found! Try refining your search!";
