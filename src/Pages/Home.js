@@ -2,7 +2,6 @@ import { auth } from "../backend/firebase-config";
 import useAuthState from "../hooks/custom-hooks/useAuthState";
 import LoginAndRegisterHomeButtons from "../components/LoginAndRegisterHomeButtons";
 import LoadingSpinner from "../components/LoadingSpinner";
-import WelcomeUser from "../components/WelcomeUser";
 import { useMemo, Suspense } from "react";
 
 function Home() {
@@ -12,7 +11,11 @@ function Home() {
     if (user === undefined) {
       return <LoadingSpinner />;
     } else if (user !== null) {
-      return <WelcomeUser user = {user} />;
+      return(
+        <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
+          Welcome back {user?.displayName}!
+        </div>
+      )
     } else {
       return <LoginAndRegisterHomeButtons />;
     }
