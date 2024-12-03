@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/index.css";
 import { trimAndAddDots } from "../components/utils";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { auth } from "../backend/firebase-config";
 import noBookCoverImage from "../images/No-book-cover.png";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,22 +14,16 @@ import {
   TOAST_SUCCESS,
 } from "../constants/toastConstants";
 import { API_PATH } from "../constants/commonConstants";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 
 function BookForm() {
   const [bookResult, setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [author, setAuthor] = useState("");
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check if user is logged in
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        navigate("/Login");
-      }
-    });
-  }, []);
+  const navigate = useNavigation();
+  useUserLoggedIn();
 
   useEffect(() => {
     // Display toast on successful login
