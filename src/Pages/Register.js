@@ -1,73 +1,58 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../backend/firebase-config";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAuthState from "../hooks/custom-hooks/useAuthState";
+import Button from "../components/Button";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
+import DisplayToast from "../components/DisplayToast";
 
 function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
-  const user = useAuthState(auth);
+  const navigate = useNavigation();
 
-  const displayToast = (message) => {
-    return toast.error(message, {
-      position: "top-right",
-      autoClose: 6000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
-
-  const register = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
 
     if (registerEmail === "" || registerPassword === "") {
-      displayToast("Email address and password should not be empty!");
+      DisplayToast("error", "Email address and password should not be empty!");
     } else {
       createUserWithEmailAndPassword(auth, registerEmail, registerPassword) //create a new user using email and password
         .then((userCredentials) => {
           const user = userCredentials.user;
           localStorage.setItem("registerEmail", user.email);
-          window.location.href = "/Login";
+          navigate("/Login");
         })
         .catch((error) => {
           switch (error.code) {
             case "auth/email-already-in-use":
-              displayToast(`Email address ${registerEmail} already in use.`);
+              DisplayToast("error", `Email address ${registerEmail} already in use.`);
               break;
             case "auth/invalid-email":
-              displayToast(`Email address ${registerEmail} is invalid.`);
+              DisplayToast("error", `Email address ${registerEmail} is invalid.`);
               break;
             case "auth/operation-not-allowed":
-              displayToast(`Error during sign up.`);
+              DisplayToast("error", "Error during sign up.");
               break;
             case "auth/weak-password":
-              displayToast(
+              DisplayToast("error",
                 "Password should be of minimum 7 characters. Should have at least one special character and one number.",
               );
               break;
             default:
-              displayToast(error.message);
+              DisplayToast("error", error.message);
               break;
           }
+          setRegisterEmail("")
+          setRegisterPassword("")
         });
     }
-  };
-
-  const gotoLogin = () => {
-    window.location.href = "/Login";
   };
 
   return (
     <div>
       <h3 className="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400">
-        {" "}
         Register with email address
       </h3>
 
@@ -86,13 +71,13 @@ function Register() {
               id="email"
               value={registerEmail}
               onChange={(event) => setRegisterEmail(event.target.value)}
-              className="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
+              className="cursor-text box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
               required
             />
             <label
               htmlFor="email"
-              className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+              className="cursor-text absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Email Address
             </label>
@@ -109,37 +94,35 @@ function Register() {
               title="Password should be of minimum 7 characters. Should have at least one special character and one number."
               value={registerPassword}
               onChange={(event) => setRegisterPassword(event.target.value)}
-              className="box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
+              className="cursor-text box-border block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
               required
             />
             <label
               htmlFor="password"
-              className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+              className="cursor-text absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
             >
               Password
             </label>
           </div>
 
           <div className="flex justify-end content-center">
-            <button
+            <Button
               type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={register}
-              id="register"
+              onClick={handleRegister}
             >
               Register
-            </button>
+            </Button>
           </div>
 
           <p className="mb-0 mt-5 pt-1 text-sm font-semibold">
             Already have an account?
             <a
               href="#!"
-              className="ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-              onClick={gotoLogin}
+              className="text-blue-600 ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+              onClick={() => {navigate("/Login")}}
             >
-              Login
+              Login here
             </a>
           </p>
         </form>
