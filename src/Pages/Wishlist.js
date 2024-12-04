@@ -2,12 +2,15 @@ import React, { useEffect, useState, useCallback } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/LoadingSpinner";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
-import { WISHLIST_BOOK_LIST_TYPE, WISHLIST_TABLE_NAME } from "../constants/commonConstants";
+import {
+  WISHLIST_BOOK_LIST_TYPE,
+  WISHLIST_TABLE_NAME,
+} from "../constants/commonConstants";
 import { deleteBookFromDb, getBooksFromDb } from "../backend/functions";
 import DisplayToast from "../components/DisplayToast";
 import { TOAST_SUCCESS } from "../constants/toastConstants";
 import BookListItem from "../components/BookListItem";
-
+import { UPDATE_OPERATION } from "../constants/commonConstants";
 
 function Wishlist() {
   const [books, setBooks] = useState([]);
@@ -47,7 +50,6 @@ function Wishlist() {
     return <LoadingSpinner />;
   }
 
-
   return (
     <div className="flex flex-col min-h-screen">
       <div className="flex-grow pb-16">
@@ -67,9 +69,10 @@ function Wishlist() {
                     key={doc.id}
                     book={{
                       ...doc.data().book,
+                      docId: doc.data().docId,
                       notes: doc.data().notes,
                       dateToRead: doc.data().dateToRead,
-                      docId: doc.data().docId,
+                      type: UPDATE_OPERATION,
                     }}
                     onDelete={handleDelete}
                     listType={WISHLIST_BOOK_LIST_TYPE}

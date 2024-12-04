@@ -17,7 +17,6 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
     dateToRead,
   } = book;
 
-
   // Determine navigation path and state based on list type
    const navigationConfig = {
      [SEARCH_BOOK_LIST_TYPE]: {
@@ -43,7 +42,7 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
              state: book,
              notes: notes,
              bookDate: dateToRead,
-             docId: docId,
+             docId: docId
            },
          },
        ],
@@ -55,10 +54,10 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
            path: "/BookForm/ReadlistReview",
            state: {
             state: book,
-             docId: docId,
              rating: rating,
              description: description,
              dateCompleted: dateCompleted,
+             docId: docId
            },
          },
        ],

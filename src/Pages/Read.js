@@ -7,6 +7,7 @@ import { deleteBookFromDb, getBooksFromDb } from "../backend/functions";
 import DisplayToast from "../components/DisplayToast";
 import { TOAST_SUCCESS } from "../constants/toastConstants";
 import BookListItem from "../components/BookListItem";
+import { UPDATE_OPERATION } from "../constants/commonConstants";
 
 function Read() {
     const [books, setBooks] = useState([]);
@@ -71,6 +72,7 @@ function Read() {
                      description: doc.data().description,
                      dateCompleted: doc.data().dateCompleted,
                      docId: doc.data().docId,
+                     type: UPDATE_OPERATION
                    }}
                    onDelete={handleDelete}
                    listType={READ_BOOK_LIST_TYPE}
