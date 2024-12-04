@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/index.css";
-import { trimAndAddDots } from "../components/utils";
-import { Link } from "react-router-dom";
-import noBookCoverImage from "../images/No-book-cover.png";
 import "react-toastify/dist/ReactToastify.css";
 import DisplayToast from "../components/DisplayToast";
 import {
@@ -12,9 +9,9 @@ import {
   TOAST_LOGGED_IN_SUCCESSFULLY,
   TOAST_SUCCESS,
 } from "../constants/toastConstants";
-import { API_PATH } from "../constants/commonConstants";
+import { API_PATH, SEARCH_BOOK_LIST_TYPE } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
-import { setUrl } from "../backend/functions";
+import BookListItem from "../components/BookListItem";
 
 function BookForm() {
   const [bookResult, setBooks] = useState([]);
@@ -43,7 +40,10 @@ function BookForm() {
           DisplayToast(TOAST_ERROR, TOAST_BOOK_NOT_FOUND);
           resetForm();
         } else {
-          setBooks(response.data.items);
+          const filteredBooks = response.data.items.filter(
+            (book) => book.id && book.volumeInfo.title
+          );
+          setBooks(filteredBooks);
         }
       })
       .catch((error) => {
@@ -134,52 +134,21 @@ function BookForm() {
           data-testid="bookform-results"
         >
           {bookResult.map((book) => (
-            <div className="book-details" key={book.id}>
-              <img
-                className="book-image"
-                src={
-                  book.volumeInfo.imageLinks
-                    ? book.volumeInfo.imageLinks.thumbnail
-                    : noBookCoverImage
-                }
-                alt={book.volumeInfo.title} //display book image
-              />
-              <div className="display-book-title">
-                {trimAndAddDots(book.volumeInfo.title)}
-              </div>
-              <div className="image-links">
-                {/*Contains links to add book to either readlist, wishlist or to book details on a specific website */}
-                <Link
-                  to={"/BookForm/WishlistReview"}
-                  state={{ state: book }}
-                  className="add-read"
-                >
-                  Add to Wishlist
-                </Link>
-                <br></br>
-                <Link
-                  to={"/BookForm/ReadlistReview"}
-                  state={{ state: book }}
-                  className="add-read"
-                >
-                  Add to Readlist
-                </Link>
-                <br></br>
-                <div
-                  className="book-details-link"
-                  onClick={() => setUrl(book.volumeInfo.infoLink)}
-                >
-                  Book Details
-                </div>
-              </div>
-            </div>
+            <BookListItem
+              key={book.id}
+              book={{
+                ...book,
+                docId: book.id,
+              }}
+              listType={SEARCH_BOOK_LIST_TYPE}
+            />
           ))}
-          {bookResult.length > 0 && (
-            <div className="mb-40 text-xl font-bold">
-              Can't find the book you are looking for? Try refining your search.
-            </div>
-          )}
         </div>
+        {bookResult.length > 0 && (
+          <div className="mb-20 text-xl font-bold">
+            Can't find the book you are looking for? Try refining your search.
+          </div>
+        )}
       </div>
     </div>
   );

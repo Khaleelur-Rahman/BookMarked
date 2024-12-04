@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { trimAndAddDots } from "../components/utils";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import noBookCoverImage from "../images/No-book-cover.png";
 import LoadingSpinner from "../components/LoadingSpinner";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
-import { WISHLIST_TABLE_NAME } from "../constants/commonConstants";
-import { deleteBookFromDb, getBooksFromDb, setUrl } from "../backend/functions";
+import { WISHLIST_BOOK_LIST_TYPE, WISHLIST_TABLE_NAME } from "../constants/commonConstants";
+import { deleteBookFromDb, getBooksFromDb } from "../backend/functions";
 import DisplayToast from "../components/DisplayToast";
 import { TOAST_SUCCESS } from "../constants/toastConstants";
+import BookListItem from "../components/BookListItem";
+
 
 function Wishlist() {
   const [books, setBooks] = useState([]);
@@ -39,13 +38,13 @@ function Wishlist() {
     }
   }, [pageChanges]);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
-  async function handleDelete(id, title) {
+  const handleDelete = useCallback(async (id, title) => {
     await deleteBookFromDb(WISHLIST_TABLE_NAME, id, title);
     window.location.reload();
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
   }
 
 
@@ -63,50 +62,18 @@ function Wishlist() {
           ) : (
             <div className="wishlist-books">
               {books.map((doc) => {
-                const book = doc.data().book;
                 return (
-                  <div>
-                    <div className="book-details">
-                      <img
-                        key={doc.id}
-                        className="wishlist-books-image"
-                        src={
-                          book.volumeInfo.imageLinks
-                            ? book.volumeInfo.imageLinks.thumbnail
-                            : noBookCoverImage
-                        }
-                        alt={book.volumeInfo?.title}
-                      />
-                      <div className="text-xl text-slate-800 font-semibold subpixel-antialiased m-3">
-                        {trimAndAddDots(book.volumeInfo.title)}
-                      </div>
-                      <div>Date to read: {doc.data().dateToRead}</div>
-                      <div className="image-links">
-                        <Link
-                          to={"/BookForm/WishlistReview"}
-                          state={{
-                            state: book,
-                            notes: doc.data().notes,
-                            bookDate: doc.data().dateToRead,
-                            docId: doc.data().docId,
-                          }}
-                          className="add-read"
-                        >
-                          View and Edit Description
-                        </Link>
-                        <br />
-                        <div onClick={() => setUrl(book.volumeInfo.infoLink)}>
-                          Book Details
-                        </div>
-                        <div
-                          className="mt-6"
-                          onClick={() =>handleDelete(doc.data().docId, book.volumeInfo.title)}
-                        >
-                          Delete
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <BookListItem
+                    key={doc.id}
+                    book={{
+                      ...doc.data().book,
+                      notes: doc.data().notes,
+                      dateToRead: doc.data().dateToRead,
+                      docId: doc.data().docId,
+                    }}
+                    onDelete={handleDelete}
+                    listType={WISHLIST_BOOK_LIST_TYPE}
+                  />
                 );
               })}
             </div>

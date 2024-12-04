@@ -18,12 +18,14 @@ import {
   LOGIN_EMAIL_PASSWORD,
   LOGIN_GOOGLE,
 } from "../constants/commonConstants";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const navigate = useNavigation();
+  useUserLoggedIn();
 
   useEffect(() => {
     // To display toast when the user is directed to login page after registration

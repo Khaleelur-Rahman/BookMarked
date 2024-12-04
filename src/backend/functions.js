@@ -1,5 +1,5 @@
 import { collection, getDocs, query, deleteDoc, doc } from "firebase/firestore";
-import { auth, connectiontoDb } from "../backend/firebase-config";
+import { connectiontoDb } from "../backend/firebase-config";
 import DisplayToast from "../components/DisplayToast";
 import {
   TOAST_ERROR,
@@ -29,6 +29,3 @@ export async function getBooksFromDb(tableName, id) {
   }
 }
 
-export function setUrl(url) {
-    window.location.href = url;
-}
