@@ -5,3 +5,7 @@ export function trimAndAddDots(book) {
   }
   return book;
 }
+
+export function setUrl(url) {
+  window.location.href = url;
+}

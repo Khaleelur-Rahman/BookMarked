@@ -39,7 +39,7 @@ button {
 
 /*Footer styles*/
 .footer {
-  position: relative;
+  position: static;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -51,11 +51,12 @@ button {
   background-color: #e2f1f8;
   overflow: visible;
   max-width: 100%;
+  margin-top: auto;
 }
 
 .footer > div {
   padding: 1px;
-  margin: 10px;
+  margin: 4px;
   font-size: medium;
   font-weight: bold;
 }
@@ -73,7 +74,7 @@ button {
   align-items: center;
   background-color: #e2f1f8;
   overflow: visible;
-  height: 120px;
+  height: 80px;
   width: 100%;
 }
 
@@ -191,15 +192,15 @@ button[id="reset"] {
 }
 
 .book-details {
-  margin: 20px;
-  margin-bottom: 50px;
+  margin: 10px;
+  margin-bottom: 30px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.book-details .book-image,
+.book-details .search-books-image,
 .read-books-image,
 .wishlist-books-image {
   opacity: 1;
@@ -211,7 +212,7 @@ button[id="reset"] {
   margin: 10px;
 }
 
-.book-details:hover .book-image,
+.book-details:hover .search-books-image,
 .book-details:hover .wishlist-books-image,
 .book-details:hover .read-books-image {
   cursor: pointer;
