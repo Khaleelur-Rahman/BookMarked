@@ -1,82 +1,76 @@
 import { useLocation } from "react-router-dom";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { auth, connectiontoDb } from "../backend/firebase-config";
 import noBookCoverImage from "../images/No-book-cover.png";
+import Button from "../components/Button";
+import { WISHLIST_TABLE_NAME } from "../constants/commonConstants";
+import { addBookToDb, updateBookInDb } from "../backend/functions";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
+import { UPDATE_OPERATION } from "../constants/commonConstants";
 
 function WishlistReview() {
+  const user = useUserLoggedIn();
+  const navigate = useNavigation();
+
   const { state } = useLocation();
-  const user = auth.currentUser;
 
-  const [notes, setNotes] = useState("");
-  const [dateToRead, setDateToRead] = useState("");
+  const [bookData, setBookData] = useState({
+    docId: "",
+    book: "",
+    title: "",
+    authors: [],
+    image: noBookCoverImage,
+    notes: "",
+    dateToRead: "",
+    type: ""
+  });
 
-  const [inputDateType, setDateType] = useState("text"); //Display the date as a text and when input is active, change to type date
-
-  function handleChangeDescription(event) {
-    setNotes(event.target.value);
-  }
-
-  function handleChangeDateCompleted(event) {
-    setDateToRead(event.target.value);
-  }
-
-  async function handleSubmitNewBook(e) {
-    //Add the book and userId to the "Read" list if the book is not already in the database
-    e.preventDefault();
-
-    const db = connectiontoDb;
-    const docRef = await addDoc(collection(db, "ToRead"), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      notes: notes,
-      dateToRead: dateToRead,
-      userId: user.uid,
-    });
-
-    const res = await updateDoc(doc(db, "ToRead", docRef.id), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      docId: docRef.id,
-      notes: notes,
-      dateToRead: dateToRead,
-      userId: user.uid,
-    });
-    localStorage.setItem("bookTitle", state.state.volumeInfo.title);
-    localStorage.setItem("action", "added");
-
-    window.location.href = "/Wishlist";
-  }
-
-  async function handleSubmitEditBook(e) {
-    //Edit the book and userId in the "Read" list if the book is already in the database
-    e.preventDefault();
-
-    const db = connectiontoDb;
-    const res = await updateDoc(doc(db, "ToRead", state.docId), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      docId: state.docId,
-      notes: notes,
-      dateToRead: dateToRead,
-      userId: user.uid,
-    });
-
-    localStorage.setItem("bookTitle", state.state.volumeInfo.title);
-    localStorage.setItem("action", "edited");
-
-    window.location.href = "/Wishlist";
-  }
+  const [inputDateType, setDateType] = useState("text");
 
   useEffect(() => {
-    //Handle proper setting of the input fields according to if the book is already in the database or not
-    if (state.bookDate !== "" && dateToRead === "") {
-      setDateToRead(state.bookDate);
+    if (state) {
+      setBookData({
+        docId: state.docId || "",
+        book: state.state,
+        title: state.state.volumeInfo.title,
+        authors: state.state.volumeInfo.authors || [],
+        image: state.state.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
+        notes: state.notes || "",
+        dateToRead: state.bookDate || "",
+        type: state.state.type
+      });
     }
-    if (state.notes !== "" && notes === "") {
-      setNotes(state.notes);
-    }
-  }, [state.bookDate, state.notes, dateToRead, notes]);
+  }, [state]);
+
+  const handleChangeDescription = (event) => {
+    setBookData((prevState) => ({ ...prevState, notes: event.target.value }));
+  };
+
+  const handleChangeDateCompleted = (event) => {
+    setBookData((prevState) => ({
+      ...prevState,
+      dateToRead: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const object = {
+      book: bookData.book,
+      title: bookData.title,
+      authors: bookData.authors,
+      notes: bookData.notes,
+      dateToRead: bookData.dateToRead,
+      userId: user.uid,
+    };
+
+      bookData.type === UPDATE_OPERATION
+        ? await updateBookInDb(WISHLIST_TABLE_NAME, bookData.docId, object)
+        : await addBookToDb(WISHLIST_TABLE_NAME, object);
+
+    navigate("/Wishlist");
+  };
 
   return (
     <div className="my-10 flex justify-center items-center">
@@ -85,27 +79,15 @@ function WishlistReview() {
           <div className="flex flex-col items-center">
             <img
               className="h-60 w-40 border-2 border-blue-300 rounded-lg"
-              src={
-                state.state.volumeInfo.imageLinks
-                  ? state.state.volumeInfo.imageLinks.thumbnail
-                  : noBookCoverImage
-              }
-              alt={state.state.volumeInfo.title}
+              src={bookData.image}
+              alt={bookData.title}
             />
-            <div className="text-xl font-bold">
-              {state.state.volumeInfo.title}
-            </div>
-            <div>by {state.state.volumeInfo.authors[0]}</div>
+            <div className="text-xl font-bold">{bookData.title}</div>
+            {bookData.authors.length > 0 && <div>by {bookData.authors[0]}</div>}
           </div>
 
           <div className="mt-10 mb-20">
-            <form
-              onSubmit={
-                state.bookDate === undefined
-                  ? handleSubmitNewBook
-                  : handleSubmitEditBook
-              }
-            >
+            <form onSubmit={handleSubmit}>
               <h3 className="text-lg text-slate-700 dark:text-slate-400 font-bold">
                 Enter the details below to add to Wishlist:
               </h3>
@@ -119,8 +101,7 @@ function WishlistReview() {
                   className="inline border rounded-lg border-black-200 w-28 ml-2"
                   onFocus={() => setDateType("date")}
                   onBlur={() => setDateType("text")}
-                  value={dateToRead}
-                  defaultValue={dateToRead !== "" ? dateToRead : state.bookDate}
+                  value={bookData.dateToRead}
                   onChange={handleChangeDateCompleted}
                   required
                 />
@@ -129,35 +110,21 @@ function WishlistReview() {
                 <label htmlFor="reviewDescription">Notes:</label>
                 <textarea
                   className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
-                  defaultValue={notes !== "" ? notes : state.notes}
+                  value={bookData.notes}
                   onChange={handleChangeDescription}
                   required
                 ></textarea>
               </div>
               <div className="flex justify-center">
-                {state.bookDate === undefined ? (
-                  <button
-                    type="submit"
-                    value="Submit"
-                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Add to Wishlist
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    value="Submit"
-                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Edit Book
-                  </button>
-                )}
+                <Button type="submit">
+                  {bookData.type === UPDATE_OPERATION ? "Edit Book" : "Add to Wishlist"}
+                </Button>
               </div>
             </form>
           </div>
         </div>
       ) : (
-        <div>No book found.</div> //No book found in the database
+        <div>No book found.</div>
       )}
     </div>
   );

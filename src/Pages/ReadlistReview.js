@@ -1,102 +1,88 @@
 import { useLocation } from "react-router-dom";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { auth, connectiontoDb } from "../backend/firebase-config";
 import noBookCoverImage from "../images/No-book-cover.png";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
+import { addBookToDb, updateBookInDb } from "../backend/functions";
+import { READLIST_TABLE_NAME } from "../constants/commonConstants";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
+import Button from "../components/Button";
+import { UPDATE_OPERATION } from "../constants/commonConstants";
 
 function ReadlistReview() {
-  const { state } = useLocation(); //Receive the state that is passes from the Read.js page
+  const user = useUserLoggedIn();
+  const navigate = useNavigation();
 
-  const user = auth.currentUser;
+  const { state } = useLocation();
 
-  const [rating, setRating] = useState("");
-  const [description, setDescription] = useState("");
-  const [dateCompleted, setDateCompleted] = useState("");
+  const [bookData, setBookData] = useState({
+    docId: "",
+    book: "",
+    title: "",
+    authors: [],
+    image: noBookCoverImage,
+    description: "",
+    rating: "",
+    dateCompleted: "",
+    type:""
+  });
 
-  const [inputDateType, setDateType] = useState("text"); //Display the date as a text and when input is active, change to type date
-  const [ratingType, setRatingType] = useState("text"); //Display the rating as a text and when input is active, change to type number
-
-  function handleChangeRating(event) {
-    setRating(event.target.value);
-  }
-
-  function handleChangeDescription(event) {
-    setDescription(event.target.value);
-  }
-
-  function handleChangeDateCompleted(event) {
-    setDateCompleted(event.target.value);
-  }
-
-  async function handleSubmitNewBook(e) {
-    //Add the book and userId to the "Read" list if the book is not already in the database
-    e.preventDefault();
-
-    const db = connectiontoDb;
-    const docRef = await addDoc(collection(db, "Read"), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      description: description,
-      rating: rating,
-      dateCompleted: dateCompleted,
-      userId: user.uid,
-    });
-
-    const res = await updateDoc(doc(db, "Read", docRef.id), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      docId: docRef.id,
-      description: description,
-      rating: rating,
-      dateCompleted: dateCompleted,
-      userId: user.uid,
-    });
-
-    localStorage.setItem("bookTitle", state.state.volumeInfo.title);
-    localStorage.setItem("action", "added");
-
-    window.location.href = "/Read";
-  }
-
-  async function handleSubmitEditBook(e) {
-    //Edit the book and userId in the "Read" list if the book is already in the database
-    e.preventDefault();
-
-    const db = connectiontoDb;
-    const res = await updateDoc(doc(db, "Read", state.docId), {
-      book: state.state,
-      title: state.state.volumeInfo.title,
-      docId: state.docId,
-      description: description,
-      rating: rating,
-      dateCompleted: dateCompleted,
-      userId: user.uid,
-    });
-    localStorage.setItem("bookTitle", state.state.volumeInfo.title);
-    localStorage.setItem("action", "edited");
-
-    window.location.href = "/Read";
-  }
+  const [inputDateType, setDateType] = useState("text");
+  const [ratingType, setRatingType] = useState("text");
 
   useEffect(() => {
-    //Handle proper setting of the input fields according to if the book is already in the database or not
-    if (state.bookDescription !== "" && description === "") {
-      setDescription(state.bookDescription);
+    if (state) {
+      setBookData({
+        docId: state.docId || "",
+        book: state.state,
+        title: state.state.volumeInfo.title,
+        authors: state.state.volumeInfo.authors || [],
+        image: state.state.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
+        description: state.description || "",
+        rating: state.rating || "",
+        dateCompleted: state.dateCompleted || "",
+        type: state.state.type || "",
+      });
     }
-    if (state.bookDate !== "" && dateCompleted === "") {
-      setDateCompleted(state.bookDate);
-    }
-    if (state.bookRating !== "" && rating === "") {
-      setRating(state.bookRating);
-    }
-  }, [
-    state.bookDescription,
-    state.bookDate,
-    state.bookRating,
-    rating,
-    dateCompleted,
-    description,
-  ]);
+  }, [state]);
+
+  const handleChangeRating = (event) => {
+    setBookData((prevState) => ({ ...prevState, rating: event.target.value }));
+  };
+
+  const handleChangeDescription = (event) => {
+    setBookData((prevState) => ({
+      ...prevState,
+      description: event.target.value,
+    }));
+  };
+
+  const handleChangeDateCompleted = (event) => {
+    setBookData((prevState) => ({
+      ...prevState,
+      dateCompleted: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+      const object = {
+        book: bookData.book,
+        title: bookData.title,
+        authors: bookData.authors,
+        description: bookData.description,
+        dateCompleted: bookData.dateCompleted,
+        rating: bookData.rating,
+        userId: user.uid,
+      };
+
+      bookData.type === UPDATE_OPERATION
+        ? await updateBookInDb(READLIST_TABLE_NAME, bookData.docId, object)
+        : await addBookToDb(READLIST_TABLE_NAME, object);
+
+
+    navigate("/Read");
+  };
 
   return (
     <div className="my-10 flex justify-center items-center">
@@ -105,27 +91,15 @@ function ReadlistReview() {
           <div className="flex flex-col items-center">
             <img
               className="h-60 w-40 border-2 border-blue-300 rounded-lg"
-              src={
-                state.state.volumeInfo.imageLinks
-                  ? state.state.volumeInfo.imageLinks.thumbnail
-                  : noBookCoverImage
-              }
-              alt={state.state.volumeInfo.title}
+              src={bookData.image}
+              alt={bookData.title}
             />
-            <div className="text-xl font-bold">
-              {state.state.volumeInfo.title}
-            </div>
-            <div>by {state.state.volumeInfo.authors[0]}</div>
+            <div className="text-xl font-bold">{bookData.title}</div>
+            {bookData.authors.length > 0 && <div>by {bookData.authors[0]}</div>}
           </div>
 
           <div className="mt-10 mb-20">
-            <form
-              onSubmit={
-                state.bookDate === undefined
-                  ? handleSubmitNewBook
-                  : handleSubmitEditBook
-              }
-            >
+            <form onSubmit={handleSubmit}>
               <h3 className="text-lg text-slate-700 dark:text-slate-400 font-bold">
                 Write your review below to add to Readlist:
               </h3>
@@ -136,11 +110,10 @@ function ReadlistReview() {
                 min="0"
                 max="5"
                 step="0.1"
-                defaultValue={rating === "" ? rating : state.bookRating}
-                value={rating}
+                value={bookData.rating}
                 onChange={handleChangeRating}
                 onFocus={() => setRatingType("number")}
-                onBlur={() => setDateType("text")}
+                onBlur={() => setRatingType("text")}
                 required
               />
               /5
@@ -151,10 +124,7 @@ function ReadlistReview() {
                 className="inline border rounded-lg border-black-200 w-28 ml-2 mb-4"
                 onFocus={() => setDateType("date")}
                 onBlur={() => setDateType("text")}
-                value={dateCompleted}
-                defaultValue={
-                  dateCompleted !== "" ? dateCompleted : state.bookDate
-                }
+                value={bookData.dateCompleted}
                 onChange={handleChangeDateCompleted}
                 required
               ></input>
@@ -164,39 +134,22 @@ function ReadlistReview() {
                 <textarea
                   id="reviewDescription"
                   className="inline border border-black-200 resize-y rounded-lg ml-2 w-50"
-                  defaultValue={
-                    description !== "" ? description : state.bookDescription
-                  }
+                  value={bookData.description}
                   onChange={handleChangeDescription}
                 ></textarea>
               </div>
-              <br />
-              <div className="mt-8">
-                {state.bookDate === undefined ? (
-                  <button
-                    type="submit"
-                    value="Submit"
-                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    {" "}
-                    Add to Readlist{" "}
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    value="Submit"
-                    className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    {" "}
-                    Edit Book{" "}
-                  </button>
-                )}
+              <div className="flex justify-center">
+                <Button type="submit">
+                  {bookData.type === UPDATE_OPERATION
+                    ? "Edit Book"
+                    : "Add to Readlist"}
+                </Button>
               </div>
             </form>
           </div>
         </div>
       ) : (
-        <div>No book found.</div> //No book found in the database
+        <div>No book found.</div>
       )}
     </div>
   );
