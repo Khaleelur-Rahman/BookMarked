@@ -9,6 +9,7 @@ const DisplayToast = (type = "success", message) => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
+        pauseOnFocusLoss: false,
         theme: "light",
     };
 
