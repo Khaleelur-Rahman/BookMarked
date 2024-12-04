@@ -25,7 +25,11 @@ function Login() {
   const [loginPassword, setLoginPassword] = useState("");
 
   const navigate = useNavigation();
-  useUserLoggedIn();
+  const user = useUserLoggedIn();
+
+  if (user) {
+    navigate("/BookForm")
+  }
 
   useEffect(() => {
     // To display toast when the user is directed to login page after registration
