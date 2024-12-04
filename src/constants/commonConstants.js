@@ -10,3 +10,6 @@ export const WISHLIST_TABLE_NAME = "ToRead"
 export const READ_BOOK_LIST_TYPE = "read"
 export const WISHLIST_BOOK_LIST_TYPE = "wishlist"
 export const SEARCH_BOOK_LIST_TYPE = "search"
+
+export const ADD_OPERATION = "add"
+export const UPDATE_OPERATION = "update"
