@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../../layouts/Navbar";
 import Login from "../../Pages/Login";
 import BookForm from "../../pages/BookForm";
@@ -15,9 +15,9 @@ PASSWORD: "abc123!@#"
 describe("Navbar", () => {
   test("Presence of all the required links", () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
-      </BrowserRouter>,
+      </Router>
     );
 
     const bookSearch = screen.getByText(/Book Search/i);
@@ -35,11 +35,11 @@ describe("Navbar", () => {
 
   test("Shows book search form when user is logged in and when user clicks on Book Search button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -70,10 +70,10 @@ describe("Navbar", () => {
 
   test("Shows Login Page when user is logged out and when user clicks on Book Search button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
-      </BrowserRouter>,
+      </Router>
     );
 
     const bookSearchButton = screen.getByTestId("book-search");
@@ -88,11 +88,11 @@ describe("Navbar", () => {
 
   test("Shows book search form when user is logged in and when user clicks on Wislist button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -123,10 +123,10 @@ describe("Navbar", () => {
 
   test("Shows Login Page when user is logged out and when user clicks on wishlist button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
-      </BrowserRouter>,
+      </Router>
     );
 
     const bookSearchButton = screen.getByTestId("wishlist");
@@ -141,11 +141,11 @@ describe("Navbar", () => {
 
   test("Shows book search form when user is logged in and when user clicks on Realist button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
         <BookForm />
-      </BrowserRouter>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -176,10 +176,10 @@ describe("Navbar", () => {
 
   test("Shows Login Page when user is logged out and when user clicks on readlist button", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
-      </BrowserRouter>,
+      </Router>
     );
 
     const bookSearchButton = screen.getByTestId("readlist");
@@ -194,10 +194,10 @@ describe("Navbar", () => {
 
   test("Dropdown test for logged out users", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Login />
-      </BrowserRouter>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");

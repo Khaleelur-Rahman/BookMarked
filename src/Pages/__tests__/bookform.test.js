@@ -1,10 +1,15 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookForm from "../BookForm";
 import "@testing-library/jest-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 describe("BookForm", () => {
   test("All inputs and buttons are present", () => {
-    render(<BookForm />);
+    render(
+      <Router>
+        <BookForm />
+      </Router>
+    );
 
     const bookTitle = screen.getByLabelText(/Enter Title/i);
     expect(bookTitle).toBeInTheDocument();
@@ -20,7 +25,11 @@ describe("BookForm", () => {
   });
 
   test("Valid input search", async () => {
-    render(<BookForm />);
+    render(
+      <Router>
+        <BookForm />
+      </Router>
+    );
 
     const bookTitle = screen.getByLabelText(/Enter Title/i);
     expect(bookTitle).toBeInTheDocument();
@@ -41,7 +50,11 @@ describe("BookForm", () => {
   });
 
   test("Reset form inputs", () => {
-    render(<BookForm />);
+    render(
+      <Router>
+        <BookForm />
+      </Router>
+    );
 
     const bookTitle = screen.getByLabelText(/Enter Title/i);
     expect(bookTitle).toBeInTheDocument();

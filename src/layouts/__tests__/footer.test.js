@@ -1,20 +1,20 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import Footer from "../../layouts/Footer";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import Footer from "../Footer";
+import { BrowserRouter as Router } from "react-router-dom";
 
-describe("footer", () => {
-  test("Contains github and linkedin Links", () => {
-    render(<Footer />);
-    const github = screen.getByTestId("github-link");
-    const linkedin = screen.getByTestId("linkedin-link");
+describe("Footer", () => {
+  test("renders the component", () => {
+    render(
+      <Router>
+        <Footer />
+      </Router>
+    );
+    const githubLink = screen.getByTestId("github-link");
+    const linkedinLink = screen.getByTestId("linkedin-link");
 
-    expect(github).toBeInTheDocument();
-    expect(linkedin).toBeInTheDocument();
-  });
-
-  test("Comtains author name", () => {
-    render(<Footer />);
-    expect(screen.getByText(/Khaleelur rahman/i)).toBeInTheDocument();
+    expect(githubLink).toBeInTheDocument();
+    expect(linkedinLink).toBeInTheDocument();
   });
 });

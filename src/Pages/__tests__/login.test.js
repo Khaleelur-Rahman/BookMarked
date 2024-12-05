@@ -3,7 +3,7 @@ import Login from "../../Pages/Login";
 import BookForm from "../BookForm";
 import "@testing-library/jest-dom";
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 /*
 MOCK USER INFO THAT IS PRESENT IN THE DATABASE (If not present, add this user using email and password) : 
@@ -13,17 +13,24 @@ PASSWORD: "abc123!@#"
 
 describe("Login", () => {
   test("Login form with email and password input should be in the document", async () => {
-    const component = render(<Login />);
-
-    const inputEmail = await component.findAllByText("Email Address");
-    const inputPassword = await component.findAllByText("Password");
+    render(
+      <Router>
+        <Login />
+      </Router>
+    );
+    const inputEmail = await screen.findAllByText("Email Address");
+    const inputPassword = await screen.findAllByText("Password");
 
     expect(inputEmail).toHaveLength(1);
     expect(inputPassword).toHaveLength(1);
   });
 
   test("Login Button should be present in the form", async () => {
-    const component = render(<Login />);
+    render(
+      <Router>
+        <Login />
+      </Router>
+    );
 
     const loginButtonByRole = await screen.findAllByRole("button", {
       name: /login/i,
@@ -32,18 +39,22 @@ describe("Login", () => {
   });
 
   test("Register button should be present in the form", async () => {
-    const component = render(<Login />);
+    render(
+      <Router>
+        <Login />
+      </Router>
+    );
 
-    const registerButton = screen.getByText("Register");
+    const registerButton = screen.getByText("Register here");
     expect(registerButton).toBeInTheDocument();
   });
 
   test("Incorrect Password for registered button", async () => {
     render(
-      <>
+      <Router>
         <Login />
-        <ToastContainer /> {/* Wrap the component rendering in the ToastContainer */}
-      </>,
+        <ToastContainer />
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -67,17 +78,17 @@ describe("Login", () => {
     fireEvent.click(registerButton[0]);
 
     await waitFor(() => {
-      const toastMessage = screen.getByText(/Wrong Password/i);
+      const toastMessage = screen.getByText(/Incorrect Password!/i);
       expect(toastMessage).toBeInTheDocument();
     });
   });
 
   test("User not found Error", async () => {
     render(
-      <>
+      <Router>
         <Login />
         <ToastContainer />
-      </>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -108,10 +119,10 @@ describe("Login", () => {
 
   test("Empty Email address error", async () => {
     render(
-      <>
+      <Router>
         <Login />
         <ToastContainer />
-      </>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -134,7 +145,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i,
+        /Email address and password should not be empty/i
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -142,10 +153,10 @@ describe("Login", () => {
 
   test("Empty Password error", async () => {
     render(
-      <>
+      <Router>
         <Login />
         <ToastContainer />
-      </>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -170,7 +181,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i,
+        /Email address and password should not be empty/i
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -178,10 +189,10 @@ describe("Login", () => {
 
   test("Both Email address and Password empty error", async () => {
     render(
-      <>
+      <Router>
         <Login />
         <ToastContainer />
-      </>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
@@ -204,7 +215,7 @@ describe("Login", () => {
 
     await waitFor(() => {
       const toastMessage = screen.getByText(
-        /Email address and password should not be empty/i,
+        /Email address and password should not be empty/i
       );
       expect(toastMessage).toBeInTheDocument();
     });
@@ -212,10 +223,10 @@ describe("Login", () => {
 
   test("Valid account login redirects to Book Search Page", async () => {
     render(
-      <BrowserRouter>
+      <Router>
         <Login />
         <BookForm />
-      </BrowserRouter>,
+      </Router>
     );
 
     const email = screen.getByLabelText("Email Address");
