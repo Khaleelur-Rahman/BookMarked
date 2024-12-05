@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 
 export default function Navbar() {
   const user = useUserLoggedIn();

@@ -9,7 +9,7 @@ import {
   SEARCH_BOOK_LIST_TYPE,
 } from "../constants/commonConstants";
 import BookListItemDescription from "../components/BookListItemDescription";
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 
 function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
   const {

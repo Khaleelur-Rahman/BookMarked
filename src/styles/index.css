@@ -48,7 +48,7 @@ button {
   position: fixed;
   align-items: center;
   justify-content: center;
-  background-color: #e2f1f8;
+  background-color: #d4e9e2;
   overflow: visible;
   max-width: 100%;
   margin-top: auto;
@@ -72,10 +72,11 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e2f1f8;
+  background-color: #d4e9e2;
   overflow: visible;
   height: 80px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 642px) {
@@ -112,10 +113,8 @@ a:hover {
 
 .website-header {
   font-size: 45px;
-  font-weight: bold;
-  -webkit-text-fill-color: rgb(32, 200, 200);
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: rgb(37, 53, 156);
+  font-weight: medium;
+  -webkit-text-fill-color: #006241;
   cursor: pointer;
 }
 
@@ -244,7 +243,7 @@ button[id="reset"] {
 .image-links > a,
 .add-read {
   border: 2px solid rgb(83, 81, 81);
-  background-color: #fdbaad;
+  background-color: #bde4eb;
   border-radius: 10px;
   padding: 2px;
 }
@@ -271,7 +270,7 @@ button[id="reset"] {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 1.875rem;
   font-weight: bolder;
   display: flex;
   text-align: center;
@@ -362,7 +361,7 @@ button[id="reset"] {
 }
 
 .profile-dropdown-content > div :hover {
-  background-color: #e2f3f8;
+  background-color: #d4e9e2;
   font-size: large;
   cursor: pointer;
   border-radius: 10px;

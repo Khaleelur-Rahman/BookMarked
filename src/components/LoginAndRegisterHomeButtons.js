@@ -1,4 +1,4 @@
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
 
 const LoginAndRegisterHomeButtons = () => {
