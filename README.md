@@ -198,13 +198,13 @@ https://bookmarkedproj.netlify.app
 
 ## Screenshots
 
-![HomePage](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/HomePage.png)
-![Login](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/Login.png)
-![Booksearch](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/Booksearch.png)
-![booksearchResults](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/booksearchResults.png)
-![readlist](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/readlist.png)
-![WishlistReview](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/WishlistReview.png)
-![wishlist](https://github.com/Khaleelur-Rahman/BookMarked/src/images/Sreenshots_for_readme/wishlist.png)
+![HomePage](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/HomePage.png)
+![Login](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/Login.png)
+![Booksearch](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/blob/main/src/images/Screenshots_for_readme/Booksearch.png)
+![booksearchResults](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/booksearchResults.png)
+![readlist](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/readlist.png)
+![WishlistReview](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/WishlistReview.png)
+![wishlist](https://github.com/Khaleelur-Rahman/BookMarked/blob/main/src/images/Screenshots_for_readme/wishlist.png)
 
 ## Contributing
 
