@@ -19,7 +19,7 @@ import {
   LOGIN_GOOGLE,
 } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");

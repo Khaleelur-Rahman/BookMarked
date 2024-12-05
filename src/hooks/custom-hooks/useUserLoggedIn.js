@@ -1,7 +1,7 @@
 import useNavigation from "./useNavigation";
 import { useEffect, useState } from "react";
 import { auth } from "../../backend/firebase-config";
-import routeConstants from "../../constants/routeConstants";
+import { routeConstants } from "../../constants/routeConstants";
 
 const useUserLoggedIn = () => {
   const navigate = useNavigation();

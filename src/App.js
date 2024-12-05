@@ -3,7 +3,7 @@ import Footer from "./layouts/Footer";
 import "./styles/index.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import routeConstants from "./constants/routeConstants";
+import { routeConstants } from "./constants/routeConstants";
 
 function App() {
   return (

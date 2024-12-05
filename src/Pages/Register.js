@@ -13,7 +13,7 @@ import {
   TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD,
   TOAST_WEAK_PASSWORD,
 } from "../constants/toastConstants";
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 
 function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
