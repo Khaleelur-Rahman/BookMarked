@@ -198,9 +198,11 @@ function Login() {
             <p className="mb-0 mt-5 pt-1 text-sm font-semibold">
               Don't have an account?
               <a
-                href="#!"
+                href={routeConstants.REGISTER.path}
                 className="text-blue-600 ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                onClick={() => navigate(routeConstants.REGISTER.path)}
+                onClick={() => {
+                  navigate(routeConstants.REGISTER.path);
+                }}
               >
                 Register
               </a>
