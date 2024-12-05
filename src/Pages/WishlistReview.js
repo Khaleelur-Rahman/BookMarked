@@ -7,6 +7,7 @@ import { addBookToDb, updateBookInDb } from "../backend/functions";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
+import { formatDate } from "../components/utils";
 
 function WishlistReview() {
   const user = useUserLoggedIn();
@@ -22,10 +23,8 @@ function WishlistReview() {
     image: noBookCoverImage,
     notes: "",
     dateToRead: "",
-    type: ""
+    type: "",
   });
-
-  const [inputDateType, setDateType] = useState("text");
 
   useEffect(() => {
     if (state) {
@@ -36,8 +35,10 @@ function WishlistReview() {
         authors: state.state.volumeInfo.authors || [],
         image: state.state.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
         notes: state.notes || "",
-        dateToRead: state.bookDate || "",
-        type: state.state.type
+        dateToRead: state.bookDate
+          ? formatDate(state.bookDate, "yyyy-mm-dd")
+          : "",
+        type: state.state.type,
       });
     }
   }, [state]);
@@ -61,13 +62,13 @@ function WishlistReview() {
       title: bookData.title,
       authors: bookData.authors,
       notes: bookData.notes,
-      dateToRead: bookData.dateToRead,
+      dateToRead: formatDate(bookData.dateToRead, "dd/MM/yyyy"),
       userId: user.uid,
     };
 
-      bookData.type === UPDATE_OPERATION
-        ? await updateBookInDb(WISHLIST_TABLE_NAME, bookData.docId, object)
-        : await addBookToDb(WISHLIST_TABLE_NAME, object);
+    bookData.type === UPDATE_OPERATION
+      ? await updateBookInDb(WISHLIST_TABLE_NAME, bookData.docId, object)
+      : await addBookToDb(WISHLIST_TABLE_NAME, object);
 
     navigate("/Wishlist");
   };
@@ -97,10 +98,9 @@ function WishlistReview() {
                   Intended date of read:
                 </label>
                 <input
-                  type={inputDateType}
+                  // type={inputDateType}
+                  type="date"
                   className="inline border rounded-lg border-black-200 w-28 ml-2"
-                  onFocus={() => setDateType("date")}
-                  onBlur={() => setDateType("text")}
                   value={bookData.dateToRead}
                   onChange={handleChangeDateCompleted}
                   required
@@ -117,7 +117,9 @@ function WishlistReview() {
               </div>
               <div className="flex justify-center">
                 <Button type="submit">
-                  {bookData.type === UPDATE_OPERATION ? "Edit Book" : "Add to Wishlist"}
+                  {bookData.type === UPDATE_OPERATION
+                    ? "Edit Book"
+                    : "Add to Wishlist"}
                 </Button>
               </div>
             </form>

@@ -9,3 +9,11 @@ export function trimAndAddDots(book) {
 export function setUrl(url) {
   window.location.href = url;
 }
+
+export function formatDate(date, convertToFormat = "dd/MM/yyyy") {
+  if (convertToFormat === "dd/MM/yyyy") {
+    return date.split("-").reverse().join("/");
+  } else {
+    return date.split("/").reverse().join("-");
+  }
+}

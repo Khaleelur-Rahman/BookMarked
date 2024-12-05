@@ -7,6 +7,7 @@ import { READLIST_TABLE_NAME } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import Button from "../components/Button";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
+import { formatDate } from "../components/utils";
 
 function ReadlistReview() {
   const user = useUserLoggedIn();
@@ -23,10 +24,9 @@ function ReadlistReview() {
     description: "",
     rating: "",
     dateCompleted: "",
-    type:""
+    type: "",
   });
 
-  const [inputDateType, setDateType] = useState("text");
   const [ratingType, setRatingType] = useState("text");
 
   useEffect(() => {
@@ -39,7 +39,9 @@ function ReadlistReview() {
         image: state.state.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
         description: state.description || "",
         rating: state.rating || "",
-        dateCompleted: state.dateCompleted || "",
+        dateCompleted: state.dateCompleted
+          ? formatDate(state.dateCompleted, "yyyy-mm-dd")
+          : "",
         type: state.state.type || "",
       });
     }
@@ -66,20 +68,19 @@ function ReadlistReview() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-      const object = {
-        book: bookData.book,
-        title: bookData.title,
-        authors: bookData.authors,
-        description: bookData.description,
-        dateCompleted: bookData.dateCompleted,
-        rating: bookData.rating,
-        userId: user.uid,
-      };
+    const object = {
+      book: bookData.book,
+      title: bookData.title,
+      authors: bookData.authors,
+      description: bookData.description,
+      dateCompleted: formatDate(bookData.dateCompleted, "dd/MM/yyyy"),
+      rating: bookData.rating,
+      userId: user.uid,
+    };
 
-      bookData.type === UPDATE_OPERATION
-        ? await updateBookInDb(READLIST_TABLE_NAME, bookData.docId, object)
-        : await addBookToDb(READLIST_TABLE_NAME, object);
-
+    bookData.type === UPDATE_OPERATION
+      ? await updateBookInDb(READLIST_TABLE_NAME, bookData.docId, object)
+      : await addBookToDb(READLIST_TABLE_NAME, object);
 
     navigate("/Read");
   };
@@ -120,10 +121,8 @@ function ReadlistReview() {
               <br />
               <label htmlFor="reviewDateCompleted">Date completed : </label>
               <input
-                type={inputDateType}
+                type="date"
                 className="inline border rounded-lg border-black-200 w-28 ml-2 mb-4"
-                onFocus={() => setDateType("date")}
-                onBlur={() => setDateType("text")}
                 value={bookData.dateCompleted}
                 onChange={handleChangeDateCompleted}
                 required

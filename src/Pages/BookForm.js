@@ -33,6 +33,8 @@ function BookForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    
+    // Clear previous results and load spinner
     setBooks([]);
     setIsLoading(true);
 
