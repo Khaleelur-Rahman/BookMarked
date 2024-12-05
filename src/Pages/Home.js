@@ -1,14 +1,13 @@
-import { auth } from "../backend/firebase-config";
-import useAuthState from "../hooks/custom-hooks/useAuthState";
 import LoginAndRegisterHomeButtons from "../components/LoginAndRegisterHomeButtons";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useMemo, Suspense } from "react";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 
 function Home() {
-  const user = useAuthState(auth);
+  const user = useUserLoggedIn();
 
   const homePageContent = useMemo(() => {
-    if (user === undefined) {
+    if (user === null) {
       return <LoadingSpinner />;
     } else if (user !== null) {
       return(

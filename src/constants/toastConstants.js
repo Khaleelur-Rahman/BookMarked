@@ -24,6 +24,7 @@ export const TOAST_ERROR_DELETING_BOOK = "Error deleting book! Try again!"
 export const TOAST_ERROR_FETCHING_BOOKS = "Error fetching books! Try again!";
 export const TOAST_ERROR_ADDING_BOOK = "Error adding book! Try again";
 export const TOAST_ERROR_UPDATING_BOOK = "Error editing book! Try again";
+export const TOAST_ERROR_BOOK_ALREADY_EXIST = "Error adding book! Book already exists!"
 
 // toast messages for valid op
 export const TOAST_REGISTERED_SUCCESSFULLY = (email) => 

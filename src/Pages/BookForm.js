@@ -12,11 +12,13 @@ import {
 import { API_PATH, SEARCH_BOOK_LIST_TYPE, ADD_OPERATION } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import BookListItem from "../components/BookListItem";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function BookForm() {
   const [bookResult, setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [author, setAuthor] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useUserLoggedIn();
 
@@ -31,6 +33,8 @@ function BookForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setBooks([]);
+    setIsLoading(true);
 
     //Fetch api results from google books endpoint using api key
     axios
@@ -45,6 +49,7 @@ function BookForm() {
           );
           setBooks(filteredBooks);
         }
+        setIsLoading(false);
       })
       .catch((error) => {
         DisplayToast(TOAST_ERROR, "Error fetching books: " + error.message);
@@ -128,6 +133,7 @@ function BookForm() {
             </div>
           </form>
         </div>
+        {isLoading && <LoadingSpinner />}
         <div
           className="image-container"
           id="image-container"

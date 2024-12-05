@@ -4,10 +4,12 @@ import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAuthState from "../hooks/custom-hooks/useAuthState";
+import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
+import useNavigation from "../hooks/custom-hooks/useNavigation";
 
 export default function Navbar() {
-  const user = useAuthState(auth);
+  const user = useUserLoggedIn();
+  const navigate = useNavigation();
 
   const logout = async () => {
     try {
@@ -29,10 +31,10 @@ export default function Navbar() {
 
   const homepage = () => {
     //Function to faciliate navigation when website title is clicked
-    if (user !== undefined) {
-      window.location.href = "/BookForm";
+    if (user !== null) {
+      navigate("/BookForm");
     } else {
-      window.location.href = "/Login";
+      navigate("/Login");
     }
   };
 
