@@ -9,7 +9,7 @@ const useNavigation = () => {
       navigate(route);
     } catch (error) {
       console.error("Error navigating to route:", route, error);
-      return <NotFound />
+      return <NotFound />;
     }
   };
 

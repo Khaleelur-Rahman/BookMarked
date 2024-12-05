@@ -9,7 +9,11 @@ import {
   TOAST_LOGGED_IN_SUCCESSFULLY,
   TOAST_SUCCESS,
 } from "../constants/toastConstants";
-import { API_PATH, SEARCH_BOOK_LIST_TYPE, ADD_OPERATION } from "../constants/commonConstants";
+import {
+  API_PATH,
+  SEARCH_BOOK_LIST_TYPE,
+  ADD_OPERATION,
+} from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import BookListItem from "../components/BookListItem";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -33,7 +37,7 @@ function BookForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    
+
     // Clear previous results and load spinner
     setBooks([]);
     setIsLoading(true);
@@ -144,7 +148,7 @@ function BookForm() {
           {bookResult.map((book) => (
             <BookListItem
               key={book.id}
-              book={{...book, type: ADD_OPERATION}}
+              book={{ ...book, type: ADD_OPERATION }}
               listType={SEARCH_BOOK_LIST_TYPE}
             />
           ))}

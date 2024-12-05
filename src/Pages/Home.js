@@ -10,11 +10,11 @@ function Home() {
     if (user === null) {
       return <LoadingSpinner />;
     } else if (user !== null) {
-      return(
+      return (
         <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
           Welcome back {user?.displayName}!
         </div>
-      )
+      );
     } else {
       return <LoginAndRegisterHomeButtons />;
     }
@@ -53,7 +53,6 @@ function Home() {
                   {homePageContent}
                 </div>
               </Suspense>
-
             </div>
           </div>
         </div>
