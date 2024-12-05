@@ -7,7 +7,7 @@ import { READLIST_TABLE_NAME } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import Button from "../components/Button";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
-import { formatDate } from "../components/utils";
+import { formatDate } from "../utils/utils";
 
 function ReadlistReview() {
   const user = useUserLoggedIn();

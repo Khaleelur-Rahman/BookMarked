@@ -44,7 +44,6 @@ export async function getBooksFromDb(tableName, id) {
 export async function addBookToDb(tableName, object) {
   const db = connectiontoDb;
   try {
-    // Perform a query to check if the book is already present
     const querySnapshot = await getDocs(
       query(collection(db, tableName), where("title", "==", object.title))
     );

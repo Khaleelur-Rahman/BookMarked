@@ -1,4 +1,4 @@
-import { trimAndAddDots } from "./utils";
+import { trimAndAddDots } from "../utils/utils";
 import {
   READ_BOOK_LIST_TYPE,
   WISHLIST_BOOK_LIST_TYPE,
