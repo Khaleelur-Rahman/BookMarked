@@ -23,17 +23,3 @@ export const routeConstants = {
   },
   READ: { path: "/Read", element: <Read /> },
 };
-
-export const protectedRouteConstants = {
-  BOOK_FORM: { path: "/BookForm", element: <BookForm /> },
-  WISHLIST_REVIEW: {
-    path: "/BookForm/WishlistReview",
-    element: <WishlistReview />,
-  },
-  WISHLIST: { path: "/WishList", element: <Wishlist /> },
-  READLIST_REVIEW: {
-    path: "/BookForm/ReadlistReview",
-    element: <ReadlistReview />,
-  },
-  READ: { path: "/Read", element: <Read /> },
-};

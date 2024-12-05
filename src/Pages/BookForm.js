@@ -18,7 +18,7 @@ import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import BookListItem from "../components/BookListItem";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-function BookForm() {
+const BookForm = () => {
   const [bookResult, setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [author, setAuthor] = useState("");
@@ -161,6 +161,6 @@ function BookForm() {
       </div>
     </div>
   );
-}
+};
 
 export default BookForm;

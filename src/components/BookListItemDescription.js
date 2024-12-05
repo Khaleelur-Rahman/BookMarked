@@ -4,11 +4,11 @@ import {
   WISHLIST_BOOK_LIST_TYPE,
 } from "../constants/commonConstants";
 
-function BookListItemDescription({
+const BookListItemDescription = ({
   title,
   description,
   listType = WISHLIST_BOOK_LIST_TYPE,
-}) {
+}) => {
   const { dateToRead, rating } = description;
 
   return (
@@ -26,6 +26,6 @@ function BookListItemDescription({
       )}
     </div>
   );
-}
+};
 
 export default BookListItemDescription;

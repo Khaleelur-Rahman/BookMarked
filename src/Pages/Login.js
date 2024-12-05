@@ -21,7 +21,7 @@ import {
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import { routeConstants } from "../constants/routeConstants";
 
-function Login() {
+const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -215,6 +215,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

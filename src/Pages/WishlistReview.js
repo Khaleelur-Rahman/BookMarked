@@ -10,7 +10,7 @@ import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
 import { routeConstants } from "../constants/routeConstants";
 
-function WishlistReview() {
+const WishlistReview = () => {
   const user = useUserLoggedIn();
   const navigate = useNavigation();
 
@@ -131,6 +131,6 @@ function WishlistReview() {
       )}
     </div>
   );
-}
+};
 
 export default WishlistReview;

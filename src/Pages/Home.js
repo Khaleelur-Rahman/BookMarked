@@ -3,7 +3,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import { useMemo, Suspense } from "react";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 
-function Home() {
+const Home = () => {
   const user = useUserLoggedIn();
 
   const homePageContent = useMemo(() => {
@@ -59,6 +59,6 @@ function Home() {
       </section>
     </div>
   );
-}
+};
 
 export default Home;

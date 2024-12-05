@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { auth } from "../backend/firebase-config";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
@@ -13,7 +12,7 @@ import {
   TOAST_ERROR_LOGGING_OUT,
 } from "../constants/toastConstants";
 
-export default function Navbar() {
+const Navbar = () => {
   const user = useUserLoggedIn();
   const navigate = useNavigation();
 
@@ -137,4 +136,6 @@ export default function Navbar() {
       </div>
     </span>
   );
-}
+};
+
+export default Navbar;

@@ -15,7 +15,7 @@ import {
 } from "../constants/toastConstants";
 import { routeConstants } from "../constants/routeConstants";
 
-function Register() {
+const Register = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
@@ -135,6 +135,6 @@ function Register() {
       </div>
     </div>
   );
-}
+};
 
 export default Register;

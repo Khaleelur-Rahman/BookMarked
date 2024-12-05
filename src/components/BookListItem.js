@@ -11,7 +11,11 @@ import {
 import BookListItemDescription from "../components/BookListItemDescription";
 import { routeConstants } from "../constants/routeConstants";
 
-function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
+const BookListItem = ({
+  book,
+  onDelete,
+  listType = WISHLIST_BOOK_LIST_TYPE,
+}) => {
   const {
     volumeInfo = {},
     docId,
@@ -116,6 +120,6 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
       </div>
     </div>
   );
-}
+};
 
 export default BookListItem;

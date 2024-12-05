@@ -10,7 +10,7 @@ import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
 import { routeConstants } from "../constants/routeConstants";
 
-function ReadlistReview() {
+const ReadlistReview = () => {
   const user = useUserLoggedIn();
   const navigate = useNavigation();
 
@@ -153,6 +153,6 @@ function ReadlistReview() {
       )}
     </div>
   );
-}
+};
 
 export default ReadlistReview;

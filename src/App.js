@@ -5,7 +5,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { routeConstants } from "./constants/routeConstants";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Navbar />
@@ -17,6 +17,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

@@ -12,7 +12,7 @@ import { TOAST_SUCCESS } from "../constants/toastConstants";
 import BookListItem from "../components/BookListItem";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 
-function Wishlist() {
+const Wishlist = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageChanges, setPageChanges] = useState(0);
@@ -85,6 +85,6 @@ function Wishlist() {
       </div>
     </div>
   );
-}
+};
 
 export default Wishlist;

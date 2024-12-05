@@ -1,7 +1,7 @@
 import React from "react";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
 
-function Footer() {
+const Footer = () => {
   const navigate = useNavigation();
 
   return (
@@ -45,6 +45,6 @@ function Footer() {
       </div>
     </div>
   );
-}
+};
 
 export default Footer;
