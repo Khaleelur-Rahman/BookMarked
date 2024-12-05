@@ -8,7 +8,7 @@ import useNavigation from "../hooks/custom-hooks/useNavigation";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
-import routeConstants from "../constants/routeConstants";
+import { routeConstants } from "../constants/routeConstants";
 
 function WishlistReview() {
   const user = useUserLoggedIn();

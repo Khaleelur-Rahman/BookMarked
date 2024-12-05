@@ -7,7 +7,7 @@ import Wishlist from "../pages/Wishlist";
 import ReadlistReview from "../pages/ReadlistReview";
 import Read from "../pages/Read";
 
-const routeConstants = {
+export const routeConstants = {
   HOME: { path: "/", element: <Home /> },
   LOGIN: { path: "/Login", element: <Login /> },
   REGISTER: { path: "/Register", element: <Register /> },
@@ -24,4 +24,16 @@ const routeConstants = {
   READ: { path: "/Read", element: <Read /> },
 };
 
-export default routeConstants;
+export const protectedRouteConstants = {
+  BOOK_FORM: { path: "/BookForm", element: <BookForm /> },
+  WISHLIST_REVIEW: {
+    path: "/BookForm/WishlistReview",
+    element: <WishlistReview />,
+  },
+  WISHLIST: { path: "/WishList", element: <Wishlist /> },
+  READLIST_REVIEW: {
+    path: "/BookForm/ReadlistReview",
+    element: <ReadlistReview />,
+  },
+  READ: { path: "/Read", element: <Read /> },
+};
