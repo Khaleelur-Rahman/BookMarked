@@ -7,6 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
 import { routeConstants } from "../constants/routeConstants";
+import DisplayToast from "../components/DisplayToast";
+import {
+  TOAST_ERROR,
+  TOAST_ERROR_LOGGING_OUT,
+} from "../constants/toastConstants";
 
 export default function Navbar() {
   const user = useUserLoggedIn();
@@ -14,19 +19,10 @@ export default function Navbar() {
 
   const logout = async () => {
     try {
-      localStorage.setItem("logoutEmail", user.email);
       await signOut(auth);
+      localStorage.setItem("logoutEmail", user.email);
     } catch (error) {
-      toast.error("Error logging out!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      DisplayToast(TOAST_ERROR, TOAST_ERROR_LOGGING_OUT);
     }
   };
 
