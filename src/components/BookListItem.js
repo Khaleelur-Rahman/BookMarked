@@ -9,6 +9,7 @@ import {
   SEARCH_BOOK_LIST_TYPE,
 } from "../constants/commonConstants";
 import BookListItemDescription from "../components/BookListItemDescription";
+import routeConstants from "../constants/routeConstants";
 
 function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
   const {
@@ -27,12 +28,12 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
       links: [
         {
           label: "Add to Wishlist",
-          path: "/BookForm/WishlistReview",
+          path: routeConstants.WISHLIST_REVIEW.path,
           state: { state: book },
         },
         {
           label: "Add to Readlist",
-          path: "/BookForm/ReadlistReview",
+          path: routeConstants.READLIST_REVIEW.path,
           state: { state: book },
         },
       ],
@@ -41,7 +42,7 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
       links: [
         {
           label: "View and Edit Description",
-          path: "/BookForm/WishlistReview",
+          path: routeConstants.WISHLIST_REVIEW.path,
           state: {
             state: book,
             notes: notes,
@@ -55,7 +56,7 @@ function BookListItem({ book, onDelete, listType = WISHLIST_BOOK_LIST_TYPE }) {
       links: [
         {
           label: "View and Edit Description",
-          path: "/BookForm/ReadlistReview",
+          path: routeConstants.READLIST_REVIEW.path,
           state: {
             state: book,
             rating: rating,

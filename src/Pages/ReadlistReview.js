@@ -8,6 +8,7 @@ import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import Button from "../components/Button";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
+import routeConstants from "../constants/routeConstants";
 
 function ReadlistReview() {
   const user = useUserLoggedIn();
@@ -82,7 +83,7 @@ function ReadlistReview() {
       ? await updateBookInDb(READLIST_TABLE_NAME, bookData.docId, object)
       : await addBookToDb(READLIST_TABLE_NAME, object);
 
-    navigate("/Read");
+    navigate(routeConstants.READ.path);
   };
 
   return (

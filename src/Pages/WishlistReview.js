@@ -8,6 +8,7 @@ import useNavigation from "../hooks/custom-hooks/useNavigation";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
+import routeConstants from "../constants/routeConstants";
 
 function WishlistReview() {
   const user = useUserLoggedIn();
@@ -70,7 +71,7 @@ function WishlistReview() {
       ? await updateBookInDb(WISHLIST_TABLE_NAME, bookData.docId, object)
       : await addBookToDb(WISHLIST_TABLE_NAME, object);
 
-    navigate("/Wishlist");
+    navigate(routeConstants.WISHLIST.path);
   };
 
   return (

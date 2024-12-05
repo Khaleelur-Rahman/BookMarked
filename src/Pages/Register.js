@@ -13,6 +13,7 @@ import {
   TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD,
   TOAST_WEAK_PASSWORD,
 } from "../constants/toastConstants";
+import routeConstants from "../constants/routeConstants";
 
 function Register() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -30,7 +31,7 @@ function Register() {
         .then((userCredentials) => {
           const user = userCredentials.user;
           localStorage.setItem("registerEmail", user.email);
-          navigate("/Login");
+          navigate(routeConstants.LOGIN.path);
         })
         .catch((error) => {
           switch (error.code) {
@@ -124,7 +125,7 @@ function Register() {
               href="#!"
               className="text-blue-600 ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
               onClick={() => {
-                navigate("/Login");
+                navigate(routeConstants.LOGIN.path);
               }}
             >
               Login here

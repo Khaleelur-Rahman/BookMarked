@@ -19,6 +19,7 @@ import {
   LOGIN_GOOGLE,
 } from "../constants/commonConstants";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
+import routeConstants from "../constants/routeConstants";
 
 function Login() {
   const [loginEmail, setLoginEmail] = useState("");
@@ -28,7 +29,7 @@ function Login() {
   const user = useUserLoggedIn();
 
   if (user) {
-    navigate("/BookForm")
+    navigate(routeConstants.BOOK_FORM.path);
   }
 
   useEffect(() => {
@@ -74,7 +75,7 @@ function Login() {
       const user = userCredentials.user;
       localStorage.setItem("loginEmail", user.email);
 
-      navigate("/BookForm");
+      navigate(routeConstants.BOOK_FORM.path);
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
@@ -199,7 +200,7 @@ function Login() {
               <a
                 href="#!"
                 className="text-blue-600 ml-8 text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                onClick={() => navigate("/Register")}
+                onClick={() => navigate(routeConstants.REGISTER.path)}
               >
                 Register
               </a>

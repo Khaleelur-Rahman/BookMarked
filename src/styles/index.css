@@ -116,6 +116,7 @@ a:hover {
   -webkit-text-fill-color: rgb(32, 200, 200);
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgb(37, 53, 156);
+  cursor: pointer;
 }
 
 /*Book search form styles*/

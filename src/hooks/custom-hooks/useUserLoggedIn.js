@@ -1,6 +1,7 @@
 import useNavigation from "./useNavigation";
 import { useEffect, useState } from "react";
 import { auth } from "../../backend/firebase-config";
+import routeConstants from "../../constants/routeConstants";
 
 const useUserLoggedIn = () => {
   const navigate = useNavigation();
@@ -11,7 +12,7 @@ const useUserLoggedIn = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
       if (!user) {
-        navigate("/Login");
+        navigate(routeConstants.LOGIN.path);
       }
     });
 

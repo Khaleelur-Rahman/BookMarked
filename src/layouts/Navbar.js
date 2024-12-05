@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import useNavigation from "../hooks/custom-hooks/useNavigation";
+import routeConstants from "../constants/routeConstants";
 
 export default function Navbar() {
   const user = useUserLoggedIn();
@@ -32,9 +33,9 @@ export default function Navbar() {
   const homepage = () => {
     //Function to faciliate navigation when website title is clicked
     if (user !== null) {
-      navigate("/BookForm");
+      navigate(routeConstants.BOOK_FORM.path);
     } else {
-      navigate("/Login");
+      navigate(routeConstants.LOGIN.path);
     }
   };
 
@@ -72,17 +73,17 @@ export default function Navbar() {
         </div>
         <ul className="flex flex-row mr-5">
           <li className="mt-6 whitespace-pre">
-            <Link to={"/BookForm"} data-testid="book-search">
+            <Link to={routeConstants.BOOK_FORM.path} data-testid="book-search">
               Book Search
             </Link>
           </li>
           <li className="mt-6">
-            <Link to={"/Wishlist"} data-testid="wishlist">
+            <Link to={routeConstants.WISHLIST.path} data-testid="wishlist">
               Wishlist
             </Link>
           </li>
           <li className="mt-6">
-            <Link to={"/Read"} data-testid="readlist">
+            <Link to={routeConstants.READ.path} data-testid="readlist">
               Readlist
             </Link>
           </li>
@@ -120,20 +121,20 @@ export default function Navbar() {
         ) : (
           <div>
             <li className="profile-dropdown-subitem" data-testid="dropdown1">
-              <Link to={"/Login"}>Login</Link>
+              <Link to={routeConstants.LOGIN.path}>Login</Link>
             </li>
           </div>
         )}
         {user ? (
           <div>
             <li className="profile-dropdown-subitem" onClick={logout}>
-              <Link to={"/Login"}>Logout</Link>
+              <Link to={routeConstants.LOGIN.path}>Logout</Link>
             </li>
           </div>
         ) : (
           <div>
             <li className="profile-dropdown-subitem" data-testid="dropdown2">
-              <Link to={"/Register"}>Register</Link>
+              <Link to={routeConstants.REGISTER.path}>Register</Link>
             </li>
           </div>
         )}
