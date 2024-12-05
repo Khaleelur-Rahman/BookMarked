@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "../../layouts/Navbar";
-import Login from "../../Pages/Login";
+import Login from "../../pages/Login";
 import BookForm from "../../pages/BookForm";
 import "@testing-library/jest-dom";
 
