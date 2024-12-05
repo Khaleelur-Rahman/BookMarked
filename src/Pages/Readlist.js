@@ -12,7 +12,7 @@ import { TOAST_SUCCESS } from "../constants/toastConstants";
 import BookListItem from "../components/BookListItem";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 
-const Read = () => {
+const Readlist = () => {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageChanges, setPageChanges] = useState(0);
@@ -56,13 +56,13 @@ const Read = () => {
         <div className="read-header">Readlist</div>
         <br />
         <br />
-        <div className="read-books">
+        <div className="readlist-books">
           {books.length === 0 ? (
             <div className="text-xl font-medium">
               No books found. Go to book search to add books to Readlist!
             </div>
           ) : (
-            <div className="read-books">
+            <div className="readlist-books">
               {books.map((doc) => {
                 return (
                   <BookListItem
@@ -88,4 +88,4 @@ const Read = () => {
   );
 };
 
-export default Read;
+export default Readlist;

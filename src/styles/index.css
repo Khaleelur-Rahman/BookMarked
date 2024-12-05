@@ -185,7 +185,7 @@ button[id="reset"] {
 
 .image-container,
 .wishlist-books,
-.read-books {
+.readlist-books {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -201,7 +201,7 @@ button[id="reset"] {
 }
 
 .book-details .search-books-image,
-.read-books-image,
+.readlist-books-image,
 .wishlist-books-image {
   opacity: 1;
   transition: filter 0.3s;
@@ -214,7 +214,7 @@ button[id="reset"] {
 
 .book-details:hover .search-books-image,
 .book-details:hover .wishlist-books-image,
-.book-details:hover .read-books-image {
+.book-details:hover .readlist-books-image {
   cursor: pointer;
   filter: blur(4px);
   -webkit-filter: blur(4px);

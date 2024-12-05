@@ -5,7 +5,7 @@ import BookForm from "../pages/BookForm";
 import WishlistReview from "../pages/WishlistReview";
 import Wishlist from "../pages/Wishlist";
 import ReadlistReview from "../pages/ReadlistReview";
-import Read from "../pages/Read";
+import Readlist from "../pages/Readlist";
 
 export const routeConstants = {
   HOME: { path: "/", element: <Home /> },
@@ -21,5 +21,5 @@ export const routeConstants = {
     path: "/BookForm/ReadlistReview",
     element: <ReadlistReview />,
   },
-  READ: { path: "/Read", element: <Read /> },
+  READ: { path: "/Readlist", element: <Readlist /> },
 };

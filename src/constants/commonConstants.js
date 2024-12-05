@@ -7,7 +7,7 @@ export const API_PATH = (searchQuery, author) =>
 export const READLIST_TABLE_NAME = "Read";
 export const WISHLIST_TABLE_NAME = "ToRead";
 
-export const READ_BOOK_LIST_TYPE = "read";
+export const READ_BOOK_LIST_TYPE = "readlist";
 export const WISHLIST_BOOK_LIST_TYPE = "wishlist";
 export const SEARCH_BOOK_LIST_TYPE = "search";
 
