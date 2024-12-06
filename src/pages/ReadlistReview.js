@@ -34,16 +34,16 @@ const ReadlistReview = () => {
     if (state) {
       setBookData({
         docId: state.docId || "",
-        book: state.state,
-        title: state.state.volumeInfo.title,
-        authors: state.state.volumeInfo.authors || [],
-        image: state.state.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
+        book: state.book,
+        title: state.book.volumeInfo.title,
+        authors: state.book.volumeInfo.authors || [],
+        image: state.book.volumeInfo.imageLinks?.thumbnail || noBookCoverImage,
         description: state.description || "",
         rating: state.rating || "",
         dateCompleted: state.dateCompleted
           ? formatDate(state.dateCompleted, "yyyy-mm-dd")
           : "",
-        type: state.state.type || "",
+        type: state.book.type || "",
       });
     }
   }, [state]);
