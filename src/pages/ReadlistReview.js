@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
 import { routeConstants } from "../constants/routeConstants";
+import NotFound from "./NotFound";
 
 const ReadlistReview = () => {
   const user = useUserLoggedIn();
@@ -149,7 +150,7 @@ const ReadlistReview = () => {
           </div>
         </div>
       ) : (
-        <div>No book found.</div>
+        <NotFound />
       )}
     </div>
   );

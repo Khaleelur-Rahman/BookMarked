@@ -9,6 +9,7 @@ import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
 import { UPDATE_OPERATION } from "../constants/commonConstants";
 import { formatDate } from "../utils/utils";
 import { routeConstants } from "../constants/routeConstants";
+import NotFound from "./NotFound";
 
 const WishlistReview = () => {
   const user = useUserLoggedIn();
@@ -127,7 +128,7 @@ const WishlistReview = () => {
           </div>
         </div>
       ) : (
-        <div>No book found.</div>
+        <NotFound />
       )}
     </div>
   );

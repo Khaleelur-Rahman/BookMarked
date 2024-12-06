@@ -11,11 +11,7 @@ import {
 import BookListItemDescription from "../components/BookListItemDescription";
 import { routeConstants } from "../constants/routeConstants";
 
-const BookListItem = ({
-  book,
-  onDelete,
-  listType = WISHLIST_BOOK_LIST_TYPE,
-}) => {
+const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
   const {
     volumeInfo = {},
     docId,
