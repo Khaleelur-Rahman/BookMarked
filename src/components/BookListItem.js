@@ -104,7 +104,7 @@ const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
           </div>
         )}
 
-        {/* Delete option for existing list items */}
+        {/* Delete option for list items in readlist and wishlist */}
         {onDelete && (
           <div
             className="mt-6"
