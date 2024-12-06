@@ -20,7 +20,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 const BookForm = () => {
   const [bookResult, setBooks] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [bookName, setbookName] = useState("");
   const [author, setAuthor] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +44,7 @@ const BookForm = () => {
 
     //Fetch api results from google books endpoint using api key
     axios
-      .get(API_PATH(searchQuery, author))
+      .get(API_PATH(bookName, author))
       .then((response) => {
         if (response.data.totalItems === 0) {
           DisplayToast(TOAST_ERROR, TOAST_BOOK_NOT_FOUND);
@@ -64,7 +64,7 @@ const BookForm = () => {
   }
 
   function resetForm() {
-    setSearchQuery("");
+    setbookName("");
     setAuthor("");
     setBooks([]);
   }
@@ -88,8 +88,8 @@ const BookForm = () => {
                 <input
                   type="text"
                   placeholder=" "
-                  value={searchQuery}
-                  onChange={(event) => setSearchQuery(event.target.value)}
+                  value={bookName}
+                  onChange={(event) => setbookName(event.target.value)}
                   autoComplete="off"
                   id="inputBook"
                   className="cursor-text peer block +-h-[auto] w-5/6 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"

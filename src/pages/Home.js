@@ -1,4 +1,3 @@
-import LoginAndRegisterHomeButtons from "../components/LoginAndRegisterHomeButtons";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useMemo, Suspense } from "react";
 import useUserLoggedIn from "../hooks/custom-hooks/useUserLoggedIn";
@@ -7,17 +6,11 @@ const Home = () => {
   const user = useUserLoggedIn();
 
   const homePageContent = useMemo(() => {
-    if (user === null) {
-      return <LoadingSpinner />;
-    } else if (user !== null) {
-      return (
-        <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
-          Welcome back {user?.displayName}!
-        </div>
-      );
-    } else {
-      return <LoginAndRegisterHomeButtons />;
-    }
+    return (
+      <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
+        Welcome back {user.displayName || ""}!
+      </div>
+    );
   }, [user]);
 
   return (

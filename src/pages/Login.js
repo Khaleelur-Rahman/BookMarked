@@ -54,7 +54,7 @@ const Login = () => {
     try {
       let userCredentials;
 
-      // Different login methods based on the input
+      // Different login methods based on the loginMethod parameter
       if (loginMethod === LOGIN_EMAIL_PASSWORD) {
         if (loginEmail === "" || loginPassword === "") {
           DisplayToast(TOAST_ERROR, TOAST_NOT_EMPTY_EMAIL_AND_PASSWORD);
@@ -91,6 +91,7 @@ const Login = () => {
     }
   };
 
+  // For email and password login
   const loginWithEmailAndPassword = (event) =>
     handleLogin(event, LOGIN_EMAIL_PASSWORD);
 
@@ -100,7 +101,7 @@ const Login = () => {
   return (
     <div>
       <h3 className="flex justify-center content-center  mb-8 tracking-wider text-gray-500 md:text-lg dark:text-gray-400">
-        Login to access the features{" "}
+        Login to access the features
       </h3>
       <div className="flex justify-center content-center mt-20">
         <form className="bg-white shadow-md shadow-cyan-500/50 rounded px-8 pt-6 pb-8 mb-4">
