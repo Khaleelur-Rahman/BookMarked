@@ -1,14 +1,13 @@
 import React from "react";
-import { setUrl } from "../utils/utils";
-import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import noBookCoverImage from "../images/No-book-cover.png";
 import {
   READ_BOOK_LIST_TYPE,
   WISHLIST_BOOK_LIST_TYPE,
   SEARCH_BOOK_LIST_TYPE,
 } from "../constants/commonConstants";
 import BookListItemDescription from "../components/BookListItemDescription";
+import BookListItemImage from "./BookListItemImage";
+import BookListItemLinks from "./BookListItemLinks";
 import { routeConstants } from "../constants/routeConstants";
 
 const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
@@ -71,13 +70,14 @@ const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
 
   const config = navigationConfig[listType];
   const title = volumeInfo.title;
-  const bookImage = volumeInfo.imageLinks
-    ? volumeInfo.imageLinks.thumbnail
-    : noBookCoverImage;
 
   return (
     <div className="book-details">
-      <img className={`${listType}-books-image`} src={bookImage} alt={title} />
+      <BookListItemImage
+        volumeInfo={volumeInfo}
+        title={title}
+        listType={listType}
+      />
 
       <BookListItemDescription
         title={title}
@@ -85,35 +85,12 @@ const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
         listType={listType}
       />
 
-      {/* Dynamic links based on list type */}
-      <div className="image-links">
-        {config.links &&
-          config.links.map((link, index) => (
-            <React.Fragment key={index}>
-              <Link to={link.path} state={link.state} className="add-read">
-                {link.label}
-              </Link>
-              {index < config.links.length - 1 && <br />}
-            </React.Fragment>
-          ))}
-
-        {/* Book details link */}
-        {volumeInfo.infoLink && (
-          <div className="mt-6" onClick={() => setUrl(volumeInfo.infoLink)}>
-            Book Details
-          </div>
-        )}
-
-        {/* Delete option for list items in readlist and wishlist */}
-        {onDelete && (
-          <div
-            className="mt-6"
-            onClick={() => onDelete(docId, volumeInfo.title)}
-          >
-            Delete
-          </div>
-        )}
-      </div>
+      <BookListItemLinks
+        config={config}
+        volumeInfo={volumeInfo}
+        onDelete={onDelete}
+        docId={docId}
+      />
     </div>
   );
 };
