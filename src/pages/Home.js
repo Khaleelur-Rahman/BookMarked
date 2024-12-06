@@ -6,11 +6,13 @@ const Home = () => {
   const user = useUserLoggedIn();
 
   const homePageContent = useMemo(() => {
-    return (
-      <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
-        Welcome back {user?.displayName || ""}!
-      </div>
-    );
+    if (user) {
+      return (
+        <div className="flex justify-center items-center my-20 font-bold text-2xl text-center">
+          Welcome back {user.displayName || ""}!
+        </div>
+      );
+    }
   }, [user]);
 
   return (
