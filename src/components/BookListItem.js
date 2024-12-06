@@ -79,17 +79,17 @@ const BookListItem = ({ book, onDelete, listType = SEARCH_BOOK_LIST_TYPE }) => {
         listType={listType}
       />
 
-      <BookListItemDescription
-        title={title}
-        description={{ dateToRead, rating }}
-        listType={listType}
-      />
-
       <BookListItemLinks
         config={config}
         volumeInfo={volumeInfo}
         onDelete={onDelete}
         docId={docId}
+      />
+
+      <BookListItemDescription
+        title={title}
+        description={{ dateToRead, rating }}
+        listType={listType}
       />
     </div>
   );
